@@ -16,6 +16,12 @@ public class ReconocedorGramaticas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        NodoP a = new NodoP();
+        NodoP b = new NodoP();
+        NodoP c = new NodoP();
+        NodoP d = new NodoP();
+        
+        ListaP lista = new ListaP();
         
         
     }

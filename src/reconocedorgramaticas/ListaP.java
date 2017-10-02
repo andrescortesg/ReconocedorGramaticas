@@ -11,11 +11,14 @@ package reconocedorgramaticas;
  */
 public class ListaP {
     private NodoP cabeza;
+    private NodoP ladoDerecho;
     
     public ListaP(){
+        cabeza = new NodoP();
         cabeza.setModo(3); // modo nodo cabeza
         cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
         cabeza.setLigaIzq(cabeza);
+        ladoDerecho = cabeza;
     }
     
     public NodoP primerElemento(){
@@ -26,6 +29,8 @@ public class ListaP {
         return cabeza.getLigaIzq();
     }
     
+    
+    
     public boolean esPrimero(NodoP x){
         return x == primerElemento();
     }
@@ -34,12 +39,27 @@ public class ListaP {
         return x == ultimoElemento();
     }
     
-    public boolean esVacio(){
+    public boolean esVacia(){
         return primerElemento() == cabeza;
     }
     
-    public void insertarElemento(NodoP elemento){ // Inserción al final de la lista
-        if(esVacio()){
+    public NodoP buscarDondeInsertar(int lado){
+        if(lado == 0){ // buscar en lado derecho
+            if(esVacia()){
+                return null;
+            }
+            NodoP x = cabeza;
+            do{
+                
+            }while(x != ladoDerecho);
+        }
+        
+        return null;
+    }
+    //NO PROBADO
+    // Inserción al final de la lista
+    public void insertarElementoLI(NodoP elemento){ 
+        if(esVacia()){
             elemento.setLigaDer(cabeza);
             elemento.setLigaIzq(cabeza);
             cabeza.setLigaDer(elemento);
@@ -51,5 +71,29 @@ public class ListaP {
         }
     }
     
+    public void insertarElementoLD(NodoP elemento){
+        
+    }
     
+    
+    //NO PROBADO
+    //Crea un elemento y lo inserta al final de la lista en el lado derecho de la producción
+    public void crearElementoLD(String nombre, int modo){ 
+        NodoP nodo = new NodoP();
+        nodo.setDato(nombre);
+        nodo.setModo(modo);
+        insertarElementoLD(nodo);
+    }
+    
+    public NodoP buscar(String nombre, int instancia){
+        
+        
+        return null;
+    }
+    
+    //NO PROBADO
+    //Desconecta el elemento
+    public void desconectar(){
+    
+    }
 }
