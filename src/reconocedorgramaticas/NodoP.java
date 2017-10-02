@@ -6,7 +6,7 @@
 package reconocedorgramaticas;
 
 /**
- *
+ *Nodo doblemente ligado para un elemento de una producción
  * @author andres.cortesg
  */
 public class NodoP {
