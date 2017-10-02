@@ -21,7 +21,7 @@ public class NodoP {
     private NodoP ligaDer;
 
     public NodoP() {
-        modo = 2;
+        modo  = 2;
         ligaDer = null;
         ligaIzq = null;
     }

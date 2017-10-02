@@ -5,7 +5,7 @@
  */
 package reconocedorgramaticas;
 
-/**
+/** 
  *Lista para una gramatica
  * @author andres.cortesg
  */
