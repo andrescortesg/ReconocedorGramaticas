@@ -79,23 +79,23 @@ public class ListaG {
         
         for(int i = 0; i< linea.length(); i++){
             if(linea.charAt(i) == '='){
-                System.out.println("-----asdasdasd------------------");
+                
             }
-            int ascii = (int)linea.charAt(i);
+           
             switch(linea.charAt(i)){
                 case 60: //no terminal '<'
-                    System.out.println("entro <");
+                    
                     
                     int x = i+1;
                     while(linea.charAt(x) != '>'){
-                        System.out.println("entro loop " + linea.charAt(x));
+                        
                         aux.append(linea.charAt(x));
                         x = x+1;
                     }
                     System.out.println(aux);
                     i = x;
                     if(ladoDerecho == false){
-                        System.out.println("llego aca");
+                        
                         produccion.crearCabeza(aux.toString()); // crea no terminal lado izquierdo
                     }else{
                         produccion.crearElemento(aux.toString() ,0); //crea no terminal lado derecho
@@ -103,7 +103,7 @@ public class ListaG {
                     
                     break;
                 case 61: // separador de lados '='
-                    System.out.println("entro =");
+                    
                     if(produccion.cabezaVacia()){
                         return 2; // error 2: no tiene lado izquierdo
                     }else{
@@ -114,7 +114,7 @@ public class ListaG {
                     
                     break;
                 default:
-                    System.out.println("entro def");
+                    
                     aux.append(linea.charAt(i));
                     produccion.crearElemento(aux.toString(), 1); //crea terminal
                     

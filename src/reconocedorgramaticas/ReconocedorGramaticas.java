@@ -48,10 +48,11 @@ public class ReconocedorGramaticas {
         
         ListaG gram = new ListaG();
         //gram.insertarProduccion(lista);
-        String pr1 = "<Aasd> = a<B><C><C>";
-        String pr2 = "<B> = b";
+        String pr1 = "<Aasd> = a<B>/<C/><C>";
+        String pr2 = "<B> = basdasdsda";
         String err = "a= >A<";
         gram.crearProduccion(pr1);
+        gram.crearProduccion(pr2);
         gram.imprimirGramatica();
         
         //gram.insertarProduccion(l2);
