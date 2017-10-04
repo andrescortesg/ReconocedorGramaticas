@@ -11,14 +11,14 @@ package reconocedorgramaticas;
  */
 public class ListaP {
     private NodoP cabeza;
-    private NodoP ladoDerecho;
+    
     
     public ListaP(){
         cabeza = new NodoP();
         cabeza.setModo(3); // modo nodo cabeza
         cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
         cabeza.setLigaIzq(cabeza);
-        ladoDerecho = cabeza;
+        
     }
     
     public NodoP primerElemento(){
@@ -42,7 +42,7 @@ public class ListaP {
     public boolean esVacia(){
         return primerElemento() == cabeza;
     }
-    
+    /*
     public NodoP buscarDondeInsertar(int lado){
         if(lado == 0){ // buscar en lado derecho
             if(esVacia()){
@@ -55,10 +55,10 @@ public class ListaP {
         }
         
         return null;
-    }
+    }*/
     //NO PROBADO
     // Inserción al final de la lista
-    public void insertarElementoLI(NodoP elemento){ 
+    public void insertarElemento(NodoP elemento){ 
         if(esVacia()){
             elemento.setLigaDer(cabeza);
             elemento.setLigaIzq(cabeza);
@@ -71,18 +71,16 @@ public class ListaP {
         }
     }
     
-    public void insertarElementoLD(NodoP elemento){
-        
-    }
+    
     
     
     //NO PROBADO
     //Crea un elemento y lo inserta al final de la lista en el lado derecho de la producción
-    public void crearElementoLD(String nombre, int modo){ 
+    public void crearElemento(String nombre, int modo){ 
         NodoP nodo = new NodoP();
         nodo.setDato(nombre);
         nodo.setModo(modo);
-        insertarElementoLD(nodo);
+        insertarElemento(nodo);
     }
     
     public NodoP buscar(String nombre, int instancia){
