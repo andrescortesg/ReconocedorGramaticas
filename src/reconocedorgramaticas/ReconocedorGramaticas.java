@@ -53,6 +53,7 @@ public class ReconocedorGramaticas {
         String err = "a= >A<";
         gram.crearProduccion(pr1);
         gram.imprimirGramatica();
+        
         //gram.insertarProduccion(l2);
         
     }

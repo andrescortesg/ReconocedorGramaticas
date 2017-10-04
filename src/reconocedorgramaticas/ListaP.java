@@ -150,11 +150,11 @@ public class ListaP {
     //Probado funciona
     public void imprimirEnConsola(){
         NodoP x;
-        x = cabeza.getLigaDer();
-        while(x != cabeza){
+        x = cabeza;
+        do{
             System.out.println("Nombre: "+x.getDato()+" -Modo: "+x.getModo() + " Nodo: "+ x);
             x = x.getLigaDer();
-        }
+        }while(x != cabeza);
     }
     
     //NO PROBADO

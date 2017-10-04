@@ -76,13 +76,14 @@ public class ListaG {
         ListaP produccion = new ListaP(); //nueva produccion
         StringBuilder aux = new StringBuilder(); // buffer para el string a insertar
         boolean ladoDerecho = false; // verificador de lado derecho
-        final char igual = '=';
+        
         for(int i = 0; i< linea.length(); i++){
-            if(linea.charAt(i) == igual){
+            if(linea.charAt(i) == '='){
                 System.out.println("-----asdasdasd------------------");
             }
+            int ascii = (int)linea.charAt(i);
             switch(linea.charAt(i)){
-                case '<': //no terminal
+                case 60: //no terminal '<'
                     System.out.println("entro <");
                     
                     int x = i+1;
@@ -94,13 +95,14 @@ public class ListaG {
                     System.out.println(aux);
                     i = x;
                     if(ladoDerecho == false){
+                        System.out.println("llego aca");
                         produccion.crearCabeza(aux.toString()); // crea no terminal lado izquierdo
                     }else{
                         produccion.crearElemento(aux.toString() ,0); //crea no terminal lado derecho
                     }
                     
                     break;
-                case igual: // separador de lados
+                case 61: // separador de lados '='
                     System.out.println("entro =");
                     if(produccion.cabezaVacia()){
                         return 2; // error 2: no tiene lado izquierdo
@@ -108,8 +110,8 @@ public class ListaG {
                         ladoDerecho = true;
                     }
                     break;
-                case ' ': //ignora espacios
-                    i = i+1;
+                case 32: //ignora espacios 'space'
+                    
                     break;
                 default:
                     System.out.println("entro def");
@@ -120,7 +122,7 @@ public class ListaG {
             }
             aux = new StringBuilder();
         }
-        produccion.imprimirEnConsola();
+        
         insertarProduccion(produccion);
         return 0; // terminación normal
     }
