@@ -13,4 +13,32 @@ public class ListaG {
     private ListaP cabeza;
     private int numeroDeProduccciones;
     
+    public ListaG(){
+       numeroDeProduccciones = 0;
+       cabeza.setLigaDer(cabeza);
+       cabeza.setLigaIzq(cabeza);
+    }
+    
+    public ListaP primerElemento(){
+        return cabeza.getLigaDer();
+    }
+    
+    public ListaP ultimoElemento(){
+        return cabeza.getLigaIzq();
+    }
+    
+    
+    public boolean esPrimero(ListaP x){
+        return x == primerElemento();
+    }
+    
+    public boolean esUltimo(ListaP x){
+        return x == ultimoElemento();
+    }
+    
+    public boolean esVacia(){
+        return primerElemento() == cabeza;
+    }
+    
+    
 }

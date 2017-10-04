@@ -16,7 +16,6 @@ public class NodoP {
     //0 = no terminal
     //1 = terminal
     //2 = secuencia nula
-    //3 = nodo cabeza
     private NodoP ligaIzq;
     private NodoP ligaDer;
 

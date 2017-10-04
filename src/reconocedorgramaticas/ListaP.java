@@ -11,11 +11,29 @@ package reconocedorgramaticas;
  */
 public class ListaP {
     private NodoP cabeza;
+    private ListaP ligaDer, ligaIzq;
+
+    public ListaP getLigaDer() {
+        return ligaDer;
+    }
+
+    public void setLigaDer(ListaP ligaDer) {
+        this.ligaDer = ligaDer;
+    }
+
+    public ListaP getLigaIzq() {
+        return ligaIzq;
+    }
+
+    public void setLigaIzq(ListaP ligaIzq) {
+        this.ligaIzq = ligaIzq;
+    }
+    
     
     
     public ListaP(){
         cabeza = new NodoP();
-        cabeza.setModo(3); // modo nodo cabeza
+        cabeza.setModo(0); // modo No terminal
         cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
         cabeza.setLigaIzq(cabeza);
         
@@ -42,6 +60,8 @@ public class ListaP {
     public boolean esVacia(){
         return primerElemento() == cabeza;
     }
+    
+    //en espera
     /*
     public NodoP buscarDondeInsertar(int lado){
         if(lado == 0){ // buscar en lado derecho
@@ -56,7 +76,9 @@ public class ListaP {
         
         return null;
     }*/
-    //NO PROBADO
+    
+    
+    //PROBADO
     // Inserción al final de la lista
     public void insertarElemento(NodoP elemento){ 
         if(esVacia()){
@@ -64,17 +86,20 @@ public class ListaP {
             elemento.setLigaIzq(cabeza);
             cabeza.setLigaDer(elemento);
             cabeza.setLigaIzq(elemento);
-        }else{
-            elemento.setLigaIzq(cabeza);
-            elemento.setLigaDer(cabeza.getLigaIzq());
-            cabeza.setLigaIzq(elemento);
+            return;
         }
+        System.out.println("Nombre a isnertar:");
+        
+        elemento.setLigaIzq(cabeza.getLigaIzq());
+        elemento.setLigaDer(cabeza);
+        cabeza.getLigaIzq().setLigaDer(elemento);
+        cabeza.setLigaIzq(elemento);
     }
     
     
+   
     
-    
-    //NO PROBADO
+    // PROBADO
     //Crea un elemento y lo inserta al final de la lista en el lado derecho de la producción
     public void crearElemento(String nombre, int modo){ 
         NodoP nodo = new NodoP();
@@ -83,15 +108,61 @@ public class ListaP {
         insertarElemento(nodo);
     }
     
-    public NodoP buscar(String nombre, int instancia){
+    
+    public void crearCabeza(String dato){
+        cabeza.setDato(dato);
+    }
+    
+    //En espera pero funciona
+    public NodoP buscarElemento( int instancia,String nombre){
+        NodoP x;
+        x = cabeza.getLigaDer();
+        int f = 0;
         
+        while(x != cabeza ){
+            if(x.getDato().equals(nombre)){
+                f = f+1;
+                if(f == instancia){
+                    
+                    return x;
+                }
+  
+            }
+            
+            x = x.getLigaDer();
+            
+        } 
         
         return null;
     }
     
+    public void modificarDato(NodoP nodo,String dato){
+        nodo.setDato(dato);
+       
+    }
+    
+    public void modificarModo(NodoP nodo, int modo){
+        nodo.setModo(modo);
+    }
+    
+    //Probado funciona
+    public void imprimirEnConsola(){
+        NodoP x;
+        x = cabeza.getLigaDer();
+        while(x != cabeza){
+            System.out.println("Nombre: "+x.getDato()+" -Modo: "+x.getModo() + " Nodo: "+ x);
+            x = x.getLigaDer();
+        }
+    }
+    
     //NO PROBADO
     //Desconecta el elemento
-    public void desconectar(){
-    
+    public void desconectar( NodoP nodo){
+        if(nodo != cabeza){
+            nodo.getLigaIzq().setLigaDer(nodo.getLigaDer());
+            nodo.getLigaDer().setLigaIzq(nodo.getLigaIzq());
+            return;
+        }
+        System.out.println("No se puede borrar el nodo cabeza");
     }
 }
