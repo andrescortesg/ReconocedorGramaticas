@@ -29,7 +29,9 @@ public class ListaP {
         this.ligaIzq = ligaIzq;
     }
     
-    
+    public boolean cabezaVacia(){
+        return cabeza.getDato().isEmpty();
+    }
     
     public ListaP(){
         cabeza = new NodoP();
@@ -88,7 +90,7 @@ public class ListaP {
             cabeza.setLigaIzq(elemento);
             return;
         }
-        System.out.println("Nombre a isnertar:");
+        
         
         elemento.setLigaIzq(cabeza.getLigaIzq());
         elemento.setLigaDer(cabeza);

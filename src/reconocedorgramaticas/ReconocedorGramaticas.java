@@ -39,13 +39,21 @@ public class ReconocedorGramaticas {
         
         lista.crearElemento("g", 0);
         
-        if(lista.buscarElemento(2, "f") != null){
-            System.out.println(lista.buscarElemento(2, "f"));
-        }
-        lista.desconectar(b);
-        lista.imprimirEnConsola();
+       
         
+        //lista.imprimirEnConsola();
         
+        ListaP l2 =new ListaP();
+        ListaP l3 =new ListaP();
+        
+        ListaG gram = new ListaG();
+        //gram.insertarProduccion(lista);
+        String pr1 = "<Aasd> = a<B><C><C>";
+        String pr2 = "<B> = b";
+        String err = "a= >A<";
+        gram.crearProduccion(pr1);
+        gram.imprimirGramatica();
+        //gram.insertarProduccion(l2);
         
     }
     
