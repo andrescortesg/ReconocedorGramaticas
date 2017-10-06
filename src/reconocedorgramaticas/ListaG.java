@@ -133,57 +133,45 @@ public class ListaG {
     public <String> List<String> detectarNTVivos(){
         int NTvivos = 0;
         List listaNTvivos = new ArrayList();
-        ListaP x;
-        x = cabeza.getLigaDer();
+        ListaP x= cabeza.getLigaDer();;
+        
         System.out.println(x);
-        boolean hayNTvivos = true;
-        while(hayNTvivos == true){ //si se encuentra un NT vivo
-            System.out.println("bucle 1--------1---1---1--" + x);
-            
-            while(x != cabeza){ //recorre la lista
-                System.out.println(x);
-                
-                System.out.println("bucle 2----2----2--------");
-                if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){
-                    listaNTvivos.add(x.getCabeza());
-                    hayNTvivos = true;
-                    break;
-                }else{
-                
-                    NodoP a = x.primerElemento();
-                    do{
-                    
-                        if(listaNTvivos.contains(x.getCabeza())){ // si ya es NT vivo
-                            break;
-                        }
-                        if(listaNTvivos.isEmpty()){ // si no hay NT vivos por defecto
-                            break;
-                        }
-                        if(a.getModo() == 0){ //es NT
-                            if(!(listaNTvivos.contains(a.getDato()))){ // 
-                                break;
-                            }
-                        }
-                        a = a.getLigaDer();
-                    
-                    }while(a != x.ultimoElemento()); // recorre la produccion
-                
-                    if(a == x.ultimoElemento()){
-                        listaNTvivos.add(a.getLigaDer().getDato()); // agreaga nombre del nodo cabeza
-                        hayNTvivos = true;
-                    }else{
-                        hayNTvivos = false;
-                    }
-                    x = x.getLigaDer();
-                }
+        
+        while(x != cabeza ){// NT vivos por definición
+            if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){
+                listaNTvivos.add(x.getCabeza());
             }
-            x = cabeza.getLigaDer(); 
+            
+            x = x.getLigaDer();
         }
-        if(hayNTvivos == false && listaNTvivos.isEmpty()){
-            return null;
-        }
+        
+        detectarNT(listaNTvivos);
+        
         return listaNTvivos;
     }
     
-    
+    public <String> List<String> detectarNT(List lista){
+        ListaP x = cabeza.getLigaDer();
+        
+        while(x != cabeza){
+            if( lista.contains(x.getCabeza()) ){
+                x = x.getLigaDer();
+            }
+            NodoP a = x.primerElemento();
+            while( a != x.cabeza() ){
+                if( !(lista.contains(a.getDato())) ){
+                    break;
+                }
+                a = a.getLigaDer();
+            }
+            if(a == x.cabeza()){
+                lista.add(a.getDato());
+                
+                lista =detectarNT(lista); 
+            }
+            x = x.getLigaDer();
+        }
+        
+        return lista;
+    }
 }
