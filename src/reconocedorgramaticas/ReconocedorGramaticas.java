@@ -4,7 +4,7 @@
  * and open the  template in the editor.
  */
 package reconocedorgramaticas;
-
+import java.util.*;
 /**
  *
  * @author andres.cortesg
@@ -48,14 +48,17 @@ public class ReconocedorGramaticas {
         
         ListaG gram = new ListaG();
         //gram.insertarProduccion(lista);
-        String pr1 = "<Aasd> = a<B>/<C/><C>";
-        String pr2 = "<B> = basdasdsda";
-        String err = "a= >A<";
+        String pr1 = "<A> = a<C>";
+        String pr2 = "<B> = b<B><C>";
+        String pr3 = "<C>= a";
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
+        gram.crearProduccion(pr3);
         gram.imprimirGramatica();
+        List liss = new ArrayList();
+        liss = gram.detectarNTVivos();
+        System.out.println(liss);
         
-        //gram.insertarProduccion(l2);
         
     }
     

@@ -12,7 +12,28 @@ package reconocedorgramaticas;
 public class ListaP {
     private NodoP cabeza;
     private ListaP ligaDer, ligaIzq;
+    private int cantidadT, cantidadNT;
+    
 
+    
+    
+    public ListaP(){
+        cabeza = new NodoP();
+        cabeza.setModo(0); // modo No terminal
+        cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
+        cabeza.setLigaIzq(cabeza);
+        cantidadT = cantidadNT = 0;
+        
+    }
+
+    public int getCantidadT() {
+        return cantidadT;
+    }
+
+    public int getCantidadNT() {
+        return cantidadNT;
+    }
+    
     public ListaP getLigaDer() {
         return ligaDer;
     }
@@ -29,16 +50,20 @@ public class ListaP {
         this.ligaIzq = ligaIzq;
     }
     
-    public boolean cabezaVacia(){
-        return cabeza.getDato().isEmpty();
+    public void crearCabeza(String dato){
+        cabeza.setDato(dato);
     }
     
-    public ListaP(){
-        cabeza = new NodoP();
-        cabeza.setModo(0); // modo No terminal
-        cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
-        cabeza.setLigaIzq(cabeza);
-        
+    public String getCabeza(){
+        return cabeza.getDato();
+    }
+    
+    public NodoP cabeza(){
+        return cabeza;
+    }
+    
+    public boolean cabezaVacia(){
+        return cabeza.getDato().isEmpty();
     }
     
     public NodoP primerElemento(){
@@ -105,15 +130,21 @@ public class ListaP {
     //Crea un elemento y lo inserta al final de la lista en el lado derecho de la producción
     public void crearElemento(String nombre, int modo){ 
         NodoP nodo = new NodoP();
+        if(modo == 0){
+            cantidadNT++;
+            
+        }
+        if(modo == 1){
+            cantidadT++;
+            
+        }
         nodo.setDato(nombre);
         nodo.setModo(modo);
         insertarElemento(nodo);
     }
     
     
-    public void crearCabeza(String dato){
-        cabeza.setDato(dato);
-    }
+    
     
     //En espera pero funciona
     public NodoP buscarElemento( int instancia,String nombre){
@@ -155,6 +186,8 @@ public class ListaP {
             System.out.println("Nombre: "+x.getDato()+" -Modo: "+x.getModo() + " Nodo: "+ x);
             x = x.getLigaDer();
         }while(x != cabeza);
+        System.out.println("cantidad NT: "+cantidadNT );
+        System.out.println("cantidad T: "+cantidadT);
     }
     
     //NO PROBADO
