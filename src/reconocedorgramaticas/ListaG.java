@@ -21,6 +21,11 @@ public class ListaG {
        cabeza.setLigaDer(cabeza);
        cabeza.setLigaIzq(cabeza);
     }
+
+    public ListaP getCabeza() {
+        return cabeza;
+    }
+    
     
     public ListaP primerProduccion(){
         return cabeza.getLigaDer();
@@ -73,6 +78,8 @@ public class ListaG {
         cabeza.setLigaIzq(produccion);
         nroProducciones = nroProducciones+1;
     }
+    
+    
     
     public int crearProduccion(String linea){
         ListaP produccion = new ListaP(); //nueva produccion
@@ -201,4 +208,49 @@ public class ListaG {
         
         return lista;
     }
+    
+    public boolean esRegular(){
+        ListaP x = this.primerProduccion();
+        while(x != cabeza){
+            if( x.getCantidadNT() >1 ){
+                return false;
+            }
+            NodoP a = x.primerElemento();
+            boolean NT = false;
+            while(a != x.cabeza()){
+                if(a.getModo() == 0){ //hay más de un no terminal
+                    NT = true;
+                }
+                if(NT && a.getModo() == 1){ //producción de la forma <A>a
+                    return false;
+                }
+                
+                a = a.getLigaDer();
+            }
+            x = x.getLigaDer();
+        }
+        
+        return true;
+    }
+    
+    public boolean esFormaEspecial(){
+        if(!esRegular()){
+            return false;
+        }
+        ListaP x = this.primerProduccion();
+        while(x != cabeza){
+            if( x.getCantidadNT() >1 && x.getCantidadT() > 1 ){
+                return false;
+            }
+            if(!x.isEsNulo() && x.getCantidadT() > 0 && x.getCantidadNT() == 0){
+                return false;
+            }
+            x = x.getLigaDer();
+        }
+        
+        return true;
+    }
+    
+    
+    
 }

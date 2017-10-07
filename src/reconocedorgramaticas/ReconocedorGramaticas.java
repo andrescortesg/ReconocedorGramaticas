@@ -50,8 +50,8 @@ public class ReconocedorGramaticas {
         //gram.insertarProduccion(lista);
         
         String pr1 = "<A> = a<C>";
-        String pr2 = "<B> = b<B><C>";
-        String pr3 = "<C>= a";
+        String pr2 = "<B> = b<B>";
+        String pr3 = "<C>= &";
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
@@ -63,6 +63,8 @@ public class ReconocedorGramaticas {
       gram.crearProduccion("<A> = &");
       ListaP nul = gram.ultimaProduccion();
         gram.imprimirGramatica();
+        System.out.println(gram.esRegular());
+        System.out.println(gram.esFormaEspecial());
         
         
     }

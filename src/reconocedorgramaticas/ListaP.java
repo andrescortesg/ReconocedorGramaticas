@@ -28,6 +28,10 @@ public class ListaP {
         
     }
 
+    public boolean isEsNulo() {
+        return esNulo;
+    }
+
     public int getCantidadT() {
         return cantidadT;
     }
