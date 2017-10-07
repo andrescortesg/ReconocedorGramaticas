@@ -13,6 +13,7 @@ public class ListaP {
     private NodoP cabeza;
     private ListaP ligaDer, ligaIzq;
     private int cantidadT, cantidadNT;
+    private boolean esNulo;
     
 
     
@@ -23,6 +24,7 @@ public class ListaP {
         cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
         cabeza.setLigaIzq(cabeza);
         cantidadT = cantidadNT = 0;
+        esNulo = false;
         
     }
 
@@ -137,6 +139,9 @@ public class ListaP {
         if(modo == 1){
             cantidadT++;
             
+        }
+        if(modo == 2){
+            esNulo= true;
         }
         nodo.setDato(nombre);
         nodo.setModo(modo);

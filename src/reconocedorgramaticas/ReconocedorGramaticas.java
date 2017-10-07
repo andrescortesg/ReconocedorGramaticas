@@ -48,16 +48,21 @@ public class ReconocedorGramaticas {
         
         ListaG gram = new ListaG();
         //gram.insertarProduccion(lista);
+        
         String pr1 = "<A> = a<C>";
         String pr2 = "<B> = b<B><C>";
         String pr3 = "<C>= a";
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
+        //gram.imprimirGramatica();
+        //List liss = new ArrayList();
+        //liss = gram.detectarNTVivos();
+        //System.out.println(liss);
+        
+      gram.crearProduccion("<A> = &");
+      ListaP nul = gram.ultimaProduccion();
         gram.imprimirGramatica();
-        List liss = new ArrayList();
-        liss = gram.detectarNTVivos();
-        System.out.println(liss);
         
         
     }

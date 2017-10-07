@@ -78,23 +78,28 @@ public class ListaG {
         ListaP produccion = new ListaP(); //nueva produccion
         StringBuilder aux = new StringBuilder(); // buffer para el string a insertar
         boolean ladoDerecho = false; // verificador de lado derecho
-        
+        boolean inBounds; // dentro de los limites
         for(int i = 0; i< linea.length(); i++){
             if(linea.charAt(i) == '='){
                 
             }
-           
+            inBounds = (i >= 0) && (i+1 < linea.length());
             switch(linea.charAt(i)){
                 case 60: //no terminal '<'
                     
-                    
+                    if(!inBounds || linea.charAt(i+1) == '>'){
+                        return 1; // error 1: secuencia mal escrita
+                    }
                     int x = i+1;
-                    while(linea.charAt(x) != '>'){
-                        
+                    boolean inX = (x >= 0) && (x+1 < linea.length());
+                    while(linea.charAt(x) != '>' ){
+                        if(!inX){
+                            return 1; // error 1
+                        }
                         aux.append(linea.charAt(x));
                         x = x+1;
                     }
-                    System.out.println(aux);
+                    
                     i = x;
                     if(ladoDerecho == false){
                         
@@ -111,11 +116,33 @@ public class ListaG {
                     }else{
                         ladoDerecho = true;
                     }
-                    break;
-                case 32: //ignora espacios 'space'
                     
                     break;
+                case 32: //ignora espacios 'space'
+                    if(i == (linea.length()-1) ){
+                        return 4; // error 4: no hay nada después del =
+                    }
+                    break;
+                    
+                case 'λ'://secuencia nula
+                case '&'://secuencia nula, carácter reservado &
+                    
+                    if(produccion.getCantidadNT() == 0 && produccion.getCantidadT() == 0 && !inBounds){
+                        aux.append(linea.charAt(i));
+                        produccion.crearElemento(aux.toString(), 2); //crea terminal
+                        insertarProduccion(produccion);
+                        return 0;
+                    }else{
+                        return 3; // error 3: secuencia nula cuando tiene elementos en el lado derecho
+                    }
+                   
+                    
                 default:
+                    if(inBounds){ // verifica que no tenga simbolos '>' antes de la secuencia nula
+                        if(linea.charAt(i+1) == '>'){
+                        return 1;
+                        }
+                    }
                     
                     aux.append(linea.charAt(i));
                     produccion.crearElemento(aux.toString(), 1); //crea terminal
