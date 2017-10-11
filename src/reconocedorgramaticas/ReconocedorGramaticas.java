@@ -51,16 +51,18 @@ public class ReconocedorGramaticas {
         
         String pr1 = "<A> = a<C>";
         String pr2 = "<B> = b<B>";
-        String pr3 = "<C>= &";
+        String pr3 = "<C>= c";
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
+        gram.crearProduccion("<A> = &");
         //gram.imprimirGramatica();
-        //List liss = new ArrayList();
-        //liss = gram.detectarNTVivos();
-        //System.out.println(liss);
-        
-      gram.crearProduccion("<A> = &");
+//        List liss = new ArrayList();
+//        liss = gram.detectarNTVivos();
+//        System.out.println(liss+"hola");
+        NodoP nodo = new NodoP();
+        nodo = gram.detectarPrimerNTVivos();
+        System.out.println(nodo.getDato()+"  Primer nodo Terminal Vivo encontrado");
       ListaP nul = gram.ultimaProduccion();
         gram.imprimirGramatica();
         System.out.println(gram.esRegular());

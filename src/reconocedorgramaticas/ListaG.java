@@ -167,15 +167,24 @@ public class ListaG {
     public <String> List<String> detectarNTVivos(){
         int NTvivos = 0;
         List listaNTvivos = new ArrayList();
-        ListaP x= cabeza.getLigaDer();;
+        ListaP x= cabeza.getLigaDer();
         
         System.out.println(x);
         
         while(x != cabeza ){// NT vivos por definición
-            if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){
-                listaNTvivos.add(x.getCabeza());
+            System.out.println("NT  "+ x.getCantidadNT()+ "TTT  "+x.getCantidadT()+ "aqui");
+            if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){  // Condicion para las producciones
+               if (!listaNTvivos.contains(x.getCabeza())){
+                NodoP z = x.cabeza();
+                while(z != x.cabeza() ){
+                
+                z= z.getLigaDer();
+                        
+                }
+                    listaNTvivos.add(x.getCabeza());
+                 
+                }
             }
-            
             x = x.getLigaDer();
         }
         
@@ -183,6 +192,27 @@ public class ListaG {
         
         return listaNTvivos;
     }
+    public NodoP detectarPrimerNTVivos(){
+        int NTvivos = 0;
+        ListaP x= cabeza.getLigaDer();
+        NodoP vivo = new NodoP();
+               
+        while(x != cabeza ){// NT vivos por definición
+           
+            if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){  // Condicion para las producciones
+                
+                          System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");  
+                          vivo =x.cabeza();
+                }
+                    
+                 x = x.getLigaDer();
+                }
+    
+            
+                 System.out.println(vivo+"  soy yo");
+        return vivo;
+    }
+    
     
     public <String> List<String> detectarNT(List lista){
         ListaP x = cabeza.getLigaDer();
