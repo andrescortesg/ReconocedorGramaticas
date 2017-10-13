@@ -5,12 +5,21 @@
  */
 package reconocedorgramaticas;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author andres.cortesg
  */
 public class Ventana1 extends javax.swing.JFrame {
-
+    String texto;
+    JFileChooser fileChooser;
     /**
      * Creates new form NewJFrame
      */
@@ -27,26 +36,22 @@ public class Ventana1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        botonAbrir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        scrollPaneArea = new javax.swing.JScrollPane();
+        areaDeTexto = new javax.swing.JTextArea();
+        botonGuardar = new javax.swing.JButton();
+        guardarGramatica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reconocedor de Gramaticas");
+        setBounds(new java.awt.Rectangle(10, 10, 600, 600));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAbrir.setText("Cargar Archivo");
+        botonAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terminal", "No terminal" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                botonAbrirActionPerformed(evt);
             }
         });
 
@@ -54,64 +59,90 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 248, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 136, Short.MAX_VALUE)
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        areaDeTexto.setColumns(20);
+        areaDeTexto.setRows(5);
+        scrollPaneArea.setViewportView(areaDeTexto);
+
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        guardarGramatica.setText("Almacenar Gramatica");
+        guardarGramatica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarGramaticaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
-                .addGap(22, 22, 22))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(144, 144, 144))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(222, 222, 222))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addGap(38, 38, 38)
+                        .addComponent(scrollPaneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonGuardar)
+                        .addGap(101, 101, 101))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(guardarGramatica)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonGuardar)
+                    .addComponent(botonAbrir))
+                .addGap(18, 18, 18)
+                .addComponent(guardarGramatica)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(scrollPaneArea, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String archivo=abrirArchivo();
+	areaDeTexto.setText(archivo);
+    }//GEN-LAST:event_botonAbrirActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        guardarArchivo();
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void guardarGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarGramaticaActionPerformed
+        guardarGramatica();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarGramaticaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,13 +179,86 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
     }
+    
+    private String abrirArchivo() {
+  String aux="";   
+  texto="";
+  try
+  {
+   /**llamamos el metodo que permite cargar la ventana*/
+   JFileChooser file=new JFileChooser();
+   file.showOpenDialog(this);
+   /**abrimos el archivo seleccionado*/
+   File abre=file.getSelectedFile();
+ 
+   /**recorremos el archivo, lo leemos para plasmarlo
+   *en el area de texto*/
+   if(abre!=null)
+   {     
+      FileReader archivos=new FileReader(abre);
+      BufferedReader lee=new BufferedReader(archivos);
+      while((aux=lee.readLine())!=null)
+      {
+         texto+= aux+ "\n";
+      }
+         lee.close();
+    }    
+   }
+   catch(IOException ex)
+   {
+     JOptionPane.showMessageDialog(null,ex+"" +
+           "\nNo se ha encontrado el archivo",
+                 "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
+    }
+  return texto;//El texto se almacena en el JTextArea
+}
+
+ private void guardarArchivo() {
+ try
+ {
+  String nombre="";
+  JFileChooser file=new JFileChooser();
+  file.showSaveDialog(this);
+  File guarda =file.getSelectedFile();
+ 
+  if(guarda !=null)
+  {
+   /*guardamos el archivo y le damos el formato directamente,
+    * si queremos que se guarde en formato doc lo definimos como .doc*/
+    FileWriter  save=new FileWriter(guarda+".txt");
+    save.write(areaDeTexto.getText());
+    save.close();
+    JOptionPane.showMessageDialog(null,
+         "El archivo se a guardado Exitosamente",
+             "Información",JOptionPane.INFORMATION_MESSAGE);
+    }
+ }
+  catch(IOException ex)
+  {
+   JOptionPane.showMessageDialog(null,
+        "Su archivo no se ha guardado",
+           "Advertencia",JOptionPane.WARNING_MESSAGE);
+  }
+ }
+ 
+ private void guardarGramatica(){
+        String texto = areaDeTexto.getText();
+        String [] lineas = texto.split("\n");
+        System.out.println("Texto original:\n"+texto);
+        System.out.println("Texto modificado:\n");
+        for(int i=0;i<lineas.length;i++){
+            System.out.println("Linea "+i+ ": "+lineas[i]);
+        }
+ 
+ }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextArea areaDeTexto;
+    private javax.swing.JButton botonAbrir;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton guardarGramatica;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane scrollPaneArea;
     // End of variables declaration//GEN-END:variables
 }
