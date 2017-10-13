@@ -272,6 +272,12 @@ public class Ventana1 extends javax.swing.JFrame {
             System.out.println("Linea "+i+ ": "+lineas[i]);
         }
  gram.imprimirGramatica();
+ areaDeTexto.setEditable(false);
+  JOptionPane.showMessageDialog(null,
+        "La gramatica se ha guardado, para editar presiona el boton editar",
+           "Advertencia",JOptionPane.WARNING_MESSAGE);
+  
+ 
  }
 
 
