@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class Ventana1 extends javax.swing.JFrame {
     String texto;
     JFileChooser fileChooser;
+    private ListaG gram = new ListaG();
     /**
      * Creates new form NewJFrame
      */
@@ -44,6 +45,11 @@ public class Ventana1 extends javax.swing.JFrame {
         areaDeTexto = new javax.swing.JTextArea();
         botonGuardar = new javax.swing.JButton();
         guardarGramatica = new javax.swing.JButton();
+        labelRegular = new javax.swing.JLabel();
+        labelEspecial = new javax.swing.JLabel();
+        labelLineal = new javax.swing.JLabel();
+        botonVerificar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reconocedor de Gramaticas");
@@ -71,7 +77,7 @@ public class Ventana1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,43 +109,76 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
+        labelRegular.setText("Es Regular: _____");
+
+        labelEspecial.setText("Es Especial: _____");
+
+        labelLineal.setText("Es Lineal por la Derecha: _____");
+
+        botonVerificar.setText("Verificar");
+        botonVerificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerificarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Verificaciones");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(394, 512, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(scrollPaneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(222, 222, 222))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(guardarGramatica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonGuardar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelRegular)
+                                .addGap(127, 127, 127)
+                                .addComponent(botonVerificar))
+                            .addComponent(labelEspecial)
+                            .addComponent(labelLineal)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(scrollPaneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonGuardar)
-                        .addGap(101, 101, 101))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(guardarGramatica)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(152, 152, 152)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonGuardar)
-                    .addComponent(botonAbrir))
-                .addGap(18, 18, 18)
-                .addComponent(guardarGramatica)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(scrollPaneArea, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneArea, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonAbrir)
+                            .addComponent(botonGuardar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(guardarGramatica)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelRegular)
+                            .addComponent(botonVerificar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelEspecial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelLineal)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -162,6 +201,21 @@ public class Ventana1 extends javax.swing.JFrame {
         guardarGramatica();
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarGramaticaActionPerformed
+
+    private void botonVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerificarActionPerformed
+        // TODO add your handling code here:
+        if(gram.esRegular()){
+        labelRegular.setText("Es regular: TRUE");
+        if(gram.esFormaEspecial()){
+        labelEspecial.setText("Ës especial: TRUE");
+        labelLineal.setText("Es Lineal por la Derecha: FALSE");
+        }
+        }else{
+        labelRegular.setText("Es regular: FALSE");
+        labelEspecial.setText("Ës especial: FALSE");
+        labelLineal.setText("Es Lineal por la Derecha: FALSE");
+        }
+    }//GEN-LAST:event_botonVerificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,7 +316,7 @@ public class Ventana1 extends javax.swing.JFrame {
  
  private void guardarGramatica(){
      
-        ListaG gram = new ListaG();
+        
         String texto = areaDeTexto.getText();
         String [] lineas = texto.split("\n");
         System.out.println("Texto original:\n"+texto);
@@ -294,10 +348,15 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JTextArea areaDeTexto;
     private javax.swing.JButton botonAbrir;
     private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonVerificar;
     private javax.swing.JButton guardarGramatica;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelEspecial;
+    private javax.swing.JLabel labelLineal;
+    private javax.swing.JLabel labelRegular;
     private javax.swing.JScrollPane scrollPaneArea;
     // End of variables declaration//GEN-END:variables
 }
