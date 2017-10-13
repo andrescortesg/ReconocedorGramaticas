@@ -90,6 +90,7 @@ public class ListaG {
             if(linea.charAt(i) == '='){
                 
             }
+            
             inBounds = (i >= 0) && (i+1 < linea.length());
             switch(linea.charAt(i)){
                 case 60: //no terminal '<'
@@ -158,7 +159,9 @@ public class ListaG {
             }
             aux = new StringBuilder();
         }
-        
+        if(produccion.esVacia()){
+            return 4; //error 4: nada después del '='
+        }
         insertarProduccion(produccion);
         return 0; // terminación normal
     }
