@@ -11,11 +11,11 @@ import java.util.*;
  *Lista para una gramatica
  * @author andres.cortesg
  */
-public class ListaG {
+public class Gramatica {
     private Produccion cabeza;
     private int nroProducciones;
     
-    public ListaG(){
+    public Gramatica(){
        nroProducciones = 0;
        cabeza = new Produccion();
        cabeza.setLigaDer(cabeza);
@@ -204,7 +204,21 @@ public class ListaG {
         return true;
     }
     
-    
+    public NTVivosMuertos detectarNT(){
+        List NTVivos = this.detectarVivosPorDefinicion();
+        NTVivosMuertos NTS = new NTVivosMuertos(NTVivos);
+        
+        boolean hayNTVivos = true; // hay NT vivos
+        
+        Produccion x = this.getProduccionInicial();
+        
+        while(hayNTVivos){
+            
+            x = x.getLigaDer();
+        }
+        
+        return null;
+    }
     
     public boolean esRegular(){
         Produccion x = this.primerProduccion();

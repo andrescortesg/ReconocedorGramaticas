@@ -8,6 +8,8 @@ import java.util.*;
 /**
  *
  * @author andres.cortesg
+ * 
+ * Clase para No terminales vivos y muertos
  */
 public class NTVivosMuertos {
     private List NTVivos, NTMuertos;

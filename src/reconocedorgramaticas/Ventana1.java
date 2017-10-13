@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class Ventana1 extends javax.swing.JFrame {
     String texto;
     JFileChooser fileChooser;
-    private ListaG gram = new ListaG();
+    private Gramatica gram = new Gramatica();
     /**
      * Creates new form NewJFrame
      */
@@ -319,7 +319,7 @@ public class Ventana1 extends javax.swing.JFrame {
  
  private void guardarGramatica(){
      
-        gram = new ListaG();
+        gram = new Gramatica();
         String texto = areaDeTexto.getText();
         String [] lineas = texto.split("\n");
         System.out.println("Texto original:\n"+texto);

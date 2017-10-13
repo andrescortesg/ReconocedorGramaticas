@@ -33,7 +33,7 @@ public class ReconocedorGramaticas {
         
         
         
-        ListaG gram = new ListaG();
+        Gramatica gram = new Gramatica();
         gram.insertarProduccion(lista);
         
         String pr1 = "<A> = aasdasd<C>";
