@@ -61,7 +61,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Las gramaticas deben ser escritas asi:\n<S> = a<A><B><S>\n<S> =b<C><A><C>d\n<A> =λ\n<C> =c");
+        jTextArea1.setText("Las gramaticas deben ser escritas asi:\n<S> = a<A><B><S>\n<S> =b<C><A><C>d\n<A> =λ | &\n<C> =c");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,7 +83,7 @@ public class Ventana1 extends javax.swing.JFrame {
         areaDeTexto.setColumns(20);
         areaDeTexto.setRows(5);
         areaDeTexto.setToolTipText("Utiliza el boton Cargar Archivo o digita manualmente la gramatica");
-        areaDeTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        areaDeTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         areaDeTexto.setDragEnabled(true);
         areaDeTexto.setName("Editor"); // NOI18N
         scrollPaneArea.setViewportView(areaDeTexto);
@@ -139,7 +139,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(scrollPaneArea, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addComponent(scrollPaneArea, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -267,11 +267,12 @@ public class Ventana1 extends javax.swing.JFrame {
         String [] lineas = texto.split("\n");
         System.out.println("Texto original:\n"+texto);
         System.out.println("Texto modificado:\n");
-        
+        System.out.println("lista de strings"+lineas);
         for(int i=0;i<lineas.length;i++){
             if(gram.crearProduccion(lineas[i])==0){
-            gram.crearProduccion(lineas[i]);
-            System.out.println("Linea "+i+ ": "+lineas[i]);
+            //gram.crearProduccion(lineas[i]);
+            System.out.println("Se ha ingresado la producción " + lineas[i]);
+            //System.out.println("Linea "+i+ ": "+lineas[i]);
             }else{
             JOptionPane.showMessageDialog(null,
         "La gramatica no esta escrita correctamente revisa linea "+(i+1),

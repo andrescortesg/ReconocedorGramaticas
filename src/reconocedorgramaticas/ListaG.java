@@ -272,7 +272,7 @@ public class ListaG {
         }
         ListaP x = this.primerProduccion();
         while(x != cabeza){
-            if( x.getCantidadNT() >1 && x.getCantidadT() > 1 ){
+            if( (x.getCantidadNT() >1) || (x.getCantidadT() > 1) ){
                 return false;
             }
             if(!x.isEsNulo() && x.getCantidadT() > 0 && x.getCantidadNT() == 0){

@@ -49,9 +49,9 @@ public class ReconocedorGramaticas {
         ListaG gram = new ListaG();
         //gram.insertarProduccion(lista);
         
-        String pr1 = "<A> = a<C>";
+        String pr1 = "<A> = aasdasd<C>";
         String pr2 = "<B> = b<B>";
-        String pr3 = "<C>= c";
+        String pr3 = "<C>= &";
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
@@ -60,14 +60,9 @@ public class ReconocedorGramaticas {
 //        List liss = new ArrayList();
 //        liss = gram.detectarNTVivos();
 //        System.out.println(liss+"hola");
-        NodoP nodo = new NodoP();
-        nodo = gram.detectarPrimerNTVivos();
-        System.out.println(nodo.getDato()+"  Primer nodo Terminal Vivo encontrado");
-      ListaP nul = gram.ultimaProduccion();
         gram.imprimirGramatica();
-        System.out.println(gram.esRegular());
         System.out.println(gram.esFormaEspecial());
-        
+ 
         
     }
     
