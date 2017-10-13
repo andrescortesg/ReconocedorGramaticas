@@ -195,25 +195,27 @@ public class ListaG {
         
         return listaNTvivos;
     }
-    public NodoP detectarPrimerNTVivos(){
+    public <String> List<String> detectarVivosPorDefinicion(){
         int NTvivos = 0;
         ListaP x= cabeza.getLigaDer();
         NodoP vivo = new NodoP();
-               
+        List lista = new ArrayList();   
+        
         while(x != cabeza ){// NT vivos por definición
            
-            if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){  // Condicion para las producciones
+            if( (x.getCantidadNT() == 0 && x.getCantidadT() > 0) || x.isEsNulo()){  // Condicion para las producciones
                 
-                          System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");  
-                          vivo =x.cabeza();
+                    System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");  
+                    lista.add(x.getCabeza());
+                          
                 }
                     
-                 x = x.getLigaDer();
-                }
+            x = x.getLigaDer();
+        }
     
             
-                 System.out.println(vivo+"  soy yo");
-        return vivo;
+      
+        return lista;
     }
     
     

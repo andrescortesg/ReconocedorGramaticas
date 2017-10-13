@@ -56,12 +56,14 @@ public class ReconocedorGramaticas {
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
         gram.crearProduccion("<A> = &");
+        gram.crearProduccion("<D> = a");
         //gram.imprimirGramatica();
 //        List liss = new ArrayList();
 //        liss = gram.detectarNTVivos();
 //        System.out.println(liss+"hola");
         gram.imprimirGramatica();
         System.out.println(gram.esFormaEspecial());
+        System.out.println(Arrays.toString(gram.detectarVivosPorDefinicion().toArray()));
  
         
     }
