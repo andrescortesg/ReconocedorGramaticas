@@ -9,16 +9,16 @@ package reconocedorgramaticas;
  *Lista circular con nodo cabeza para una producción
  * @author andres.cortesg
  */
-public class ListaP {
+public class Produccion {
     private NodoP cabeza;
-    private ListaP ligaDer, ligaIzq;
+    private Produccion ligaDer, ligaIzq;
     private int cantidadT, cantidadNT;
     private boolean esNulo;
     
 
     
     
-    public ListaP(){
+    public Produccion(){
         cabeza = new NodoP();
         cabeza.setModo(0); // modo No terminal
         cabeza.setLigaDer(cabeza); //lista circular con nodo cabeza
@@ -40,19 +40,19 @@ public class ListaP {
         return cantidadNT;
     }
     
-    public ListaP getLigaDer() {
+    public Produccion getLigaDer() {
         return ligaDer;
     }
 
-    public void setLigaDer(ListaP ligaDer) {
+    public void setLigaDer(Produccion ligaDer) {
         this.ligaDer = ligaDer;
     }
 
-    public ListaP getLigaIzq() {
+    public Produccion getLigaIzq() {
         return ligaIzq;
     }
 
-    public void setLigaIzq(ListaP ligaIzq) {
+    public void setLigaIzq(Produccion ligaIzq) {
         this.ligaIzq = ligaIzq;
     }
     

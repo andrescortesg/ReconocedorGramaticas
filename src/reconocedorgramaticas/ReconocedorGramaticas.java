@@ -16,38 +16,25 @@ public class ReconocedorGramaticas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        NodoP a = new NodoP();
-        a.setModo(0);
-        a.setDato("a");
-        NodoP b = new NodoP();
-        b.setModo(1);
-        b.setDato("b");
-        NodoP c = new NodoP();
-        c.setModo(1);
-        c.setDato("c");
-        NodoP d = new NodoP();
         
-        ListaP lista = new ListaP();
-        lista.crearElemento("f", 0);
         
-        lista.insertarElemento(a);
+        Produccion lista = new Produccion();
         
-        lista.insertarElemento(b);
+        lista.crearCabeza("D");
         
-        lista.insertarElemento(c);
-        lista.crearElemento("f", 0);
+        lista.crearElemento("C", 0);
         
-        lista.crearElemento("g", 0);
+        lista.crearElemento("g", 1);
+        
         
        
         
         //lista.imprimirEnConsola();
         
-        ListaP l2 =new ListaP();
-        ListaP l3 =new ListaP();
+        
         
         ListaG gram = new ListaG();
-        //gram.insertarProduccion(lista);
+        gram.insertarProduccion(lista);
         
         String pr1 = "<A> = aasdasd<C>";
         String pr2 = "<B> = b<B>";
@@ -62,9 +49,8 @@ public class ReconocedorGramaticas {
 //        liss = gram.detectarNTVivos();
 //        System.out.println(liss+"hola");
         gram.imprimirGramatica();
-        System.out.println(gram.esFormaEspecial());
         System.out.println(Arrays.toString(gram.detectarVivosPorDefinicion().toArray()));
- 
+        System.out.println(gram.esNTVivo(gram.detectarVivosPorDefinicion(), lista));
         
     }
     

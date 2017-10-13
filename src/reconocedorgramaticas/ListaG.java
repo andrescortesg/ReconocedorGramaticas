@@ -12,34 +12,34 @@ import java.util.*;
  * @author andres.cortesg
  */
 public class ListaG {
-    private ListaP cabeza;
+    private Produccion cabeza;
     private int nroProducciones;
     
     public ListaG(){
        nroProducciones = 0;
-       cabeza = new ListaP();
+       cabeza = new Produccion();
        cabeza.setLigaDer(cabeza);
        cabeza.setLigaIzq(cabeza);
     }
 
-    public ListaP getCabeza() {
+    public Produccion getCabeza() {
         return cabeza;
     }
     
     
-    public ListaP primerProduccion(){
+    public Produccion primerProduccion(){
         return cabeza.getLigaDer();
     }
     
-    public ListaP ultimaProduccion(){
+    public Produccion ultimaProduccion(){
         return cabeza.getLigaIzq();
     }
     
-    public boolean esPrimero(ListaP x){
+    public boolean esPrimero(Produccion x){
         return x == primerProduccion();
     }
     
-    public boolean esUltimo(ListaP x){
+    public boolean esUltimo(Produccion x){
         return x == ultimaProduccion();
     }
     
@@ -47,13 +47,13 @@ public class ListaG {
         return primerProduccion() == cabeza;
     }
     
-    public ListaP getProduccionInicial(){
+    public Produccion getProduccionInicial(){
         return cabeza.getLigaDer();
         
     }
     
     public void imprimirGramatica(){
-        ListaP x;
+        Produccion x;
         x = cabeza.getLigaDer();
         while(x != cabeza){
             x.imprimirEnConsola();
@@ -62,7 +62,7 @@ public class ListaG {
         }
     }
     
-    public void insertarProduccion(ListaP produccion){
+    public void insertarProduccion(Produccion produccion){
         if(esVacia()){
             produccion.setLigaDer(cabeza);
             produccion.setLigaIzq(cabeza);
@@ -82,7 +82,7 @@ public class ListaG {
     
     
     public int crearProduccion(String linea){
-        ListaP produccion = new ListaP(); //nueva produccion
+        Produccion produccion = new Produccion(); //nueva produccion
         StringBuilder aux = new StringBuilder(); // buffer para el string a insertar
         boolean ladoDerecho = false; // verificador de lado derecho
         boolean inBounds; // dentro de los limites
@@ -167,37 +167,10 @@ public class ListaG {
     }
     
     
-    public <String> List<String> detectarNTVivos(){
-        int NTvivos = 0;
-        List listaNTvivos = new ArrayList();
-        ListaP x= cabeza.getLigaDer();
-        
-        System.out.println(x);
-        
-        while(x != cabeza ){// NT vivos por definición
-            System.out.println("NT  "+ x.getCantidadNT()+ "TTT  "+x.getCantidadT()+ "aqui");
-            if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){  // Condicion para las producciones
-               if (!listaNTvivos.contains(x.getCabeza())){
-                NodoP z = x.cabeza();
-                while(z != x.cabeza() ){
-                
-                z= z.getLigaDer();
-                        
-                }
-                    listaNTvivos.add(x.getCabeza());
-                 
-                }
-            }
-            x = x.getLigaDer();
-        }
-        
-        detectarNT(listaNTvivos);
-        
-        return listaNTvivos;
-    }
+    
     public <String> List<String> detectarVivosPorDefinicion(){
         int NTvivos = 0;
-        ListaP x= cabeza.getLigaDer();
+        Produccion x= cabeza.getLigaDer();
         NodoP vivo = new NodoP();
         List lista = new ArrayList();   
         
@@ -218,34 +191,23 @@ public class ListaG {
         return lista;
     }
     
-    
-    public <String> List<String> detectarNT(List lista){
-        ListaP x = cabeza.getLigaDer();
-        
-        while(x != cabeza){
-            if( lista.contains(x.getCabeza()) ){
-                x = x.getLigaDer();
+    public boolean esNTVivo(List listaVivos, Produccion x){ //detectar NT vivo
+        NodoP a = x.primerElemento();
+        while(a != x.cabeza()){
+            if(!listaVivos.contains(a.getDato()) && a.getModo() == 0){
+                return false;
             }
-            NodoP a = x.primerElemento();
-            while( a != x.cabeza() ){
-                if( !(lista.contains(a.getDato())) ){
-                    break;
-                }
-                a = a.getLigaDer();
-            }
-            if(a == x.cabeza()){
-                lista.add(a.getDato());
-                
-                lista =detectarNT(lista); 
-            }
-            x = x.getLigaDer();
+            
+            a = a.getLigaDer();
         }
         
-        return lista;
+        return true;
     }
     
+    
+    
     public boolean esRegular(){
-        ListaP x = this.primerProduccion();
+        Produccion x = this.primerProduccion();
         while(x != cabeza){
             if( x.getCantidadNT() >1 ){
                 return false;
@@ -272,7 +234,7 @@ public class ListaG {
         if(!esRegular()){
             return false;
         }
-        ListaP x = this.primerProduccion();
+        Produccion x = this.primerProduccion();
         while(x != cabeza){
             if( (x.getCantidadNT() >1) || (x.getCantidadT() > 1) ){
                 return false;
