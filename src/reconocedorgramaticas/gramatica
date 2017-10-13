@@ -1,5 +1,10 @@
-<S> = a<A>
-<A>= b<B><C>
-<B>= &
-<c> = d
+<S> = a<A><B><S>
+<S> =b<C><A><C> d
+<A> =b<A><B>
+<A> =c<S><A>
+<A> =c<C><C>
+<B> =b<A><B>
+<B> =c<S><B>
+<C> =c<S>
+<C> =c
 
