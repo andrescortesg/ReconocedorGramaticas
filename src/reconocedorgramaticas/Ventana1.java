@@ -38,6 +38,8 @@ public class Ventana1 extends javax.swing.JFrame {
 
         botonAbrir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         scrollPaneArea = new javax.swing.JScrollPane();
         areaDeTexto = new javax.swing.JTextArea();
         botonGuardar = new javax.swing.JButton();
@@ -55,20 +57,37 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Las gramaticas deben ser escritas asi:\n<S> = a<A><B><S>\n<S> =b<C><A><C>d\n<A> =λ\n<C> =c");
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 136, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         areaDeTexto.setColumns(20);
         areaDeTexto.setRows(5);
+        areaDeTexto.setToolTipText("Utiliza el boton Cargar Archivo o digita manualmente la gramatica");
+        areaDeTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        areaDeTexto.setDragEnabled(true);
+        areaDeTexto.setName("Editor"); // NOI18N
         scrollPaneArea.setViewportView(areaDeTexto);
+        areaDeTexto.getAccessibleContext().setAccessibleName("");
 
         botonGuardar.setText("Guardar");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,10 +116,10 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(scrollPaneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(botonAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(botonGuardar)
                         .addGap(101, 101, 101))
@@ -242,14 +261,17 @@ public class Ventana1 extends javax.swing.JFrame {
  }
  
  private void guardarGramatica(){
+     
+        ListaG gram = new ListaG();
         String texto = areaDeTexto.getText();
         String [] lineas = texto.split("\n");
         System.out.println("Texto original:\n"+texto);
         System.out.println("Texto modificado:\n");
         for(int i=0;i<lineas.length;i++){
+            gram.crearProduccion(lineas[i]);
             System.out.println("Linea "+i+ ": "+lineas[i]);
         }
- 
+ gram.imprimirGramatica();
  }
 
 
@@ -259,6 +281,8 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton guardarGramatica;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JScrollPane scrollPaneArea;
     // End of variables declaration//GEN-END:variables
 }
