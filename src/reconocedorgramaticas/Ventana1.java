@@ -206,10 +206,13 @@ public class Ventana1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(gram.esRegular()){
         labelRegular.setText("Es regular: TRUE");
-        if(gram.esFormaEspecial()){
-        labelEspecial.setText("Ës especial: TRUE");
-        labelLineal.setText("Es Lineal por la Derecha: FALSE");
-        }
+             if(gram.esFormaEspecial()){
+                labelEspecial.setText("Ës especial: TRUE");
+                labelLineal.setText("Es Lineal por la Derecha: FALSE");
+                }else{
+                  labelEspecial.setText("Ës especial: FALSE");
+                labelLineal.setText("Es Lineal por la Derecha: TRUE");
+            }
         }else{
         labelRegular.setText("Es regular: FALSE");
         labelEspecial.setText("Ës especial: FALSE");
@@ -316,7 +319,7 @@ public class Ventana1 extends javax.swing.JFrame {
  
  private void guardarGramatica(){
      
-        
+        gram = new ListaG();
         String texto = areaDeTexto.getText();
         String [] lineas = texto.split("\n");
         System.out.println("Texto original:\n"+texto);
