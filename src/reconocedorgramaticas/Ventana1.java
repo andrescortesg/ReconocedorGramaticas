@@ -267,12 +267,20 @@ public class Ventana1 extends javax.swing.JFrame {
         String [] lineas = texto.split("\n");
         System.out.println("Texto original:\n"+texto);
         System.out.println("Texto modificado:\n");
+        
         for(int i=0;i<lineas.length;i++){
+            if(gram.crearProduccion(lineas[i])==0){
             gram.crearProduccion(lineas[i]);
             System.out.println("Linea "+i+ ": "+lineas[i]);
-        }
+            }else{
+            JOptionPane.showMessageDialog(null,
+        "La gramatica no esta escrita correctamente revisa linea "+(i+1),
+           "Advertencia",JOptionPane.WARNING_MESSAGE);
+            return;
+            }}
+        //hay que castear cuando la produccion esta mal escrita y termina en =
  gram.imprimirGramatica();
- areaDeTexto.setEditable(false);
+ //areaDeTexto.setEditable(false);
   JOptionPane.showMessageDialog(null,
         "La gramatica se ha guardado, para editar presiona el boton editar",
            "Advertencia",JOptionPane.WARNING_MESSAGE);
