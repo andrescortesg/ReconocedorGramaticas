@@ -9,11 +9,16 @@ package reconocedorgramaticas;
 import java.util.*;
 /** 
  *Lista para una gramatica
- * @author andres.cortesg
+ * @author andres.cortesg elkin.garces
  */
 public class Gramatica {
     private Produccion cabeza;
     private int nroProducciones;
+    
+    /** 
+    *Constructor 
+    *
+    */
     
     public Gramatica(){
        nroProducciones = 0;
@@ -22,35 +27,67 @@ public class Gramatica {
        cabeza.setLigaIzq(cabeza);
     }
 
+    /** 
+    *Encuentra el nodo cabeza de una lista que contiene las producciones
+    *
+    *@return nodo cabeza de una gramática
+    */
     public Produccion getCabeza() {
         return cabeza;
     }
-    
+    /** 
+    *Retorna la primera producción que se encuentra en la lista 
+    *@return nodo cabeza de la primera producción de una gramática
+    */
     
     public Produccion primerProduccion(){
         return cabeza.getLigaDer();
     }
+    /** 
+    *Retorna la ultima producción que se encuentra en la lista 
+    *@return nodo cabeza de la ultima producción de la gramática
+    */
     
     public Produccion ultimaProduccion(){
         return cabeza.getLigaIzq();
     }
-    
+    /** 
+    *Verifica si el nodo que se pasa por parámetro es el primero de la gramática 
+    *@param x envia como parametro un nodo
+    *@return nodo cabeza de la ultima producción
+    */
     public boolean esPrimero(Produccion x){
         return x == primerProduccion();
     }
     
+    /** 
+    *Verifica si el nodo que se pasa por parámetro es el ultimo de la gramática 
+    *@param x envia como parametro un nodo
+    *@return nodo cabeza de la ultima producción
+    */
     public boolean esUltimo(Produccion x){
         return x == ultimaProduccion();
     }
+    /** 
+    *Verifica si la lista que representa una produccion esta vacia 
+    *@return true cuando esta vacia,  false cuando la lista contiene elementos
+    *
+    */
     
     public boolean esVacia(){
         return primerProduccion() == cabeza;
     }
-    
+    /** 
+    *Retorna la primera produción de una gramática
+    *@return nodo que apunta hacia la lista donde esta almacenada una producción
+    */
     public Produccion getProduccionInicial(){
         return cabeza.getLigaDer();
         
     }
+    /** 
+    *Metodo que recorre la lista que representa la Gramática y las sublistas que representan las producciones
+    */
     
     public void imprimirGramatica(){
         Produccion x;
@@ -61,6 +98,10 @@ public class Gramatica {
             x = x.getLigaDer();
         }
     }
+    /** 
+    *Metodo para insertar una produccion
+    *@param produccion es una lista ligada 
+    */
     
     public void insertarProduccion(Produccion produccion){
         if(esVacia()){
@@ -78,7 +119,13 @@ public class Gramatica {
         cabeza.setLigaIzq(produccion);
         nroProducciones = nroProducciones+1;
     }
-    
+    /** 
+    *Método para crear una producción a partir de un string
+    *Se verifica cada caracter del string y se valida que sea correcta la escritura de la producción
+    *@param linea es un String 
+    *@return lista 
+    * 
+    */
     
     
     public int crearProduccion(String linea){
