@@ -253,10 +253,12 @@ public class Gramatica {
         return true;
     }
     
+    
     public NTVivosMuertos detectarNT(){
-        List NTVivos = this.detectarVivosPorDefinicion();
-        NTVivosMuertos NTS = new NTVivosMuertos(NTVivos);
         
+        NTVivosMuertos NTS = new NTVivosMuertos();
+        List NTVivos = this.detectarVivosPorDefinicion();
+        NTS.setNTVivos(NTVivos);
         boolean hayNTVivos = true; // hay NT vivos
         
         Produccion x = this.getProduccionInicial();
@@ -334,5 +336,39 @@ public class Gramatica {
     }
     
     
+    //desconecta producciones
+    public void desconectar( Produccion nodo){
+        
+        if(nodo != cabeza){
+            nroProducciones = nroProducciones -1;
+            nodo.getLigaIzq().setLigaDer(nodo.getLigaDer());
+            nodo.getLigaDer().setLigaIzq(nodo.getLigaIzq());
+            return;
+        }
+        System.out.println("No se puede borrar el nodo cabeza");
+    }
+    
+    public void eliminarProduccion(String nombre){
+        Produccion x = this.getProduccionInicial();
+        while(x != cabeza){
+            if(x.getCabeza().equals(nombre)){
+                desconectar(x);
+            }
+            x = x.getLigaDer();
+        }
+    }
+    
+    
+    //falta NT inalcanzables
+    public void simplificarGramatica(){
+        
+        NTVivosMuertos NTVM = this.detectarNT();
+        
+        //bucle para eliminar producciones muertas
+        Produccion x = this.getProduccionInicial();
+        for(int i = 0; i < NTVM.getNTMuertos().size(); i++){
+            eliminarProduccion((String) NTVM.getNTMuertos().get(i));
+        }
+    }
     
 }

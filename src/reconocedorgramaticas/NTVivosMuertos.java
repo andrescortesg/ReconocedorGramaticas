@@ -14,8 +14,8 @@ import java.util.*;
 public class NTVivosMuertos {
     private List NTVivos, NTMuertos;
     
-    public NTVivosMuertos(List vivos){
-        NTVivos = vivos;
+    public NTVivosMuertos(){
+        NTVivos = new ArrayList();
         NTMuertos = new ArrayList();
     }
 

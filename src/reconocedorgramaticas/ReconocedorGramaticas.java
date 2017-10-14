@@ -34,26 +34,35 @@ public class ReconocedorGramaticas {
         
         
         Gramatica gram = new Gramatica();
-       // gram.insertarProduccion(lista);
+        
         
         String pr1 = "<A> = aasdasd<C>";
-        String pr2 = "<B> = b<E>";
+        String pr2 = "<B> = b<B>";
         String pr3 = "<C>= &";
+        
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
+        
         gram.crearProduccion("<A> = &");
-        
-        gram.crearProduccion("<E> = a");
-        
-        //gram.imprimirGramatica();
+        gram.crearProduccion("<C> = abc<D>");
+        gram.crearProduccion("<E> = a<C><A>");
+        gram.insertarProduccion(lista);
+        gram.crearProduccion("<C> = xc<W>");
+        gram.imprimirGramatica();
 //        List liss = new ArrayList();
 //        liss = gram.detectarNTVivos();
 //        System.out.println(liss+"hola");
-        gram.imprimirGramatica();
-        System.out.println(Arrays.toString(gram.detectarVivosPorDefinicion().toArray()));
+        //gram.imprimirGramatica();
+        //System.out.println(Arrays.toString(gram.detectarVivosPorDefinicion().toArray()));
+        NTVivosMuertos NTS = gram.detectarNT();
+        System.out.println(Arrays.toString(NTS.getNTVivos().toArray()));
+        System.out.println(Arrays.toString(NTS.getNTMuertos().toArray()));
+        System.out.println("----------+++++++++++++++++++++++++---------------");
+       gram.simplificarGramatica();
+       //gram.eliminarProduccion("C");
         
-        gram.detectarNT();
+        gram.imprimirGramatica();
     }
     
 }

@@ -202,6 +202,12 @@ public class Produccion {
     //NO PROBADO
     //Desconecta el elemento
     public void desconectar( NodoP nodo){
+        if(nodo.getModo() == 0){
+            cantidadNT = cantidadNT -1;
+        }
+        if(nodo.getModo() == 1){
+            cantidadT = cantidadT -1;
+        }
         if(nodo != cabeza){
             nodo.getLigaIzq().setLigaDer(nodo.getLigaDer());
             nodo.getLigaDer().setLigaIzq(nodo.getLigaIzq());
