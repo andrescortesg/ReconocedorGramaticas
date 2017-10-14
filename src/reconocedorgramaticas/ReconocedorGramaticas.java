@@ -34,24 +34,26 @@ public class ReconocedorGramaticas {
         
         
         Gramatica gram = new Gramatica();
-        gram.insertarProduccion(lista);
+       // gram.insertarProduccion(lista);
         
         String pr1 = "<A> = aasdasd<C>";
-        String pr2 = "<B> = b<B>";
+        String pr2 = "<B> = b<E>";
         String pr3 = "<C>= &";
         gram.crearProduccion(pr1);
         gram.crearProduccion(pr2);
         gram.crearProduccion(pr3);
         gram.crearProduccion("<A> = &");
-        gram.crearProduccion("<D> = a");
+        
+        gram.crearProduccion("<E> = a");
+        
         //gram.imprimirGramatica();
 //        List liss = new ArrayList();
 //        liss = gram.detectarNTVivos();
 //        System.out.println(liss+"hola");
         gram.imprimirGramatica();
         System.out.println(Arrays.toString(gram.detectarVivosPorDefinicion().toArray()));
-        System.out.println(gram.esNTVivo(gram.detectarVivosPorDefinicion(), lista));
         
+        gram.detectarNT();
     }
     
 }

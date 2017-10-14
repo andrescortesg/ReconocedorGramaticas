@@ -16,7 +16,7 @@ public class NodoA {
     
     
     public NodoA(){
-        
+        transiciones = new ArrayList();
     }
 
     public String getEstado() {
@@ -39,8 +39,9 @@ public class NodoA {
         return transiciones;
     }
 
-    public void setTransiciones(List transiciones) {
-        this.transiciones = transiciones;
+    public void setTransicion(String x) {
+        
+        transiciones.add(x);
     }
     
     

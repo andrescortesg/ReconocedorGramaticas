@@ -222,14 +222,16 @@ public class Gramatica {
         List lista = new ArrayList();   
         
         while(x != cabeza ){// NT vivos por definición
-           
+            
             if( (x.getCantidadNT() == 0 && x.getCantidadT() > 0) || x.isEsNulo()){  // Condicion para las producciones
-                
-                    System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");  
-                    lista.add(x.getCabeza());
-                          
-                }
                     
+                       lista.add(x.getCabeza());
+                    
+                    //System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");  
+                    
+                    
+                }
+                   
             x = x.getLigaDer();
         }
     
@@ -241,7 +243,7 @@ public class Gramatica {
     public boolean esNTVivo(List listaVivos, Produccion x){ //detectar NT vivo
         NodoP a = x.primerElemento();
         while(a != x.cabeza()){
-            if(!listaVivos.contains(a.getDato()) && a.getModo() == 0){
+            if((!listaVivos.contains(a.getDato()) && a.getModo() == 0) ){
                 return false;
             }
             
@@ -261,10 +263,32 @@ public class Gramatica {
         
         while(hayNTVivos){
             
+            if(this.esNTVivo(NTVivos, x) && !NTVivos.contains(x.getCabeza())){
+                
+                NTVivos.add(x.getCabeza());
+                x = this.getProduccionInicial();
+            }
+            if(x == cabeza){
+                hayNTVivos = false;
+            }
+            
             x = x.getLigaDer();
         }
+        NTVivos.remove(NTVivos.size()-1);
+        NTS.setNTVivos(NTVivos);
         
-        return null;
+        x = this.getProduccionInicial();
+        List NTMuertos = new ArrayList();
+        
+        while(x != cabeza){
+            if(!NTVivos.contains(x.getCabeza())){
+                NTMuertos.add(x.getCabeza());
+            }
+            x = x.getLigaDer();
+        }
+        NTS.setNTMuertos(NTMuertos);
+        
+        return NTS;
     }
     
     public boolean esRegular(){

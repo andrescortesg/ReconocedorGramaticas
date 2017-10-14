@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author andres.cortesg
  */
-public class Automata {
+public class Automata implements Cloneable{
     private boolean esDeterministico;
     private ArrayList<NodoA> automata = new ArrayList<>();
     
@@ -17,6 +17,9 @@ public class Automata {
         esDeterministico = true;
     }
 
+    public Object clone()throws CloneNotSupportedException{  
+        return super.clone();  
+    } 
     public boolean isEsDeterministico() {
         return esDeterministico;
     }
@@ -25,6 +28,6 @@ public class Automata {
         return automata;
     }
     
-   
+    
     
 }
