@@ -215,4 +215,23 @@ public class Produccion {
         }
         System.out.println("No se puede borrar el nodo cabeza");
     }
+     public void imprimirEnString(){
+        NodoP x;
+        x = cabeza;
+        StringBuffer linea =new StringBuffer();
+        linea.append("<"+x.getDato()+">=");
+        x=x.getLigaDer();
+        do{
+            if(x.getModo()==0 ){
+            linea.append("<"+x.getDato()+">");
+            }
+            if(x.getModo()==1 || x.getModo()==2){
+            linea.append(x.getDato());
+            }
+            
+            x = x.getLigaDer();
+        }while(x != cabeza);
+        System.out.println(linea);
+        
+    }
 }

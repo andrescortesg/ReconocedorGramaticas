@@ -59,10 +59,11 @@ public class ReconocedorGramaticas {
         System.out.println(Arrays.toString(NTS.getNTVivos().toArray()));
         System.out.println(Arrays.toString(NTS.getNTMuertos().toArray()));
         System.out.println("----------+++++++++++++++++++++++++---------------");
-       gram.simplificarGramatica();
+       //gram.simplificarGramatica();
        //gram.eliminarProduccion("C");
         
         gram.imprimirGramatica();
+        gram.imprimirGramaticaFormal();
     }
     
 }
