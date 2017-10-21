@@ -5,6 +5,7 @@
  */
 package reconocedorgramaticas;
 
+import com.sun.javafx.geom.transform.BaseTransform;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -43,14 +44,12 @@ public class Ventana1 extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         areaDeTexto = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
-        botonAbrir = new javax.swing.JButton();
-        botonGuardar = new javax.swing.JButton();
         labelEspecial = new javax.swing.JLabel();
         labelLineal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         labelRegular = new javax.swing.JLabel();
         botonVerificar = new javax.swing.JButton();
-        guardarGramatica = new javax.swing.JButton();
+        botonGuardarGramatica = new javax.swing.JButton();
         simplificarBoton = new javax.swing.JButton();
         detectarVMboton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -60,8 +59,11 @@ public class Ventana1 extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         eliminarProdBoton = new javax.swing.JButton();
         eliminarTextfield = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        botonAbrir = new javax.swing.JButton();
+        botonGuardarArchivo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reconocedor de Gramaticas");
@@ -81,20 +83,6 @@ public class Ventana1 extends javax.swing.JFrame {
         areaDeTexto.setDragEnabled(true);
         areaDeTexto.setName("Editor"); // NOI18N
 
-        botonAbrir.setText("Cargar Archivo");
-        botonAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAbrirActionPerformed(evt);
-            }
-        });
-
-        botonGuardar.setText("Guardar");
-        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarActionPerformed(evt);
-            }
-        });
-
         labelEspecial.setText("Es Especial: _____");
 
         labelLineal.setText("Es Lineal por la Derecha: _____");
@@ -111,15 +99,17 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
-        guardarGramatica.setText("Almacenar Gramatica");
-        guardarGramatica.setToolTipText("Guarda la gramatica en memoria para poder verificar");
-        guardarGramatica.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardarGramatica.setText("Almacenar Gramatica");
+        botonGuardarGramatica.setToolTipText("Guarda la gramatica en memoria para poder verificar");
+        botonGuardarGramatica.setEnabled(false);
+        botonGuardarGramatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarGramaticaActionPerformed(evt);
+                botonGuardarGramaticaActionPerformed(evt);
             }
         });
 
         simplificarBoton.setText("Simplificar");
+        simplificarBoton.setEnabled(false);
         simplificarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 simplificarBotonActionPerformed(evt);
@@ -127,6 +117,7 @@ public class Ventana1 extends javax.swing.JFrame {
         });
 
         detectarVMboton.setText("Detectar");
+        detectarVMboton.setEnabled(false);
         detectarVMboton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detectarVMbotonActionPerformed(evt);
@@ -142,6 +133,7 @@ public class Ventana1 extends javax.swing.JFrame {
         LabelTMuertos.setText("Sin Determinar");
 
         eliminarProdBoton.setText("Eliminar P");
+        eliminarProdBoton.setEnabled(false);
         eliminarProdBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarProdBotonActionPerformed(evt);
@@ -154,56 +146,78 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
+        botonAbrir.setText("Cargar Archivo");
+        botonAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAbrirActionPerformed(evt);
+            }
+        });
+
+        botonGuardarArchivo.setText("Guardar Archivo");
+        botonGuardarArchivo.setEnabled(false);
+        botonGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(guardarGramatica)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelRegular)
-                                    .addComponent(labelEspecial)
-                                    .addComponent(botonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelLineal))
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(simplificarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(labelTVivos))
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelTMuertos)
-                                    .addComponent(jLabel5)
+                                    .addComponent(botonGuardarGramatica)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(eliminarProdBoton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(27, 27, 27))
-                    .addComponent(jSeparator1))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelRegular)
+                                            .addComponent(labelEspecial)
+                                            .addComponent(labelLineal))
+                                        .addGap(3, 3, 3)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(simplificarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(botonVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(labelTVivos))
+                                        .addGap(53, 53, 53)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LabelTMuertos)
+                                            .addComponent(jLabel5)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(eliminarProdBoton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(detectarVMboton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(botonAbrir)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botonGuardarArchivo)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jSeparator2))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(detectarVMboton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonGuardar)
-                    .addComponent(botonAbrir))
-                .addGap(18, 18, 18)
-                .addComponent(guardarGramatica)
+                    .addComponent(botonAbrir)
+                    .addComponent(botonGuardarArchivo))
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonGuardarGramatica)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -237,6 +251,8 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGap(0, 101, Short.MAX_VALUE))
         );
 
+        jLabel3.setText("Operaciones con archivos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -246,30 +262,34 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel3)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(areaDeTexto)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                .addComponent(areaDeTexto)
+                .addGap(18, 18, 18)
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         areaDeTexto.getAccessibleContext().setAccessibleName("");
 
         jLabel2.setText("Editor de Gramáticas");
-
-        jLabel3.setText("Operaciones con archivos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,24 +299,20 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(151, 151, 151)
-                        .addComponent(jLabel2)
-                        .addGap(129, 129, 129)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,18 +322,23 @@ public class Ventana1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String archivo=abrirArchivo();
 	areaDeTexto.setText(archivo);
+        botonGuardarGramatica.setEnabled(true);
+        botonGuardarArchivo.setEnabled(true);
     }//GEN-LAST:event_botonAbrirActionPerformed
 
-    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+    private void botonGuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarArchivoActionPerformed
         // TODO add your handling code here:
         guardarArchivo();
-    }//GEN-LAST:event_botonGuardarActionPerformed
+    }//GEN-LAST:event_botonGuardarArchivoActionPerformed
 
-    private void guardarGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarGramaticaActionPerformed
+    private void botonGuardarGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarGramaticaActionPerformed
         guardarGramatica();
         botonVerificar.setEnabled(true);
+        eliminarProdBoton.setEnabled(true);
+        simplificarBoton.setEnabled(true);
+        detectarVMboton.setEnabled(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_guardarGramaticaActionPerformed
+    }//GEN-LAST:event_botonGuardarGramaticaActionPerformed
 
     private void botonVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerificarActionPerformed
         // TODO add your handling code here:
@@ -341,15 +362,26 @@ public class Ventana1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         gram.simplificarGramatica();
         actualizarGramatica();
+        
     }//GEN-LAST:event_simplificarBotonActionPerformed
 
     private void detectarVMbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detectarVMbotonActionPerformed
         // TODO add your handling code here:
         NTVivosMuertos NTS = gram.detectarNT();
+        if(!NTS.getNTMuertos().isEmpty()){
+        LabelTMuertos.setText(Arrays.toString(NTS.getNTMuertos().toArray()));
+        }else{
+            LabelTMuertos.setText("No enontrados");
+            }
+        if(!NTS.getNTVivos().isEmpty()){
+        labelTVivos.setText(Arrays.toString(NTS.getNTVivos().toArray()));
+        }else{
+            labelTVivos.setText("No enontrados");
+            }
+        
         System.out.println(Arrays.toString(NTS.getNTVivos().toArray()));
         System.out.println(Arrays.toString(NTS.getNTMuertos().toArray()));
-        labelTVivos.setText(Arrays.toString(NTS.getNTVivos().toArray()));
-        LabelTMuertos.setText(Arrays.toString(NTS.getNTMuertos().toArray()));
+        
     }//GEN-LAST:event_detectarVMbotonActionPerformed
 
     private void eliminarTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTextfieldActionPerformed
@@ -525,12 +557,12 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel LabelTMuertos;
     private javax.swing.JTextArea areaDeTexto;
     private javax.swing.JButton botonAbrir;
-    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonGuardarArchivo;
+    private javax.swing.JButton botonGuardarGramatica;
     private javax.swing.JButton botonVerificar;
     private javax.swing.JButton detectarVMboton;
     private javax.swing.JButton eliminarProdBoton;
     private javax.swing.JTextField eliminarTextfield;
-    private javax.swing.JButton guardarGramatica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -539,6 +571,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelEspecial;
     private javax.swing.JLabel labelLineal;
