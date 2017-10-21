@@ -8,6 +8,7 @@ import java.util.*;
 /**
  *
  * @author andres.cortesg
+ * @author elkin.garces
  */
 public class Automata implements Cloneable{
     private boolean esDeterministico;

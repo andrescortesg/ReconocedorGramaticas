@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,6 +51,15 @@ public class Ventana1 extends javax.swing.JFrame {
         labelRegular = new javax.swing.JLabel();
         botonVerificar = new javax.swing.JButton();
         guardarGramatica = new javax.swing.JButton();
+        simplificarBoton = new javax.swing.JButton();
+        detectarVMboton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        labelTVivos = new javax.swing.JLabel();
+        LabelTMuertos = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        eliminarProdBoton = new javax.swing.JButton();
+        eliminarTextfield = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -108,26 +119,82 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
+        simplificarBoton.setText("Simplificar");
+        simplificarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simplificarBotonActionPerformed(evt);
+            }
+        });
+
+        detectarVMboton.setText("Detectar");
+        detectarVMboton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detectarVMbotonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Terminales Vivos");
+
+        jLabel5.setText("Terminales Muertos");
+
+        labelTVivos.setText("Sin Determinar");
+
+        LabelTMuertos.setText("Sin Determinar");
+
+        eliminarProdBoton.setText("Eliminar P");
+        eliminarProdBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarProdBotonActionPerformed(evt);
+            }
+        });
+
+        eliminarTextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarTextfieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(labelLineal)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelRegular)
-                            .addComponent(labelEspecial)
-                            .addComponent(botonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonGuardar)
-                            .addComponent(botonVerificar)))
-                    .addComponent(guardarGramatica))
-                .addContainerGap(33, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
+                            .addComponent(guardarGramatica)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelRegular)
+                                    .addComponent(labelEspecial)
+                                    .addComponent(botonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelLineal))
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(simplificarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(labelTVivos))
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelTMuertos)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(eliminarProdBoton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(27, 27, 27))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(detectarVMboton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,11 +211,30 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelRegular)
                         .addGap(8, 8, 8)
-                        .addComponent(labelEspecial))
-                    .addComponent(botonVerificar))
+                        .addComponent(labelEspecial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelLineal))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(botonVerificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(simplificarBoton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelTMuertos)
+                    .addComponent(labelTVivos, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelLineal)
-                .addGap(0, 184, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(detectarVMboton)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(eliminarProdBoton)
+                        .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -160,9 +246,9 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +256,8 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(areaDeTexto)
                         .addGap(18, 18, 18)
@@ -199,7 +285,7 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +296,7 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,6 +336,49 @@ public class Ventana1 extends javax.swing.JFrame {
         labelLineal.setText("Es Lineal por la Derecha: FALSE");
         }
     }//GEN-LAST:event_botonVerificarActionPerformed
+
+    private void simplificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simplificarBotonActionPerformed
+        // TODO add your handling code here:
+        gram.simplificarGramatica();
+        actualizarGramatica();
+    }//GEN-LAST:event_simplificarBotonActionPerformed
+
+    private void detectarVMbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detectarVMbotonActionPerformed
+        // TODO add your handling code here:
+        NTVivosMuertos NTS = gram.detectarNT();
+        System.out.println(Arrays.toString(NTS.getNTVivos().toArray()));
+        System.out.println(Arrays.toString(NTS.getNTMuertos().toArray()));
+        labelTVivos.setText(Arrays.toString(NTS.getNTVivos().toArray()));
+        LabelTMuertos.setText(Arrays.toString(NTS.getNTMuertos().toArray()));
+    }//GEN-LAST:event_detectarVMbotonActionPerformed
+
+    private void eliminarTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTextfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarTextfieldActionPerformed
+
+    private void eliminarProdBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProdBotonActionPerformed
+        // TODO add your handling code here:
+         Object[] options = { "Yes", "No" };
+    int n = JOptionPane.showOptionDialog(new JFrame(),
+            "Se eliminaran las producciones de"+eliminarTextfield.getText()+ "porfavor confirme", "",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+            options, options[1]);
+    if(n == JOptionPane.OK_OPTION){ // Afirmative
+        //.... 
+        gram.eliminarProduccion(eliminarTextfield.getText());
+        actualizarGramatica();
+        
+    }
+    if(n == JOptionPane.NO_OPTION){ // negative
+        //....
+    }
+    if(n == JOptionPane.CLOSED_OPTION){ // closed the dialog
+        //....
+    }
+         
+        
+                
+    }//GEN-LAST:event_eliminarProdBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,22 +505,45 @@ public class Ventana1 extends javax.swing.JFrame {
   
  
  }
+ 
+ private void actualizarGramatica(){
+     
+       areaDeTexto.setText(gram.imprimirGramaticaFormal().toString());
+       
+        
+ //areaDeTexto.setEditable(false);
+  JOptionPane.showMessageDialog(null,
+        "La gramatica ha sido actualizada revisa el area de texto",
+           "Información",JOptionPane.WARNING_MESSAGE);
+  
+ 
+ }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelTMuertos;
     private javax.swing.JTextArea areaDeTexto;
     private javax.swing.JButton botonAbrir;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonVerificar;
+    private javax.swing.JButton detectarVMboton;
+    private javax.swing.JButton eliminarProdBoton;
+    private javax.swing.JTextField eliminarTextfield;
     private javax.swing.JButton guardarGramatica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelEspecial;
     private javax.swing.JLabel labelLineal;
     private javax.swing.JLabel labelRegular;
+    private javax.swing.JLabel labelTVivos;
+    private javax.swing.JButton simplificarBoton;
     // End of variables declaration//GEN-END:variables
 }

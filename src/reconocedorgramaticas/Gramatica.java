@@ -371,13 +371,14 @@ public class Gramatica {
         }
     }
     
-    public void imprimirGramaticaFormal(){
+    public StringBuilder imprimirGramaticaFormal(){
         Produccion x;
         x = cabeza.getLigaDer();
+        StringBuilder linea =new StringBuilder();
         while(x != cabeza){
-            x.imprimirEnString();
-            //System.out.println("%%%%%%%%%&&&&&&&&");
+            linea.append(x.imprimirEnString() + "\n");
             x = x.getLigaDer();
         }
-    }
+    return linea;
+            }
 }

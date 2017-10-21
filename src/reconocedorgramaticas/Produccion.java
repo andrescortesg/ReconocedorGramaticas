@@ -215,7 +215,7 @@ public class Produccion {
         }
         System.out.println("No se puede borrar el nodo cabeza");
     }
-     public void imprimirEnString(){
+     public StringBuffer imprimirEnString(){
         NodoP x;
         x = cabeza;
         StringBuffer linea =new StringBuffer();
@@ -232,6 +232,7 @@ public class Produccion {
             x = x.getLigaDer();
         }while(x != cabeza);
         System.out.println(linea);
+        return linea;
         
     }
 }
