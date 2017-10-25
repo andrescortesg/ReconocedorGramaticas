@@ -78,6 +78,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
         areaDeTexto.setColumns(20);
         areaDeTexto.setRows(5);
+        areaDeTexto.setText("<S> = a<A><B><S>\n<S> =b<C><A><C> d\n<A> =b<A><B>\n<A> =c<S><A>\n<A> =c<C><C>\n<B> =b<A><B>\n<B> =c<S><B>\n<C> =c<S>\n<C> =c\n");
         areaDeTexto.setToolTipText("Utiliza el boton Cargar Archivo o digita manualmente la gramatica");
         areaDeTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         areaDeTexto.setDragEnabled(true);
