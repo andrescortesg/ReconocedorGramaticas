@@ -118,6 +118,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="&lt;S&gt; = a&lt;A&gt;&lt;B&gt;&lt;S&gt;&#xa;&lt;S&gt; =b&lt;C&gt;&lt;A&gt;&lt;C&gt; d&#xa;&lt;A&gt; =b&lt;A&gt;&lt;B&gt;&#xa;&lt;A&gt; =c&lt;S&gt;&lt;A&gt;&#xa;&lt;A&gt; =c&lt;C&gt;&lt;C&gt;&#xa;&lt;B&gt; =b&lt;A&gt;&lt;B&gt;&#xa;&lt;B&gt; =c&lt;S&gt;&lt;B&gt;&#xa;&lt;C&gt; =c&lt;S&gt;&#xa;&lt;C&gt; =c&#xa;"/>
             <Property name="toolTipText" type="java.lang.String" value="Utiliza el boton Cargar Archivo o digita manualmente la gramatica"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
