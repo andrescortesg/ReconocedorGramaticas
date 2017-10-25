@@ -101,7 +101,6 @@ public class Ventana1 extends javax.swing.JFrame {
 
         botonGuardarGramatica.setText("Almacenar Gramatica");
         botonGuardarGramatica.setToolTipText("Guarda la gramatica en memoria para poder verificar");
-        botonGuardarGramatica.setEnabled(false);
         botonGuardarGramatica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarGramaticaActionPerformed(evt);

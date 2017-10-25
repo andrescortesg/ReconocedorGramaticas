@@ -281,7 +281,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Almacenar Gramatica"/>
                 <Property name="toolTipText" type="java.lang.String" value="Guarda la gramatica en memoria para poder verificar"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarGramaticaActionPerformed"/>
