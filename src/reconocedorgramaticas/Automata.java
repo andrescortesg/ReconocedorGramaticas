@@ -14,6 +14,11 @@ public class Automata implements Cloneable{
     private boolean esDeterministico;
     private ArrayList<NodoA> automata = new ArrayList<>();
     
+ /**
+ *Constructor
+ * 
+ */
+    
     public Automata(){
         esDeterministico = true;
     }
@@ -21,10 +26,20 @@ public class Automata implements Cloneable{
     public Object clone()throws CloneNotSupportedException{  
         return super.clone();  
     } 
-    public boolean isEsDeterministico() {
+ /**
+ *Metodo para determinar si el automata es deterministico
+ * @return true si cumple para ser deterministico false de lo contrario
+ * 
+ */
+    public boolean EsDeterministico() {
         return esDeterministico;
     }
-
+/**
+ *Metodo para retornar una lista que representa un automata
+ * @return automata en forma de arraylist
+ * 
+ */
+    
     public ArrayList<NodoA> getAutomata() {
         return automata;
     }

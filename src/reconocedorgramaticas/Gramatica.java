@@ -15,10 +15,11 @@ public class Gramatica {
     private Produccion cabeza;
     private int nroProducciones;
     
-    /** 
-    *Constructor 
-    *
-    */
+/** 
+*Constructor 
+*Inicializamos el Numero de producciones de la gramatica en 0
+*Se crea una nueva produccion
+*/
     
     public Gramatica(){
        nroProducciones = 0;
@@ -27,44 +28,44 @@ public class Gramatica {
        cabeza.setLigaIzq(cabeza);
     }
 
-    /** 
-    *Encuentra el nodo cabeza de una lista que contiene las producciones
-    *
-    *@return nodo cabeza de una gramática
-    */
+/** 
+*Encuentra el nodo cabeza de una lista que contiene las producciones
+*
+*@return nodo cabeza de una gramática
+*/
     public Produccion getCabeza() {
         return cabeza;
     }
-    /** 
-    *Retorna la primera producción que se encuentra en la lista 
-    *@return nodo cabeza de la primera producción de una gramática
-    */
+/** 
+*Retorna la primera producción que se encuentra en la lista 
+*@return nodo cabeza de la primera producción de una gramática
+*/
     
     public Produccion primerProduccion(){
         return cabeza.getLigaDer();
     }
-    /** 
-    *Retorna la ultima producción que se encuentra en la lista 
-    *@return nodo cabeza de la ultima producción de la gramática
-    */
+/** 
+*Retorna la ultima producción que se encuentra en la lista 
+*@return nodo cabeza de la ultima producción de la gramática
+*/
     
     public Produccion ultimaProduccion(){
         return cabeza.getLigaIzq();
     }
-    /** 
-    *Verifica si el nodo que se pasa por parámetro es el primero de la gramática 
-    *@param x envia como parametro un nodo
-    *@return nodo cabeza de la ultima producción
-    */
+/** 
+*Verifica si el nodo que se pasa por parámetro es el primero de la gramática 
+*@param x envia como parametro un nodo
+*@return nodo cabeza de la ultima producción
+*/
     public boolean esPrimero(Produccion x){
         return x == primerProduccion();
     }
     
-    /** 
-    *Verifica si el nodo que se pasa por parámetro es el ultimo de la gramática 
-    *@param x envia como parametro un nodo
-    *@return nodo cabeza de la ultima producción
-    */
+/** 
+*Verifica si el nodo que se pasa por parámetro es el ultimo de la gramática 
+*@param x envia como parametro un nodo
+*@return nodo cabeza de la ultima producción
+*/
     public boolean esUltimo(Produccion x){
         return x == ultimaProduccion();
     }
@@ -85,9 +86,10 @@ public class Gramatica {
         return cabeza.getLigaDer();
         
     }
-    /** 
-    *Metodo que recorre la lista que representa la Gramática y las sublistas que representan las producciones
-    */
+/** 
+*Metodo que recorre la lista que representa la Gramática y las sublistas que representan las producciones
+*Se usa el metodo imprimir en consola para recorrer las sublistas que representan las producciones
+*/
     
     public void imprimirGramatica(){
         Produccion x;
@@ -98,10 +100,12 @@ public class Gramatica {
             x = x.getLigaDer();
         }
     }
-    /** 
-    *Metodo para insertar una produccion
-    *@param produccion es una lista ligada 
-    */
+    
+/** 
+*Metodo para insertar una produccion
+*@param produccion es una lista ligada 
+*Se aumenta el numero de producciones en 1
+*/
     
     public void insertarProduccion(Produccion produccion){
         if(esVacia()){
@@ -119,15 +123,14 @@ public class Gramatica {
         cabeza.setLigaIzq(produccion);
         nroProducciones = nroProducciones+1;
     }
-    /** 
-    *Método para crear una producción a partir de un string
-    *Se verifica cada caracter del string y se valida que sea correcta la escritura de la producción
-    *@param linea es un String 
-    *@return lista 
-    * 
-    */
-    
-    
+/** 
+*Método para crear una producción a partir de un string
+*Se verifica cada caracter del string y se valida que sea correcta la escritura de la producción
+*@param linea es un String 
+*@return 0 si la verificacion se lleva a cabo por completo si no hat errores o 1,2,3,4 si hay errores 
+* 
+*/
+       
     public int crearProduccion(String linea){
         Produccion produccion = new Produccion(); //nueva produccion
         StringBuilder aux = new StringBuilder(); // buffer para el string a insertar
@@ -213,6 +216,12 @@ public class Gramatica {
         return 0; // terminación normal
     }
     
+/** 
+*Método que detecta las producciones vivas y terminales vivos por definicion
+*Se recorre la gramatica y las producciones para determinar 
+*@return lista con las producciones vivas solo se guardan en la lista los nodo cabeza de las producciones
+* 
+*/
     
     
     public <String> List<String> detectarVivosPorDefinicion(){
@@ -225,12 +234,9 @@ public class Gramatica {
             
             if( (x.getCantidadNT() == 0 && x.getCantidadT() > 0) || x.isEsNulo()){  // Condicion para las producciones
                     
-                       lista.add(x.getCabeza());
-                    
-                    //System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");  
-                    
-                    
-                }
+                  lista.add(x.getCabeza());
+                  //System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");   
+            }
                    
             x = x.getLigaDer();
         }
@@ -239,6 +245,13 @@ public class Gramatica {
       
         return lista;
     }
+    
+/** 
+*Método que detecta los terminales vivos por definicion
+*Se recorre la producciones para determinar 
+*@return true si el terminal examinado es vivo, falso de lo contrario
+* 
+*/
     
     public boolean esNTVivo(List listaVivos, Produccion x){ //detectar NT vivo
         NodoP a = x.primerElemento();
@@ -252,7 +265,13 @@ public class Gramatica {
         
         return true;
     }
-    
+
+/** 
+*Método que detecta las producciones vivas y muertas
+*Se recorre la producciones para determinar si es viva o no y agregar a la lista correspondiente
+*@return NTS que representa un objeto de la clase  NTVivosMuertos donde se encuentran 2 listas una para cada tipo de terminal
+* 
+*/
     
     public NTVivosMuertos detectarNT(){
         
@@ -293,6 +312,13 @@ public class Gramatica {
         return NTS;
     }
     
+/** 
+*Método para determinar si la gramatica es regular o no 
+*Se recorre la producciones para determinar
+*@return true si cumple para ser regular, falso de lo contrario.
+* 
+*/
+    
     public boolean esRegular(){
         Produccion x = this.primerProduccion();
         while(x != cabeza){
@@ -316,7 +342,13 @@ public class Gramatica {
         
         return true;
     }
-    
+
+/** 
+*Método para determinar si la gramatica es especial o no 
+*Se recorre la producciones para determinar
+*@return true si cumple para ser especial, falso de lo contrario.
+* 
+*/
     public boolean esFormaEspecial(){
         if(!esRegular()){
             return false;
@@ -335,7 +367,11 @@ public class Gramatica {
         return true;
     }
     
-    
+/** 
+*Método para desconectar una produccion. 
+*Se recorre la producciones hasta que se encuentre la que se desea desconectar
+*
+*/
     //desconecta producciones
     public void desconectar( Produccion nodo){
         
@@ -347,6 +383,11 @@ public class Gramatica {
         }
         System.out.println("No se puede borrar el nodo cabeza");
     }
+/** 
+*Método para eliminar una produccion. 
+*Se recorre la producciones hasta que se encuentre la que se desea eliminar
+*
+*/
     
     public void eliminarProduccion(String nombre){
         Produccion x = this.getProduccionInicial();
@@ -357,7 +398,12 @@ public class Gramatica {
             x = x.getLigaDer();
         }
     }
-    
+
+/** 
+*Método para simplificar una gramatica. 
+*Se recorre la producciones para eliminar las producciones muertas
+*
+*/
     
     //falta NT inalcanzables
     public void simplificarGramatica(){
@@ -371,6 +417,12 @@ public class Gramatica {
         }
     }
     
+/** 
+*Método para imprimir gramatica de forma natural. 
+*Se recorre la gramatica y se determina que tipo de elemneto es para llevarlo a su escritura formal como se ve en los libros
+* El metodo imprimirEnString recorre cada produccion y la convierte en un string
+*@return un string que contiene los elemento de una produccion
+*/
     public StringBuilder imprimirGramaticaFormal(){
         Produccion x;
         x = cabeza.getLigaDer();
