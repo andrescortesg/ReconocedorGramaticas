@@ -55,15 +55,19 @@ public class ReconocedorGramaticas {
 //        System.out.println(liss+"hola");
         //gram.imprimirGramatica();
         //System.out.println(Arrays.toString(gram.detectarVivosPorDefinicion().toArray()));
-        NTVivosMuertos NTS = gram.detectarNT();
+        NTVivosMuertos NTS = gram.detectarNTVivos();
         System.out.println(Arrays.toString(NTS.getNTVivos().toArray()));
         System.out.println(Arrays.toString(NTS.getNTMuertos().toArray()));
         System.out.println("----------+++++++++++++++++++++++++---------------");
        //gram.simplificarGramatica();
        //gram.eliminarProduccion("C");
+       Produccion t = new Produccion();
+       t.crearCabeza("C");
         
         gram.imprimirGramatica();
         gram.imprimirGramaticaFormal();
+        System.out.println(gram.detectarAlcanzablesPorDefinicion());
+        gram.esAlcanzable(gram.detectarAlcanzablesPorDefinicion(),t );
     }
     
 }

@@ -12,11 +12,31 @@ import java.util.*;
  * Clase para No terminales vivos y muertos
  */
 public class NTVivosMuertos {
-    private List NTVivos, NTMuertos;
+    private List NTVivos, NTMuertos, NTAlcanzables, NTInalcanzables;
+
+   
     
     public NTVivosMuertos(){
         NTVivos = new ArrayList();
         NTMuertos = new ArrayList();
+        NTAlcanzables = new ArrayList();
+        NTInalcanzables = new ArrayList();
+    }
+    
+    public List getNTAlcanzables() {
+        return NTAlcanzables;
+    }
+
+    public void setNTAlcanzables(List NTAlcanzables) {
+        this.NTAlcanzables = NTAlcanzables;
+    }
+
+    public List getNTInalcanzables() {
+        return NTInalcanzables;
+    }
+
+    public void setNTInalcanzables(List NTInalcanzabels) {
+        this.NTInalcanzables = NTInalcanzabels;
     }
 
     public List getNTVivos() {

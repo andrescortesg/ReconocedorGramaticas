@@ -366,7 +366,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void detectarVMbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detectarVMbotonActionPerformed
         // TODO add your handling code here:
-        NTVivosMuertos NTS = gram.detectarNT();
+        NTVivosMuertos NTS = gram.detectarNTVivos();
         if(!NTS.getNTMuertos().isEmpty()){
         LabelTMuertos.setText(Arrays.toString(NTS.getNTMuertos().toArray()));
         }else{
@@ -397,6 +397,7 @@ public class Ventana1 extends javax.swing.JFrame {
     if(n == JOptionPane.OK_OPTION){ // Afirmative
         //.... 
         gram.eliminarProduccion(eliminarTextfield.getText());
+        gram.limpiarGramatica(eliminarTextfield.getText());
         actualizarGramatica();
         
     }

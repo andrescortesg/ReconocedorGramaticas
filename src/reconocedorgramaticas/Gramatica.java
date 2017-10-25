@@ -246,6 +246,31 @@ public class Gramatica {
         return lista;
     }
     
+    public <String> List<String> detectarAlcanzablesPorDefinicion(){
+        List lista = new ArrayList(); 
+        lista.add(this.getProduccionInicial().getCabeza());
+        
+        return lista;
+    }
+    
+    public boolean esAlcanzable(List listaAlcanzables, Produccion a){
+        Produccion x = this.primerProduccion();
+        while(x != cabeza){
+            
+            if(listaAlcanzables.contains(x.getCabeza())){
+                if(x.buscarElemento(1, a.getCabeza())!=null ){
+                    System.out.println("-- El dato "+a.getCabeza()+" existe --");
+                    return true;
+                }
+              
+            }
+            x = x.getLigaDer();
+        }
+        System.out.println("-- El dato "+a.getCabeza()+" NO existe --");
+        return false;
+    }
+    
+    
 /** 
 *Método que detecta los terminales vivos por definicion
 *Se recorre la producciones para determinar 
@@ -266,14 +291,19 @@ public class Gramatica {
         return true;
     }
 
+        
 /** 
 *Método que detecta las producciones vivas y muertas
 *Se recorre la producciones para determinar si es viva o no y agregar a la lista correspondiente
 *@return NTS que representa un objeto de la clase  NTVivosMuertos donde se encuentran 2 listas una para cada tipo de terminal
 * 
 */
+    public NTVivosMuertos detectarNTAlcanzables(){
+        
+        return null;
+    }
     
-    public NTVivosMuertos detectarNT(){
+    public NTVivosMuertos detectarNTVivos(){
         
         NTVivosMuertos NTS = new NTVivosMuertos();
         List NTVivos = this.detectarVivosPorDefinicion();
@@ -284,11 +314,12 @@ public class Gramatica {
         
         while(hayNTVivos){
             
-            if(this.esNTVivo(NTVivos, x) && !NTVivos.contains(x.getCabeza())){
+            if(this.esNTVivo(NTVivos, x) && !NTVivos.contains(x.getCabeza())){ 
                 
                 NTVivos.add(x.getCabeza());
                 x = this.getProduccionInicial();
             }
+            
             if(x == cabeza){
                 hayNTVivos = false;
             }
@@ -303,8 +334,12 @@ public class Gramatica {
         
         while(x != cabeza){
             if(!NTVivos.contains(x.getCabeza())){
-                NTMuertos.add(x.getCabeza());
+                if(!NTMuertos.contains(x.getCabeza())){
+                   NTMuertos.add(x.getCabeza()); 
+                }
+                
             }
+            
             x = x.getLigaDer();
         }
         NTS.setNTMuertos(NTMuertos);
@@ -399,6 +434,21 @@ public class Gramatica {
         }
     }
 
+    
+    public void limpiarGramatica(String dato){
+        Produccion x = this.getProduccionInicial();
+        while(x != cabeza){
+            NodoP a = x.primerElemento();
+            while(a != x.cabeza()){
+                if(dato.equals(a.getDato())){
+                    x.desconectar(a);
+                }
+                a = a.getLigaDer();
+            }
+            x = x.getLigaDer();
+        }
+    }
+    
 /** 
 *Método para simplificar una gramatica. 
 *Se recorre la producciones para eliminar las producciones muertas
@@ -408,12 +458,13 @@ public class Gramatica {
     //falta NT inalcanzables
     public void simplificarGramatica(){
         
-        NTVivosMuertos NTVM = this.detectarNT();
+        NTVivosMuertos NTVM = this.detectarNTVivos();
         
         //bucle para eliminar producciones muertas
         Produccion x = this.getProduccionInicial();
         for(int i = 0; i < NTVM.getNTMuertos().size(); i++){
             eliminarProduccion((String) NTVM.getNTMuertos().get(i));
+            limpiarGramatica((String) NTVM.getNTMuertos().get(i));
         }
     }
     
