@@ -1,10 +1,7 @@
-<S> = a<A><B><S>
-<S> =b<C><A><C> d
-<A> =b<A><B>
-<A> =c<S><A>
-<A> =c<C><C>
-<B> =b<A><B>
-<B> =c<S><B>
-<C> =c<S>
-<C> =c
+<S> = a<A>
+<S> = b
+<S> = <A>
+<A> = abb<S>
+<A>= c<A>
+<A> =&
 

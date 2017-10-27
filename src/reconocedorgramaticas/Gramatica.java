@@ -14,6 +14,7 @@ import java.util.*;
 public class Gramatica {
     private Produccion cabeza;
     private int nroProducciones;
+    private boolean hayNulo;
     
 /** 
 *Constructor 
@@ -26,6 +27,7 @@ public class Gramatica {
        cabeza = new Produccion();
        cabeza.setLigaDer(cabeza);
        cabeza.setLigaIzq(cabeza);
+       hayNulo = false; // bandera nolo para simplificacion
     }
 
 /** 
@@ -497,6 +499,45 @@ public NTListas detectarNTAlcanzables(){
         }
     }
     
+    
+    public void caso1S(){ // caso 1 de simplificación de gramaticas : solo terminales
+       Produccion x = this.primerProduccion();
+       List listaR = new ArrayList();
+       while(x != cabeza){
+           if(x.getCantidadNT() == 0 && x.getCantidadT() > 0){
+               //bucle
+               NodoP a = x.primerElemento();
+               if(x.getCantidadT() == 1 && x.getCantidadNT() == 0 && !hayNulo){ // solo 1 terminal - agregue nulo
+                   hayNulo = true;
+                   x.crearElemento("nulo", 0);
+                   this.crearProduccion("<nulo>=&");
+               }
+               if(x.getCantidadT() == 1 && x.getCantidadNT() == 0 && hayNulo){ // solo 1 terminal y hay NT nulo
+                   x.crearElemento("nulo", 0);
+               }
+               if(x.getCantidadT() > 1 ){ // más de 1 terminal - se sigque un proceso recursivo
+                   while(a != x.cabeza()){ // agregar elementos sobrante en lista
+                       if(!listaR.contains(a.getDato())){ // si se encuentra, no se agrega
+                           listaR.add(a.getDato());
+                       }
+                       a = a.getLigaDer();
+                   }
+                   System.out.println("se esta imprimiendo la lista");
+                   System.out.println(listaR);
+                   
+                   a = x.primerElemento();
+               }
+               
+           }
+           x = x.getLigaDer();
+       }
+    }
+    
+    public <String> List<String> caso1Rec(List lista1){
+        System.out.println(lista1);
+        
+        return null;
+    }
 /** 
 *Método para simplificar una gramatica. 
 *Se recorre la producciones para eliminar las producciones muertas
