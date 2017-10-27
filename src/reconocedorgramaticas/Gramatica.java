@@ -569,7 +569,6 @@ public NTListas detectarNTAlcanzables(){
                 String NT = String.join("", listaR); // concatena todos los elementos de la lista
                 this.crearProduccion("<"+x.getCabeza()+">="+x.primerElemento().getDato()+"<"+NT+">");
                 
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  "+NT);
                 casoXRec(listaR, NT); //recursión 
                 this.desconectar(x);  //elimina la producción al final
                 
@@ -609,7 +608,7 @@ public NTListas detectarNTAlcanzables(){
         for(int i = 1; i < lista.size(); i++){ // concatena lo demás
             NT.append(lista.get(i));
         }
-        this.crearProduccion("<"+NTAnterior+"> ="+lista.get(0)+"<"+NT+">");
+        this.crearProduccion("<"+NTAnterior+"> ="+lista.get(0)+"<"+NT+">"); //agrega produccion
         System.out.println(NT);
         lista.remove(0);
         
