@@ -78,10 +78,10 @@ public class ReconocedorGramaticas {
        //t.crearCabeza("C");
         
         //gram.imprimirGramatica();
-        gram.imprimirGramaticaFormal();
+        //gram.imprimirGramaticaFormal();
         //System.out.println(gram.detectarAlcanzablesPorDefinicion());
         //gram.esNTAlcanzable(gram.detectarAlcanzablesPorDefinicion(),t );
-       System.out.println(gram.detectarNTAlcanzables().getNT1());
+       //System.out.println(gram.detectarNTAlcanzables().getNT1());
        gram.caso1S();
        gram.imprimirGramaticaFormal();
     }

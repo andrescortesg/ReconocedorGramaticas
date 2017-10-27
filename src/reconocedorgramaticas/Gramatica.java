@@ -508,35 +508,64 @@ public NTListas detectarNTAlcanzables(){
                //bucle
                NodoP a = x.primerElemento();
                if(x.getCantidadT() == 1 && x.getCantidadNT() == 0 && !hayNulo){ // solo 1 terminal - agregue nulo
-                   hayNulo = true;
-                   x.crearElemento("nulo", 0);
-                   this.crearProduccion("<nulo>=&");
+                   if(!hayNulo){
+                        hayNulo = true;
+                        x.crearElemento("nulo", 0);
+                        this.crearProduccion("<nulo>=&");  
+                   }else{
+                        x.crearElemento("nulo", 0);
+                   }
+                   
                }
-               if(x.getCantidadT() == 1 && x.getCantidadNT() == 0 && hayNulo){ // solo 1 terminal y hay NT nulo
-                   x.crearElemento("nulo", 0);
-               }
+               
                if(x.getCantidadT() > 1 ){ // más de 1 terminal - se sigque un proceso recursivo
                    while(a != x.cabeza()){ // agregar elementos sobrante en lista
-                       if(!listaR.contains(a.getDato())){ // si se encuentra, no se agrega
-                           listaR.add(a.getDato());
-                       }
+                       
+                       listaR.add(a.getDato());
+                       
                        a = a.getLigaDer();
                    }
-                   System.out.println("se esta imprimiendo la lista");
-                   System.out.println(listaR);
+                   
+                   List ultimo = caso1Rec(listaR, x.getCabeza()); //recursión acá
+                   String u = ultimo.get(0).toString();
+                   
+                   this.crearProduccion("<"+u+">="+u+"<nulo>");
+                   if(!hayNulo){
+                        hayNulo = true;
+                        x.crearElemento("nulo", 0);
+                        this.crearProduccion("<nulo>=&");  
+                   }else{
+                        x.crearElemento("nulo", 0);
+                   }
+                   
+                   //System.out.println("se esta imprimiendo la lista");
+                   //System.out.println(listaR);
                    
                    a = x.primerElemento();
                }
-               
+               this.desconectar(x);
            }
            x = x.getLigaDer();
        }
     }
     
-    public <String> List<String> caso1Rec(List lista1){
-        System.out.println(lista1);
+    public List caso1Rec(List lista, String NTAnterior){ // método para simplificacion de caso 1 (posiblemente 2)
+        //recursivo
+        //System.out.println(lista);
+        if(lista.size() == 1){ // caso base
+            System.out.println("Lista restante"+lista);
+            return lista;
+        }
         
-        return null;
+        StringBuilder NT = new StringBuilder();
+        for(int i = 1; i < lista.size(); i++){ // concatena lo demás
+            NT.append(lista.get(i));
+        }
+        this.crearProduccion("<"+NTAnterior+"> ="+lista.get(0)+"<"+NT+">");
+        System.out.println(NT);
+        lista.remove(0);
+        
+        return caso1Rec(lista, NT.toString());
     }
 /** 
 *Método para simplificar una gramatica. 
@@ -555,8 +584,7 @@ public NTListas detectarNTAlcanzables(){
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
         }
-        
-        
+
     }
     
 /** 
@@ -575,4 +603,5 @@ public NTListas detectarNTAlcanzables(){
         }
     return linea;
             }
+    
 }
