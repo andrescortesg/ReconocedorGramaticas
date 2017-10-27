@@ -239,7 +239,6 @@ public class Produccion {
         NodoP x;
         x = cabeza;
         StringBuffer linea =new StringBuffer();
-
         x=x.getLigaDer();
         do{
             if(x.getModo()==0 ){
