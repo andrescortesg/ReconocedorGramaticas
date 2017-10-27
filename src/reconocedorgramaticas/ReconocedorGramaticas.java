@@ -17,6 +17,7 @@ public class ReconocedorGramaticas {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        // --------------- AREA DE PRUEBAS E INICALIZACIÓN ------------------
         
         Produccion lista = new Produccion();
         
@@ -52,16 +53,6 @@ public class ReconocedorGramaticas {
         gram.crearProduccion("<A>= abb<S>");
         gram.crearProduccion("<A>= abbc");
         gram.crearProduccion("<A> =&");
-        
-
-
-
-
-
-
-
-
-
         gram.imprimirGramatica();
 //        List liss = new ArrayList();
 //        liss = gram.detectarNTVivos();

@@ -584,6 +584,7 @@ public NTListas detectarNTAlcanzables(){
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
         }
+        caso1S();
 
     }
     
