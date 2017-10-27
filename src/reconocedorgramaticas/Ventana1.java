@@ -356,6 +356,7 @@ public class Ventana1 extends javax.swing.JFrame {
         labelEspecial.setText("Ës especial: FALSE");
         labelLineal.setText("Es Lineal por la Derecha: FALSE");
         }
+        System.out.println(gram.detectarNTAlcanzables().getNT1());
     }//GEN-LAST:event_botonVerificarActionPerformed
 
     private void simplificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simplificarBotonActionPerformed
@@ -367,20 +368,20 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void detectarVMbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detectarVMbotonActionPerformed
         // TODO add your handling code here:
-        NTVivosMuertos NTS = gram.detectarNTVivos();
-        if(!NTS.getNTMuertos().isEmpty()){
-        LabelTMuertos.setText(Arrays.toString(NTS.getNTMuertos().toArray()));
+        NTListas NTS = gram.detectarNTVivos();
+        if(!NTS.getNT0().isEmpty()){
+        LabelTMuertos.setText(Arrays.toString(NTS.getNT0().toArray()));
         }else{
             LabelTMuertos.setText("No enontrados");
             }
-        if(!NTS.getNTVivos().isEmpty()){
-        labelTVivos.setText(Arrays.toString(NTS.getNTVivos().toArray()));
+        if(!NTS.getNT1().isEmpty()){
+        labelTVivos.setText(Arrays.toString(NTS.getNT1().toArray()));
         }else{
             labelTVivos.setText("No enontrados");
             }
         
-        System.out.println(Arrays.toString(NTS.getNTVivos().toArray()));
-        System.out.println(Arrays.toString(NTS.getNTMuertos().toArray()));
+        System.out.println(Arrays.toString(NTS.getNT1().toArray()));
+        System.out.println(Arrays.toString(NTS.getNT0().toArray()));
         
     }//GEN-LAST:event_detectarVMbotonActionPerformed
 
