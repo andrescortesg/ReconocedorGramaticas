@@ -541,7 +541,7 @@ public NTListas detectarNTAlcanzables(){
                    //System.out.println("se esta imprimiendo la lista");
                    //System.out.println(listaR);
                    
-                   a = x.primerElemento();
+                   
                }
                this.desconectar(x);
            }
