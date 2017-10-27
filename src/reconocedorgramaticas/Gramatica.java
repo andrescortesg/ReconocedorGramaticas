@@ -290,7 +290,10 @@ public class Gramatica {
         
         return true;
     }
-
+public NTVivosMuertos detectarNTAlcanzables(){
+        
+        return null;
+    }
         
 /** 
 *Método que detecta las producciones vivas y muertas
@@ -298,10 +301,7 @@ public class Gramatica {
 *@return NTS que representa un objeto de la clase  NTVivosMuertos donde se encuentran 2 listas una para cada tipo de terminal
 * 
 */
-    public NTVivosMuertos detectarNTAlcanzables(){
-        
-        return null;
-    }
+    
     
     public NTVivosMuertos detectarNTVivos(){
         
