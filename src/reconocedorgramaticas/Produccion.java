@@ -235,4 +235,23 @@ public class Produccion {
         return linea;
         
     }
+     public StringBuffer getLadoDerecho(){ //retorna el lado derecho de una producción
+        NodoP x;
+        x = cabeza;
+        StringBuffer linea =new StringBuffer();
+
+        x=x.getLigaDer();
+        do{
+            if(x.getModo()==0 ){
+            linea.append("<"+x.getDato()+">");
+            }
+            if(x.getModo()==1 || x.getModo()==2){
+            linea.append(x.getDato());
+            }
+            
+            x = x.getLigaDer();
+        }while(x != cabeza);
+        return linea;
+        
+    }
 }

@@ -73,7 +73,10 @@ public class ReconocedorGramaticas {
         //System.out.println(gram.detectarAlcanzablesPorDefinicion());
         //gram.esNTAlcanzable(gram.detectarAlcanzablesPorDefinicion(),t );
        //System.out.println(gram.detectarNTAlcanzables().getNT1());
-       gram.caso1S();
+       gram.caso3();
+       gram.caso1();
+       gram.caso2();
+       
        gram.imprimirGramaticaFormal();
     }
     

@@ -500,7 +500,7 @@ public NTListas detectarNTAlcanzables(){
     }
     
     
-    public void caso1S(){ // caso 1 de simplificación de gramaticas : solo terminales
+    public void caso1(){ // caso 1 de simplificación de gramaticas : solo terminales
        Produccion x = this.primerProduccion();
        List listaR = new ArrayList();
        while(x != cabeza){
@@ -509,6 +509,9 @@ public NTListas detectarNTAlcanzables(){
                NodoP a = x.primerElemento();
                if(x.getCantidadT() == 1 && x.getCantidadNT() == 0 && !hayNulo){ // solo 1 terminal - agregue nulo
                    if(!hayNulo){
+                       
+                       this.crearProduccion("<"+x.getCabeza()+">="+x.primerElemento().getDato()+"<nulo>");
+                       
                         hayNulo = true;
                         x.crearElemento("nulo", 0);
                         this.crearProduccion("<nulo>=&");  
@@ -518,7 +521,7 @@ public NTListas detectarNTAlcanzables(){
                    
                }
                
-               if(x.getCantidadT() > 1 ){ // más de 1 terminal - se sigque un proceso recursivo
+               if(x.getCantidadT() > 1 && x.getCantidadNT() == 0){ // más de 1 terminal - se sigque un proceso recursivo
                    while(a != x.cabeza()){ // agregar elementos sobrante en lista
                        
                        listaR.add(a.getDato());
@@ -526,10 +529,10 @@ public NTListas detectarNTAlcanzables(){
                        a = a.getLigaDer();
                    }
                    
-                   List ultimo = caso1Rec(listaR, x.getCabeza()); //recursión acá
+                   List ultimo = casoXRec(listaR, x.getCabeza()); //recursión acá, retorna el último elemento
                    String u = ultimo.get(0).toString();
                    
-                   this.crearProduccion("<"+u+">="+u+"<nulo>");
+                   this.crearProduccion("<"+u+">="+u+"<nulo>"); // agrega última producción
                    if(!hayNulo){
                         hayNulo = true;
                         x.crearElemento("nulo", 0);
@@ -543,13 +546,58 @@ public NTListas detectarNTAlcanzables(){
                    
                    
                }
-               this.desconectar(x);
+               this.desconectar(x); //elimina la producción al final
            }
            x = x.getLigaDer();
        }
     }
     
-    public List caso1Rec(List lista, String NTAnterior){ // método para simplificacion de caso 1 (posiblemente 2)
+    public void caso2(){ // caso 2 de simplificación : más de 1 terminal
+        Produccion x = this.primerProduccion();
+        List listaR = new ArrayList();
+        while(x != cabeza){
+            
+            if(x.getCantidadT() >1 && x.getCantidadNT() == 1){ // condición para caso 2
+                //llenado de lista para casoXRec()
+                NodoP a = x.primerElemento();
+                while(a != x.cabeza()){
+                    listaR.add(a.getDato());
+                    a = a.getLigaDer();
+                }
+                listaR.remove(0);
+
+                String NT = String.join("", listaR); // concatena todos los elementos de la lista
+                this.crearProduccion("<"+x.getCabeza()+">="+x.primerElemento().getDato()+"<"+NT+">");
+                
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  "+NT);
+                casoXRec(listaR, NT); //recursión 
+                this.desconectar(x);  //elimina la producción al final
+                
+            }
+            x = x.getLigaDer();
+        }
+    }
+    
+    public void caso3(){ // caso 3 de simplificación : solo un No terminal
+        Produccion x = this.getProduccionInicial();
+        
+        while(x != cabeza){
+            
+            if(x.getCantidadNT() == 1 && x.getCantidadT() == 0){ // condición del caso 3
+                Produccion y = this.getProduccionInicial();
+                while(y != cabeza){
+                    if( y.getCabeza().equals(x.primerElemento().getDato()) ){
+                        this.crearProduccion("<"+x.getCabeza()+">="+y.getLadoDerecho());
+                    }
+                    y = y.getLigaDer();
+                }
+                this.desconectar(x);
+            }
+            x = x.getLigaDer();
+        }
+    }
+    
+    public List casoXRec(List lista, String NTAnterior){ // método para simplificacion de casos 1 y 2
         //recursivo
         //System.out.println(lista);
         if(lista.size() == 1){ // caso base
@@ -565,7 +613,7 @@ public NTListas detectarNTAlcanzables(){
         System.out.println(NT);
         lista.remove(0);
         
-        return caso1Rec(lista, NT.toString());
+        return casoXRec(lista, NT.toString());
     }
 /** 
 *Método para simplificar una gramatica. 
@@ -584,7 +632,9 @@ public NTListas detectarNTAlcanzables(){
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
         }
-        caso1S();
+        caso1();
+        caso2();
+        caso3();
 
     }
     
@@ -604,5 +654,8 @@ public NTListas detectarNTAlcanzables(){
         }
     return linea;
             }
+    
+    
+    
     
 }
