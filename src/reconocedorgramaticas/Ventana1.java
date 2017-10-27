@@ -364,7 +364,6 @@ public class Ventana1 extends javax.swing.JFrame {
         guardarGramatica();
         botonVerificar.setEnabled(true);
         eliminarProdBoton.setEnabled(true);
-        simplificarBoton.setEnabled(true);
         detectarVMboton.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGuardarGramaticaActionPerformed
@@ -387,11 +386,15 @@ public class Ventana1 extends javax.swing.JFrame {
         }
         if(gram.esRegular()){
         JOptionPane.showMessageDialog(null,"" +
-           "\nEsta Gramatica puede ser simplificar",
+           "\nEsta Gramatica puede ser simplificada",
                  "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
         simplificarBoton.setEnabled(true);
          }
         else{
+            JOptionPane.showMessageDialog(null,"" +
+           "\nEsta Gramatica NO se puede ser simplificada",
+                 "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
+            
         simplificarBoton.setEnabled(false);
         }
         System.out.println(gram.detectarNTAlcanzables().getNT1());
@@ -407,6 +410,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private void detectarVMbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detectarVMbotonActionPerformed
         // TODO add your handling code here:
         NTListas NTS = gram.detectarNTVivos();
+        NTListas NTS1 = gram.detectarNTAlcanzables();
         if(!NTS.getNT0().isEmpty()){
         LabelTMuertos.setText(Arrays.toString(NTS.getNT0().toArray()));
         }else{
@@ -416,6 +420,17 @@ public class Ventana1 extends javax.swing.JFrame {
         labelTVivos.setText(Arrays.toString(NTS.getNT1().toArray()));
         }else{
             labelTVivos.setText("No enontrados");
+            }
+        
+           if(!NTS1.getNT0().isEmpty()){
+        labelInalcanzables.setText(Arrays.toString(NTS1.getNT0().toArray()));
+        }else{
+            labelInalcanzables.setText("No enontrados");
+            }
+        if(!NTS1.getNT1().isEmpty()){
+        labelAlcanzables.setText(Arrays.toString(NTS1.getNT1().toArray()));
+        }else{
+            labelAlcanzables.setText("No enontrados");
             }
         
         System.out.println(Arrays.toString(NTS.getNT1().toArray()));
