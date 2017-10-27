@@ -249,11 +249,20 @@ public class Gramatica {
     public <String> List<String> detectarAlcanzablesPorDefinicion(){
         List lista = new ArrayList(); 
         lista.add(this.getProduccionInicial().getCabeza());
-        
+        NodoP a= this.getProduccionInicial().cabeza().getLigaDer();
+        do{
+            if(a.getModo() == 0 ){
+                if(!lista.contains(a.getDato())){
+                   System.out.println("dato a insertar:" + a.getDato() +" Modo:"+ a.getModo());
+                    lista.add(a.getDato()); 
+                }
+            }
+            a = a.getLigaDer();
+        }while(a != this.getProduccionInicial().cabeza());
         return lista;
     }
     
-    public boolean esAlcanzable(List listaAlcanzables, Produccion a){
+    public boolean esNTAlcanzable(List listaAlcanzables, Produccion a){
         Produccion x = this.primerProduccion();
         while(x != cabeza){
             
@@ -290,7 +299,50 @@ public class Gramatica {
         
         return true;
     }
-
+    
+    
+public NTListas detectarNTAlcanzables(){
+        NTListas NTS = new NTListas();
+        List NTAlcanzables = this.detectarVivosPorDefinicion();
+        NTS.setNT1(NTAlcanzables);
+        boolean hayNTAlcanzables = true; // hay NT vivos
+        
+        Produccion x = this.getProduccionInicial();
+        
+        while(hayNTAlcanzables){
+            
+            if(this.esNTVivo(NTAlcanzables, x) && !NTAlcanzables.contains(x.getCabeza())){ 
+                
+                NTAlcanzables.add(x.getCabeza());
+                x = this.getProduccionInicial();
+            }
+            
+            if(x == cabeza){
+                hayNTAlcanzables = false;
+            }
+            
+            x = x.getLigaDer();
+        }
+        NTAlcanzables.remove(NTAlcanzables.size()-1);
+        
+        
+        x = this.getProduccionInicial();
+        List NTInalcanzables = new ArrayList();
+        
+        while(x != cabeza){
+            if(!NTAlcanzables.contains(x.getCabeza())){
+                if(!NTInalcanzables.contains(x.getCabeza())){
+                   NTInalcanzables.add(x.getCabeza()); 
+                }
+                
+            }
+            
+            x = x.getLigaDer();
+        }
+        NTS.setNT0(NTInalcanzables);
+        
+        return NTS;
+    }
         
 /** 
 *Método que detecta las producciones vivas y muertas
@@ -298,16 +350,12 @@ public class Gramatica {
 *@return NTS que representa un objeto de la clase  NTVivosMuertos donde se encuentran 2 listas una para cada tipo de terminal
 * 
 */
-    public NTVivosMuertos detectarNTAlcanzables(){
-        
-        return null;
-    }
     
-    public NTVivosMuertos detectarNTVivos(){
+    public NTListas detectarNTVivos(){
         
-        NTVivosMuertos NTS = new NTVivosMuertos();
+        NTListas NTS = new NTListas();
         List NTVivos = this.detectarVivosPorDefinicion();
-        NTS.setNTVivos(NTVivos);
+        NTS.setNT1(NTVivos);
         boolean hayNTVivos = true; // hay NT vivos
         
         Produccion x = this.getProduccionInicial();
@@ -327,7 +375,7 @@ public class Gramatica {
             x = x.getLigaDer();
         }
         NTVivos.remove(NTVivos.size()-1);
-        NTS.setNTVivos(NTVivos);
+        NTS.setNT1(NTVivos);
         
         x = this.getProduccionInicial();
         List NTMuertos = new ArrayList();
@@ -342,7 +390,7 @@ public class Gramatica {
             
             x = x.getLigaDer();
         }
-        NTS.setNTMuertos(NTMuertos);
+        NTS.setNT0(NTMuertos);
         
         return NTS;
     }
@@ -458,13 +506,13 @@ public class Gramatica {
     //falta NT inalcanzables
     public void simplificarGramatica(){
         
-        NTVivosMuertos NTVM = this.detectarNTVivos();
+        NTListas NTVM = this.detectarNTVivos();
         
         //bucle para eliminar producciones muertas
         Produccion x = this.getProduccionInicial();
-        for(int i = 0; i < NTVM.getNTMuertos().size(); i++){
-            eliminarProduccion((String) NTVM.getNTMuertos().get(i));
-            limpiarGramatica((String) NTVM.getNTMuertos().get(i));
+        for(int i = 0; i < NTVM.getNT0().size(); i++){
+            eliminarProduccion((String) NTVM.getNT0().get(i));
+            limpiarGramatica((String) NTVM.getNT0().get(i));
         }
     }
     
