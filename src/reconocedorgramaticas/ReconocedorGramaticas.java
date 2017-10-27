@@ -40,15 +40,25 @@ public class ReconocedorGramaticas {
         String pr2 = "<S> =b<C><A><C> d";
         String pr3 = "<C>= &";
         
-        gram.crearProduccion(pr1);
-        gram.crearProduccion(pr2);
-        gram.crearProduccion(pr3);
+        //gram.crearProduccion(pr1);
+        //gram.crearProduccion(pr2);
+        //gram.crearProduccion(pr3);
         
-        gram.crearProduccion("<A> = &");
-        gram.crearProduccion("<C> = abc<D>");
-        gram.crearProduccion("<E> = a<C><A>");
-        gram.insertarProduccion(lista);
-        gram.crearProduccion("<C> = xc<W>");
+        gram.crearProduccion("<S> = a<A><B><S>");
+        gram.crearProduccion("<S> =b<C><A><C> d");
+        gram.crearProduccion("<A> =b<A><B>");
+        //gram.insertarProduccion(lista);
+        gram.crearProduccion("<A> =c<S><A>");
+        gram.crearProduccion("<A> =c<C><C>");
+        gram.crearProduccion("<B> =b<A><B>");
+        gram.crearProduccion("<B> =c<S><B>");
+        gram.crearProduccion("<B> =c<S><B>");
+        gram.crearProduccion("<C> =c");
+        
+
+
+
+
         gram.imprimirGramatica();
 //        List liss = new ArrayList();
 //        liss = gram.detectarNTVivos();
@@ -68,7 +78,7 @@ public class ReconocedorGramaticas {
         gram.imprimirGramaticaFormal();
         //System.out.println(gram.detectarAlcanzablesPorDefinicion());
         //gram.esNTAlcanzable(gram.detectarAlcanzablesPorDefinicion(),t );
-      // System.out.println(gram.detectarNTAlcanzables().getNT1());
+       System.out.println(gram.detectarNTAlcanzables().getNT1());
     }
     
 }

@@ -303,7 +303,7 @@ public class Gramatica {
     
 public NTListas detectarNTAlcanzables(){
         NTListas NTS = new NTListas();
-        List NTAlcanzables = this.detectarVivosPorDefinicion();
+        List NTAlcanzables = this.detectarAlcanzablesPorDefinicion();
         NTS.setNT1(NTAlcanzables);
         boolean hayNTAlcanzables = true; // hay NT vivos
         

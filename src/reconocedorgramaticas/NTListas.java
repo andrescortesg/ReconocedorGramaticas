@@ -12,14 +12,32 @@ import java.util.*;
  * Clase para No terminales vivos y muertos
  */
 public class NTListas {
-    private List NT1, NT0;
+    private List NT1, NT0, NT2, NT3;
 
    
     
     public NTListas(){
-        NT1 = new ArrayList();
-        NT0 = new ArrayList();
+        NT3 = new ArrayList(); //inalcanzables
+        NT2 = new ArrayList();// alcanzables
+        NT1 = new ArrayList(); //vivos
+        NT0 = new ArrayList(); //muertos
         
+    }
+
+    public List getNT2() {
+        return NT2;
+    }
+
+    public void setNT2(List NT2) {
+        this.NT2 = NT2;
+    }
+
+    public List getNT3() {
+        return NT3;
+    }
+
+    public void setNT3(List NT3) {
+        this.NT3 = NT3;
     }
     
 
