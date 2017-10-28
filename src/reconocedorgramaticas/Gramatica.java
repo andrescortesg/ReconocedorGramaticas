@@ -38,6 +38,10 @@ public class Gramatica {
     public Produccion getCabeza() {
         return cabeza;
     }
+    
+    public int getNroProducciones(){
+        return nroProducciones;
+    }
 /** 
 *Retorna la primera producción que se encuentra en la lista 
 *@return nodo cabeza de la primera producción de una gramática

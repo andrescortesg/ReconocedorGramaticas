@@ -44,11 +44,19 @@ public class Estado {
         return cabeza.getLigaDer() == cabeza;
     }
     
-    public boolean insertarTransicion(NodoA x){
-        if(esVacia()){
-            
+    public void insertarTransicion(NodoA x){ // inserción al final
+        if(!esVacia()){ // si No es vacia
+            x.setLigaDer(cabeza.getLigaIzq());
+            x.setLigaDer(cabeza.getLigaIzq().getLigaDer());
+            cabeza.getLigaIzq().setLigaDer(x);
+            cabeza.setLigaIzq(x);
+        }else{ // caso contrario
+            cabeza.setLigaDer(x);
+            cabeza.setLigaIzq(x);
+            x.setLigaDer(cabeza);
+            x.setLigaIzq(cabeza);
         }
-        return false;
+        
     }
     
     public void crearTransicion(String estado, String simbolo){
