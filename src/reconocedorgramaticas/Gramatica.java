@@ -677,6 +677,7 @@ public NTListas detectarNTAlcanzables(){
         Produccion x;
         x = cabeza.getLigaDer();
         StringBuilder linea =new StringBuilder();
+        
         while(x != cabeza){
             linea.append(x.imprimirEnString() + "\n");
             x = x.getLigaDer();

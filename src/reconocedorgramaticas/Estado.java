@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package reconocedorgramaticas;
-
+import java.util.*;
 /**
  *
  * @author andres.cortesg
@@ -13,6 +13,8 @@ public class Estado {
     
     private Estado ligaDer, ligaIzq;
     private NodoA cabeza;
+    private boolean noDeterministico;
+    private ArrayList<NodoA> estados;
     
     public Estado(){
         ligaDer = ligaIzq = null;
@@ -40,6 +42,10 @@ public class Estado {
         return cabeza;
     }
     
+    public NodoA primerElemento(){
+        return cabeza.getLigaDer();
+    }
+    
     public boolean esVacia(){
         return cabeza.getLigaDer() == cabeza;
     }
@@ -59,7 +65,27 @@ public class Estado {
         
     }
     
-    public void crearTransicion(String estado, String simbolo){
-        
+    public void crearTransicion(String estado, String simbolo){ // crea una transicion
+        NodoA x = new NodoA();
+        x.setEstado(estado);
+        x.setSimbolo(simbolo);
+        insertarTransicion(x);  
+    }
+    
+    public void setEstado(String estado){ // define el estado actual de la trasicion
+        cabeza.setEstado(estado);
+        cabeza.setSimbolo(null);
+    }
+    
+    public boolean esNoDeterministico(){
+        NodoA x = primerElemento();
+        NodoA a;
+        while(x != cabeza){
+            a = x.getLigaDer();
+            while(a != cabeza){
+                
+            }
+        }
+        return false;
     }
 }
