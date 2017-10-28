@@ -38,6 +38,10 @@ public class Gramatica {
     public Produccion getCabeza() {
         return cabeza;
     }
+    
+    public int getNroProducciones(){
+        return nroProducciones;
+    }
 /** 
 *Retorna la primera producción que se encuentra en la lista 
 *@return nodo cabeza de la primera producción de una gramática
@@ -673,6 +677,7 @@ public NTListas detectarNTAlcanzables(){
         Produccion x;
         x = cabeza.getLigaDer();
         StringBuilder linea =new StringBuilder();
+        
         while(x != cabeza){
             linea.append(x.imprimirEnString() + "\n");
             x = x.getLigaDer();
