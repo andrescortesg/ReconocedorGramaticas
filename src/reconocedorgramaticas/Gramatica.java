@@ -619,10 +619,7 @@ public NTListas detectarNTAlcanzables(){
 *Se recorre la producciones para eliminar las producciones muertas
 *
 */
-    
-    //falta NT inalcanzables
-    public void simplificarGramatica(){
-        
+    public void limpiarMuertos(){
         NTListas NTVM = this.detectarNTVivos();
         
         //bucle para eliminar producciones muertas
@@ -631,6 +628,21 @@ public NTListas detectarNTAlcanzables(){
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
         }
+    }
+    
+    public void limpiarInalcanzables(){
+        NTListas NTVM = this.detectarNTAlcanzables();
+        
+        //bucle para eliminar producciones muertas
+        Produccion x = this.getProduccionInicial();
+        for(int i = 0; i < NTVM.getNT0().size(); i++){
+            eliminarProduccion((String) NTVM.getNT0().get(i));
+            limpiarGramatica((String) NTVM.getNT0().get(i));
+        }
+    }
+    
+    //falta NT inalcanzables
+    public void simplificarGramatica(){
         caso1();
         caso2();
         caso3();
