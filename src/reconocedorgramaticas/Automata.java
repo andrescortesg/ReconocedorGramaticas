@@ -24,6 +24,7 @@ public class Automata implements Cloneable{
     public Automata(){
         esDeterministico = true;
         estadosAceptacion = new ArrayList<>();
+        cabeza = new Estado();
         cabeza.setLigaDer(cabeza);
         cabeza.setLigaIzq(cabeza);
     }
@@ -42,6 +43,30 @@ public class Automata implements Cloneable{
         return estadosAceptacion;
     }
     
+    public boolean esVacia(){
+        return cabeza == cabeza.getLigaIzq();
+    }
+    
+    public Estado getCabeza(){
+        return cabeza;
+    }
+    
+    
+    
+    public void insertarEstado(Estado x){ // inserción al final
+        if(!esVacia()){ // si No es vacia
+            x.setLigaDer(cabeza.getLigaIzq());
+            x.setLigaDer(cabeza.getLigaIzq().getLigaDer());
+            cabeza.getLigaIzq().setLigaDer(x);
+            cabeza.setLigaIzq(x);
+        }else{ // caso contrario
+            cabeza.setLigaDer(x);
+            cabeza.setLigaIzq(x);
+            x.setLigaDer(cabeza);
+            x.setLigaIzq(cabeza);
+        }
+        
+    }
     
     
 }

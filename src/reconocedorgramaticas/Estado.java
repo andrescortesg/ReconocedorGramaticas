@@ -18,6 +18,7 @@ public class Estado {
     
     public Estado(){
         ligaDer = ligaIzq = null;
+        cabeza = new NodoA();
         cabeza.setLigaDer(cabeza);
         cabeza.setLigaIzq(cabeza);
     }
@@ -46,8 +47,26 @@ public class Estado {
         return cabeza.getLigaDer();
     }
     
+    public NodoA ultimoElemento(){
+        return cabeza.getLigaIzq();
+    }
+    
     public boolean esVacia(){
         return cabeza.getLigaDer() == cabeza;
+    }
+    
+    
+    public StringBuilder imprimir(){
+        StringBuilder transicion = new StringBuilder();
+        NodoA a = cabeza;
+        transicion.append(a.getEstado()).append("\t");
+        a = a.getLigaDer();
+        while(a != cabeza){
+            transicion.append("|").append("\t").append(a.getSimbolo()).append("-").append(a.getEstado());
+            a = a.getLigaDer();
+        }
+        transicion.append("|");
+        return transicion;
     }
     
     public void insertarTransicion(NodoA x){ // inserción al final
@@ -77,15 +96,27 @@ public class Estado {
         cabeza.setSimbolo(null);
     }
     
-    public boolean esNoDeterministico(){
-        NodoA x = primerElemento();
-        NodoA a;
+    public boolean esDeterministico(){
+        NodoA x, y;
+        x = primerElemento();
+        y = x.getLigaDer();
+        
         while(x != cabeza){
-            a = x.getLigaDer();
-            while(a != cabeza){
-                
+            while(y != cabeza){
+                if(y.getSimbolo().equals( x.getSimbolo())){
+                    System.out.println("simbolo x = "+x.getSimbolo()+ " simbolo y = "+y.getSimbolo());
+                    return false;
+                }
+                y = y.getLigaDer();
             }
+            
+            x = x.getLigaDer();
+            y = x.getLigaDer();
         }
-        return false;
+        
+        return true;
+      
     }
+    
+    
 }
