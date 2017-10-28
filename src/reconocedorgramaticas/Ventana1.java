@@ -156,8 +156,10 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel6.setText(" Alcanzables");
 
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel7.setText("Inalcanzables");
 
         labelAlcanzables.setText("Sin determinar");
@@ -473,7 +475,7 @@ public class Ventana1 extends javax.swing.JFrame {
         // TODO add your handling code here:
          Object[] options = { "Yes", "No" };
     int n = JOptionPane.showOptionDialog(new JFrame(),
-            "Se eliminaran las producciones de"+eliminarTextfield.getText()+ "porfavor confirme", "",
+            "Se eliminaran las producciones de "+eliminarTextfield.getText()+ " porfavor confirme", "",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
             options, options[1]);
     if(n == JOptionPane.OK_OPTION){ // Afirmative
@@ -496,6 +498,10 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void botonEliminarMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarMIActionPerformed
         // TODO add your handling code here:
+        gram.limpiarInalcanzables();
+        gram.limpiarMuertos();
+        //areaDeTexto.setText(gram.imprimirGramaticaFormal().toString());
+        actualizarGramatica();
     }//GEN-LAST:event_botonEliminarMIActionPerformed
 
     /**
