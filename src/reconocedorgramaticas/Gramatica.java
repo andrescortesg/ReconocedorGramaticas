@@ -625,6 +625,7 @@ public NTListas detectarNTAlcanzables(){
         //bucle para eliminar producciones muertas
         Produccion x = this.getProduccionInicial();
         for(int i = 0; i < NTVM.getNT0().size(); i++){
+            System.out.println("Terminales inalcanzables:"+NTVM.getNT0().get(i));
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
         }
@@ -633,9 +634,10 @@ public NTListas detectarNTAlcanzables(){
     public void limpiarInalcanzables(){
         NTListas NTVM = this.detectarNTAlcanzables();
         
-        //bucle para eliminar producciones muertas
+        //bucle para eliminar producciones Inalcanzables
         Produccion x = this.getProduccionInicial();
         for(int i = 0; i < NTVM.getNT0().size(); i++){
+            System.out.println("Terminales inalcanzables:"+NTVM.getNT0().get(i));
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
         }
