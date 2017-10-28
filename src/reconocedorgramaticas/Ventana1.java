@@ -70,6 +70,8 @@ public class Ventana1 extends javax.swing.JFrame {
         botonEliminarMI = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lineastx = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,6 +92,11 @@ public class Ventana1 extends javax.swing.JFrame {
         areaDeTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         areaDeTexto.setDragEnabled(true);
         areaDeTexto.setName("Editor"); // NOI18N
+        areaDeTexto.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                areaDeTextoCaretUpdate(evt);
+            }
+        });
 
         labelEspecial.setText("Es Especial: _____");
 
@@ -310,6 +317,13 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
+        lineastx.setEditable(false);
+        lineastx.setColumns(3);
+        lineastx.setRows(5);
+        lineastx.setAlignmentX(-0.5F);
+        lineastx.setAutoscrolls(false);
+        jScrollPane2.setViewportView(lineastx);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -318,13 +332,13 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
+                        .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(1, 1, 1)
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -332,7 +346,9 @@ public class Ventana1 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(areaDeTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -453,9 +469,15 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void simplificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simplificarBotonActionPerformed
         // TODO add your handling code here:
+        if(gram.esRegular()){
         gram.simplificarGramatica();
-        
         actualizarGramatica();
+        }else{
+        JOptionPane.showMessageDialog(null,
+        "La gramatica no es regular por lo que no se puede simplificar",
+           "Información",JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_simplificarBotonActionPerformed
 
     private void botonGuardarGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarGramaticaActionPerformed
@@ -463,6 +485,7 @@ public class Ventana1 extends javax.swing.JFrame {
         botonVerificar.setEnabled(true);
         eliminarProdBoton.setEnabled(true);
         detectarVMboton.setEnabled(true);
+        simplificarBoton.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGuardarGramaticaActionPerformed
 
@@ -497,6 +520,11 @@ public class Ventana1 extends javax.swing.JFrame {
         }
         System.out.println(gram.detectarNTAlcanzables().getNT1());
     }//GEN-LAST:event_botonVerificarActionPerformed
+
+    private void areaDeTextoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_areaDeTextoCaretUpdate
+        // TODO add your handling code here:
+        actualizarlineas();
+    }//GEN-LAST:event_areaDeTextoCaretUpdate
 
     /**
      * @param args the command line arguments
@@ -636,6 +664,14 @@ public class Ventana1 extends javax.swing.JFrame {
   
  
  }
+ private void actualizarlineas(){
+ int lineas =areaDeTexto.getLineCount();
+ StringBuilder texto =new StringBuilder();
+ for(int i=1; i< lineas; i++){
+     texto.append(i+"."+"\n");
+ }
+         lineastx.setText(texto.toString());
+ }
 
 
 
@@ -661,6 +697,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -670,6 +707,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel labelLineal;
     private javax.swing.JLabel labelRegular;
     private javax.swing.JLabel labelTVivos;
+    private javax.swing.JTextArea lineastx;
     private javax.swing.JButton simplificarBoton;
     // End of variables declaration//GEN-END:variables
 }
