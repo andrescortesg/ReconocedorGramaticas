@@ -619,16 +619,22 @@ public NTListas detectarNTAlcanzables(){
 *Se recorre la producciones para eliminar las producciones muertas
 *
 */
-    public void limpiarMuertos(){
+    public boolean limpiarMuertos(){
         NTListas NTVM = this.detectarNTVivos();
         
         //bucle para eliminar producciones muertas
         Produccion x = this.getProduccionInicial();
+        if(!NTVM.getNT0().isEmpty()){
         for(int i = 0; i < NTVM.getNT0().size(); i++){
             System.out.println("Terminales inalcanzables:"+NTVM.getNT0().get(i));
             eliminarProduccion((String) NTVM.getNT0().get(i));
             limpiarGramatica((String) NTVM.getNT0().get(i));
+            
+            }
+        return true;
         }
+        return false;
+        
     }
     
     public void limpiarInalcanzables(){
