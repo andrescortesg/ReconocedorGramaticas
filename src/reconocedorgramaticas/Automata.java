@@ -11,9 +11,11 @@ import java.util.*;
  * @author elkin.garces
  */
 public class Automata implements Cloneable{
-    private boolean esDeterministico;
-    private ArrayList<NodoA> automata = new ArrayList<>();
     
+    private boolean esDeterministico;
+    private ArrayList<NodoA> estadosAceptacion = new ArrayList<>();
+    private int estados, simbolos;
+    private Estado cabeza;
  /**
  *Constructor
  * 
@@ -21,11 +23,12 @@ public class Automata implements Cloneable{
     
     public Automata(){
         esDeterministico = true;
+        estadosAceptacion = new ArrayList<>();
+        cabeza.setLigaDer(cabeza);
+        cabeza.setLigaIzq(cabeza);
     }
 
-    public Object clone()throws CloneNotSupportedException{  
-        return super.clone();  
-    } 
+    
  /**
  *Metodo para determinar si el automata es deterministico
  * @return true si cumple para ser deterministico false de lo contrario
@@ -34,14 +37,9 @@ public class Automata implements Cloneable{
     public boolean EsDeterministico() {
         return esDeterministico;
     }
-/**
- *Metodo para retornar una lista que representa un automata
- * @return automata en forma de arraylist
- * 
- */
     
-    public ArrayList<NodoA> getAutomata() {
-        return automata;
+    public ArrayList<NodoA> getEstadosAceptacion(){
+        return estadosAceptacion;
     }
     
     
