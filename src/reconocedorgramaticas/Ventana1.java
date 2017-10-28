@@ -322,6 +322,7 @@ public class Ventana1 extends javax.swing.JFrame {
         lineastx.setColumns(2);
         lineastx.setRows(5);
         lineastx.setAlignmentX(0.0F);
+        lineastx.setAlignmentY(0.0F);
         lineastx.setAutoscrolls(false);
         lineastx.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lineastx.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -338,8 +339,7 @@ public class Ventana1 extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
