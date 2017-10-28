@@ -162,7 +162,6 @@ public class Ventana1 extends javax.swing.JFrame {
         });
 
         botonGuardarArchivo.setText("Guardar Archivo");
-        botonGuardarArchivo.setEnabled(false);
         botonGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarArchivoActionPerformed(evt);
@@ -392,7 +391,7 @@ public class Ventana1 extends javax.swing.JFrame {
          }
         else{
             JOptionPane.showMessageDialog(null,"" +
-           "\nEsta Gramatica NO se puede ser simplificada",
+           "\nEsta Gramatica NO puede ser simplificada",
                  "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
             
         simplificarBoton.setEnabled(false);
