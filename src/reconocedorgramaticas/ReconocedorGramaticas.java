@@ -22,6 +22,7 @@ public class ReconocedorGramaticas {
         /**
          * Notas de pruebas
          * -Terminado funcionalidad de gramaticas
+         * -falta terminar metodos base de Automata y Estado
          */
         
         Estado a = new Estado();
