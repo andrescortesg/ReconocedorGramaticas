@@ -96,7 +96,7 @@ public class Estado {
         cabeza.setSimbolo(null);
     }
     
-    public boolean esDeterministico(){
+    public boolean esDeterministico(){ //determina si es deterministico con una busqueda simple
         NodoA x, y;
         x = primerElemento();
         y = x.getLigaDer();
@@ -104,7 +104,7 @@ public class Estado {
         while(x != cabeza){
             while(y != cabeza){
                 if(y.getSimbolo().equals( x.getSimbolo())){
-                    System.out.println("simbolo x = "+x.getSimbolo()+ " simbolo y = "+y.getSimbolo());
+                    
                     return false;
                 }
                 y = y.getLigaDer();

@@ -36,6 +36,12 @@ public class Automata implements Cloneable{
  * 
  */
     public boolean EsDeterministico() {
+        Estado x = primerElemento();
+        while (x != cabeza){
+            if(!x.esDeterministico()){
+                esDeterministico = false;
+            }
+        }
         return esDeterministico;
     }
     
@@ -50,8 +56,12 @@ public class Automata implements Cloneable{
     public Estado getCabeza(){
         return cabeza;
     }
-    
-    
+    public Estado primerElemento(){
+        return cabeza.getLigaDer();
+    }
+    public Estado ultimoElemento(){
+        return cabeza.getLigaIzq();
+    }
     
     public void insertarEstado(Estado x){ // inserción al final
         if(!esVacia()){ // si No es vacia
@@ -65,6 +75,10 @@ public class Automata implements Cloneable{
             x.setLigaDer(cabeza);
             x.setLigaIzq(cabeza);
         }
+        
+    }
+    
+    public void desconectar(Estado e){
         
     }
     
