@@ -69,17 +69,28 @@ public class Estado {
         return transicion;
     }
     
-    public void insertarTransicion(NodoA x){ // inserción al final
+    public boolean desconectar(NodoA t){ 
+        //si el nodo a desconectar no es cabeza = false
+        //caso contrario = true
+        if(t != cabeza){
+            t.getLigaDer().setLigaIzq(t.getLigaIzq());
+            t.getLigaIzq().setLigaDer(t.getLigaDer());
+            return true;
+        }
+        return false;
+    }
+    
+    public void insertarTransicion(NodoA t){ // inserción al final
         if(!esVacia()){ // si No es vacia
-            x.setLigaDer(cabeza.getLigaIzq());
-            x.setLigaDer(cabeza.getLigaIzq().getLigaDer());
-            cabeza.getLigaIzq().setLigaDer(x);
-            cabeza.setLigaIzq(x);
+            t.setLigaDer(cabeza.getLigaIzq());
+            t.setLigaDer(cabeza.getLigaIzq().getLigaDer());
+            cabeza.getLigaIzq().setLigaDer(t);
+            cabeza.setLigaIzq(t);
         }else{ // caso contrario
-            cabeza.setLigaDer(x);
-            cabeza.setLigaIzq(x);
-            x.setLigaDer(cabeza);
-            x.setLigaIzq(cabeza);
+            cabeza.setLigaDer(t);
+            cabeza.setLigaIzq(t);
+            t.setLigaDer(cabeza);
+            t.setLigaIzq(cabeza);
         }
         
     }

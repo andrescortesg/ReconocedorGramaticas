@@ -35,13 +35,7 @@ public class Automata implements Cloneable{
  * @return true si cumple para ser deterministico false de lo contrario
  * 
  */
-    public boolean EsDeterministico() {
-        Estado x = primerElemento();
-        while (x != cabeza){
-            if(!x.esDeterministico()){
-                esDeterministico = false;
-            }
-        }
+    public boolean esDeterministico() {
         return esDeterministico;
     }
     
@@ -63,23 +57,29 @@ public class Automata implements Cloneable{
         return cabeza.getLigaIzq();
     }
     
-    public void insertarEstado(Estado x){ // inserción al final
+    public void insertarEstado(Estado e){ // inserción al final
+        if(!e.esDeterministico()){
+                esDeterministico = false;
+        }
         if(!esVacia()){ // si No es vacia
-            x.setLigaDer(cabeza.getLigaIzq());
-            x.setLigaDer(cabeza.getLigaIzq().getLigaDer());
-            cabeza.getLigaIzq().setLigaDer(x);
-            cabeza.setLigaIzq(x);
+            e.setLigaDer(cabeza.getLigaIzq());
+            e.setLigaDer(cabeza.getLigaIzq().getLigaDer());
+            cabeza.getLigaIzq().setLigaDer(e);
+            cabeza.setLigaIzq(e);
         }else{ // caso contrario
-            cabeza.setLigaDer(x);
-            cabeza.setLigaIzq(x);
-            x.setLigaDer(cabeza);
-            x.setLigaIzq(cabeza);
+            cabeza.setLigaDer(e);
+            cabeza.setLigaIzq(e);
+            e.setLigaDer(cabeza);
+            e.setLigaIzq(cabeza);
         }
         
     }
     
     public void desconectar(Estado e){
-        
+        if(e != cabeza){
+            e.getLigaDer().setLigaIzq(e.getLigaIzq());
+            e.getLigaIzq().setLigaDer(e.getLigaDer());
+        }
     }
     
     

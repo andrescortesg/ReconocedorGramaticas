@@ -9,37 +9,20 @@ import java.util.*;
  *
  * @author andres.cortesg
  * 
- * Clase para No terminales vivos y muertos
+ * Clase para No terminales vivos y muertos / Alcanzables e inalzanzables
  */
 public class NTListas {
-    private List NT1, NT0, NT2, NT3;
+    private List NT1, NT0;
 
    
     
     public NTListas(){
-        NT3 = new ArrayList(); //inalcanzables
-        NT2 = new ArrayList();// alcanzables
-        NT1 = new ArrayList(); //vivos
-        NT0 = new ArrayList(); //muertos
+
+        NT1 = new ArrayList(); //vivos - Alcanzables
+        NT0 = new ArrayList(); //muertos - Inalcanzables
         
     }
 
-    public List getNT2() {
-        return NT2;
-    }
-
-    public void setNT2(List NT2) {
-        this.NT2 = NT2;
-    }
-
-    public List getNT3() {
-        return NT3;
-    }
-
-    public void setNT3(List NT3) {
-        this.NT3 = NT3;
-    }
-    
 
     public List getNT1() {
         return NT1;
