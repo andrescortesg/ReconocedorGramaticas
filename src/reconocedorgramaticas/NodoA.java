@@ -12,11 +12,12 @@ import java.util.*;
 public class NodoA {
     private String estado;
     private String simbolo;
-    private List transiciones;
+    private NodoA ligaDer, ligaIzq;
     
     
     public NodoA(){
-        transiciones = new ArrayList();
+        ligaDer = ligaIzq = null;
+        
     }
 
     public String getEstado() {
@@ -35,14 +36,23 @@ public class NodoA {
         this.simbolo = simbolo;
     }
 
-    public List getTransiciones() {
-        return transiciones;
+    public NodoA getLigaDer() {
+        return ligaDer;
     }
 
-    public void setTransicion(String x) {
-        
-        transiciones.add(x);
+    public void setLigaDer(NodoA ligaDer) {
+        this.ligaDer = ligaDer;
     }
+
+    public NodoA getLigaIzq() {
+        return ligaIzq;
+    }
+
+    public void setLigaIzq(NodoA ligaIzq) {
+        this.ligaIzq = ligaIzq;
+    }
+
+    
     
     
 }

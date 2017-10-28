@@ -474,29 +474,35 @@ public NTListas detectarNTAlcanzables(){
 *
 */
     
-    public void eliminarProduccion(String nombre){
+    public boolean eliminarProduccion(String nombre){
         Produccion x = this.getProduccionInicial();
+        boolean bandera = false;
         while(x != cabeza){
             if(x.getCabeza().equals(nombre)){
                 desconectar(x);
+                bandera = true;
             }
             x = x.getLigaDer();
         }
+        return bandera;
     }
 
     
-    public void limpiarGramatica(String dato){
+    public boolean limpiarGramatica(String dato){
         Produccion x = this.getProduccionInicial();
+        boolean bandera = false;
         while(x != cabeza){
             NodoP a = x.primerElemento();
             while(a != x.cabeza()){
                 if(dato.equals(a.getDato())){
                     x.desconectar(a);
+                    bandera = true;
                 }
                 a = a.getLigaDer();
             }
             x = x.getLigaDer();
         }
+        return bandera;
     }
     
     

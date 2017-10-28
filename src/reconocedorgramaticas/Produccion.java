@@ -10,12 +10,11 @@ package reconocedorgramaticas;
  * @author andres.cortesg
  */
 public class Produccion {
+    
     private NodoP cabeza;
     private Produccion ligaDer, ligaIzq;
     private int cantidadT, cantidadNT;
     private boolean esNulo;
-    
-
     
     
     public Produccion(){
