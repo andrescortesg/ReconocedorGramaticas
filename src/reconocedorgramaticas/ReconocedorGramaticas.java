@@ -4,7 +4,7 @@
  * and open the  template in the editor.
  */
 package reconocedorgramaticas;
-import java.util.*;
+
 /**
  *
  * @author andres.cortesg
