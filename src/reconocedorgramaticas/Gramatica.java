@@ -679,13 +679,17 @@ public NTListas detectarNTAlcanzables(){
         StringBuilder linea =new StringBuilder();
         
         while(x != cabeza){
-            linea.append(x.imprimirEnString() + "\n");
+            linea.append(x.imprimirEnString()).append("\n");
             x = x.getLigaDer();
         }
     return linea;
             }
     
-    
+    public Automata generarAutomata(){
+        
+        
+        return null;
+    }
     
     
 }

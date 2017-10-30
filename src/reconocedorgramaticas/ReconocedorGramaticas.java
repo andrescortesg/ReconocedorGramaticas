@@ -25,6 +25,13 @@ public class ReconocedorGramaticas {
          * -falta terminar metodos base de Automata y Estado
          */
         
+        Produccion p = new Produccion();
+        p.crearCabeza("D");
+        p.crearElemento("a", 1);
+        p.crearElemento("A", 0);
+        
+        p.imprimirEnConsola();
+        /*
         Estado a = new Estado();
         a.setEstado("A");
         a.crearTransicion("A", "1");
@@ -36,7 +43,25 @@ public class ReconocedorGramaticas {
         a.crearTransicion("D", "1");
         System.out.println(a.imprimir());
         System.out.println(a.esDeterministico());
+        */
         
+        Automata a = new Automata();
+        a.cargarEstado(p);
+        p.crearCabeza("D");
+        p.crearElemento("b", 1);
+        p.crearElemento("B", 0);
+        a.cargarEstado(p);
+        
+        Estado x = new Estado();
+        x.setEstado("jajajaja");
+        Estado y = new Estado();
+        y.setEstado("asdasdasd");
+        Estado z = new Estado();
+        z.setEstado("sddfsdf");
+        a.insertarEstado(x);
+        a.insertarEstado(y);
+        a.imprimirNodos();
+        System.out.println("esto se ejecuta");
     }
     
 }

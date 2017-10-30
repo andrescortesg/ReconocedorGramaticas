@@ -14,15 +14,27 @@ public class Estado {
     private Estado ligaDer, ligaIzq;
     private NodoA cabeza;
     private boolean noDeterministico;
+    private boolean aceptacion;
     private ArrayList<NodoA> estados;
     
     public Estado(){
+        noDeterministico = aceptacion = false;
         ligaDer = ligaIzq = null;
         cabeza = new NodoA();
         cabeza.setLigaDer(cabeza);
         cabeza.setLigaIzq(cabeza);
+        cabeza.setSimbolo(null);
+        cabeza.setEstado(null);
     }
-
+    
+    public void setAceptacion(boolean a){
+        aceptacion = a;
+    }
+    
+    public boolean getAceptacion(){
+        return aceptacion;
+    }
+    
     public Estado getLigaDer() {
         return ligaDer;
     }
@@ -41,6 +53,15 @@ public class Estado {
     
     public NodoA getCabeza(){
         return cabeza;
+    }
+    
+    public String getEstado(){ //estado actual
+        return cabeza.getEstado();
+    }
+    
+    public void setEstado(String estado){ // define el estado actual de la trasicion
+        cabeza.setEstado(estado);
+        
     }
     
     public NodoA primerElemento(){
@@ -102,10 +123,7 @@ public class Estado {
         insertarTransicion(x);  
     }
     
-    public void setEstado(String estado){ // define el estado actual de la trasicion
-        cabeza.setEstado(estado);
-        cabeza.setSimbolo(null);
-    }
+    
     
     public boolean esDeterministico(){ //determina si es deterministico con una busqueda simple
         NodoA x, y;
@@ -123,6 +141,8 @@ public class Estado {
             
             x = x.getLigaDer();
             y = x.getLigaDer();
+            
+            
         }
         
         return true;
