@@ -156,7 +156,7 @@ public class Estado {
         NodoA x = primerElemento();
         
         while(x != cabeza){
-            System.out.println("Estado:"+x.getEstado()+" Simbolo:"+x.getSimbolo());
+            
             x = x.getLigaDer();
         }
     }
@@ -177,14 +177,65 @@ public class Estado {
         return null;
     }
     
-    public void moverAlInicio(){
+    
+    
+    public void moverAlInicio(NodoA n){ //mover un nodo al inicio
+        
+        //desconectado de posicion actual
+        
+        n.getLigaDer().setLigaIzq(n.getLigaDer());
+        n.getLigaIzq().setLigaDer(n.getLigaIzq());
+        
+        //insercion al inicio
+        // 2 casos
+        if(n.getLigaIzq() == cabeza.getLigaDer()){
+            n.setLigaIzq(cabeza);
+            cabeza.getLigaDer().setLigaIzq(n);
+            cabeza.getLigaDer().setLigaDer(n.getLigaDer());
+            cabeza.setLigaDer(n); 
+
+        }else{
+            n.setLigaIzq(cabeza.getLigaDer());
+            n.setLigaDer(cabeza);
+            cabeza.getLigaDer().setLigaIzq(n);
+            cabeza.setLigaDer(n);
+        }
         
     }
     
-    public int ordenarTransiciones(ArrayList<String> listaSimbolos){
+    public void ordenarTransiciones(ArrayList<String> listaSimbolos){
+        Estado e = new Estado();
+        e.setEstado(this.getEstado());
+        for(int i = 0; i < listaSimbolos.size(); i++){
+            NodoA x = primerElemento();
+            System.out.println(x.getSimbolo());
+            System.out.println("lista de simbolos:"+listaSimbolos);
+            while(x != cabeza){
+                if(x.getSimbolo().equals(listaSimbolos.get(i))){
+                    e.crearTransicion(x.getEstado(), x.getSimbolo());
+                    x = x.getLigaDer();
+                    
+                }else{
+                   x = x.getLigaDer(); 
+                }
+                
+            }
+            
+            
+        }
         
+        //Reescritura
         
-        
-        return 0;
+        NodoA a, b;
+        a = this.primerElemento();
+        b = e.primerElemento();
+        while(a != cabeza){
+            
+            a.setEstado(b.getEstado());
+            a.setSimbolo(b.getSimbolo());
+            
+            a = a.getLigaDer();
+            b= b.getLigaDer();
+        }
     }
 }

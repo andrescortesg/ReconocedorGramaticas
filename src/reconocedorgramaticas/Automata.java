@@ -73,7 +73,7 @@ public class Automata implements Cloneable{
         Estado x = primerElemento();
         
         while(x != cabeza){
-            System.out.println("nodo:"+x+" dato asociado:"+x.getEstado());
+            System.out.println("--------------------nodo:"+x+" dato asociado:"+x.getEstado()+"----------------------");
             NodoA y = x.primerElemento();
             while(y != x.getCabeza()){
                 System.out.println("Estado:"+y.getEstado()+" Simbolo:"+y.getSimbolo());
@@ -139,10 +139,12 @@ public class Automata implements Cloneable{
             Estado e = new Estado();
             e.setEstado(estado);
             insertarEstado(e);
-            imprimir();
+            
             return 0;
         }
         return 1;
+        
+
     }
     
     public int crearTransiciones(Produccion p){
@@ -164,6 +166,7 @@ public class Automata implements Cloneable{
         
         while(p != g.getCabeza()){
             if(p.esNulo()){
+                crearEstado(p.getCabeza());
                 buscarEstado(p.getCabeza()).setAceptacion(true);
             }else{
                 crearEstado(p.getCabeza());
@@ -196,7 +199,15 @@ public class Automata implements Cloneable{
         }
     }
     
-    
+    public void ordenarTransiciones(){
+        Estado x = primerElemento();
+        while(x != cabeza){
+            
+            x.ordenarTransiciones(listaSimbolos);
+            x = x.getLigaDer();
+        }
+        
+    }
     
 
     

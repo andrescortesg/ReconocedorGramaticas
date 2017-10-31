@@ -42,25 +42,23 @@ public class ReconocedorGramaticas {
         */
         
         Automata x = new Automata();
-        
-        
+
         Gramatica g = new Gramatica();
         
         g.crearProduccion("<S> = a<A>");
+        g.crearProduccion("<S> = b<A>");
+        g.crearProduccion("<S> = a<B>");
         
-    g.crearProduccion("<S> = b<B>");
-    g.crearProduccion("<S> = c<A>");
-    g.crearProduccion("<A> = b<S>");
-    g.crearProduccion("<A>= c<A>");
-    g.crearProduccion("<A> =&");
-
-       
         
-        x.imprimirNodos();
         
+        g.imprimirGramaticaFormal();
         
         x.generarAutomata(g);
         x.imprimir();
+        x.ordenarTransiciones();
+        x.imprimir();
+        
+        
     }
     
 }
