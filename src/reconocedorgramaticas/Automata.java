@@ -240,7 +240,21 @@ public class Automata implements Cloneable{
         
         a.imprimir();
     }
-
+    
+       
+    public boolean evaluarHilera(String hilera){
+        Estado actual = primerElemento();
+        for(int i = 0; i < hilera.length(); i++){
+            String siguiente = actual.proximoEstado(hilera.charAt(i));
+            if(siguiente  !=  null){
+                actual = buscarEstado(siguiente);
+            }else{
+                return false;
+            }
+            
+        }
+        return actual.getAceptacion();
+    }
     
     public void aDeterministico(){
         

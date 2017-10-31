@@ -224,4 +224,16 @@ public class Estado {
         nuevo.setSimbolo(simbolo);
         return nuevo;
     }
+    
+    public String proximoEstado(char a){
+        NodoA x = primerElemento();
+        while(x != cabeza){
+            
+            if(x.getSimbolo().equals(String.valueOf(a))){
+                return x.getEstado();
+            }
+            x = x.getLigaDer();
+        }
+        return null;
+    }
 }
