@@ -15,7 +15,7 @@ public class Estado {
     private NodoA cabeza;
     private boolean noDeterministico;
     private boolean aceptacion;
-    private ArrayList<NodoA> estados;
+    
     
     public Estado(){
         noDeterministico = aceptacion = false;
@@ -161,5 +161,15 @@ public class Estado {
         }
     }
     
-    
+    public Estado unirEstados(ArrayList<Estado> estados){
+        if(estados.isEmpty()){
+            return null;
+        }
+        Estado e = new Estado();
+        //creación del nuevo estado
+        
+        
+        
+        return null;
+    }
 }
