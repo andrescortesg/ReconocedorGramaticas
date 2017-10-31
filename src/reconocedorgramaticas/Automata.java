@@ -39,6 +39,13 @@ public class Automata implements Cloneable{
  * 
  */
     public boolean esDeterministico() {
+        Estado x = primerElemento();
+        while(x != cabeza){
+            if(!x.esDeterministico()){
+                esDeterministico = false;
+            }
+            x = x.getLigaDer();
+        }
         return esDeterministico;
     }
      
@@ -234,7 +241,9 @@ public class Automata implements Cloneable{
         a.imprimir();
     }
 
-    public void unirEstados(){
+    
+    public void aDeterministico(){
+        
         
     }
 }

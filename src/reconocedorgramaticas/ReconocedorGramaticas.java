@@ -62,7 +62,7 @@ public class ReconocedorGramaticas {
         
         x.ordenarTransiciones();
         x.imprimir();
-        
+        System.out.println(x.esDeterministico());
         
     }
     

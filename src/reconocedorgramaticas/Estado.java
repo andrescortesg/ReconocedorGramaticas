@@ -178,30 +178,7 @@ public class Estado {
     }
     
     
-    
-    public void moverAlInicio(NodoA n){ //mover un nodo al inicio
-        
-        //desconectado de posicion actual
-        
-        n.getLigaDer().setLigaIzq(n.getLigaDer());
-        n.getLigaIzq().setLigaDer(n.getLigaIzq());
-        
-        //insercion al inicio
-        // 2 casos
-        if(n.getLigaIzq() == cabeza.getLigaDer()){
-            n.setLigaIzq(cabeza);
-            cabeza.getLigaDer().setLigaIzq(n);
-            cabeza.getLigaDer().setLigaDer(n.getLigaDer());
-            cabeza.setLigaDer(n); 
 
-        }else{
-            n.setLigaIzq(cabeza.getLigaDer());
-            n.setLigaDer(cabeza);
-            cabeza.getLigaDer().setLigaIzq(n);
-            cabeza.setLigaDer(n);
-        }
-        
-    }
     
     public void ordenarTransiciones(ArrayList<String> listaSimbolos){
         Estado e = new Estado();
@@ -236,8 +213,15 @@ public class Estado {
         }
     }
     
-    
-    public void unirTransiciones(ArrayList<NodoA> transiciones){
-        
+    //une dos o más transiciones
+    public NodoA unirTransiciones(ArrayList<NodoA> transiciones, String simbolo){
+        NodoA nuevo = new NodoA();
+        StringBuilder a = new StringBuilder();
+        transiciones.forEach((transicion) -> {
+            a.append(transicion.getEstado());
+        });
+        nuevo.setEstado(a.toString());
+        nuevo.setSimbolo(simbolo);
+        return nuevo;
     }
 }
