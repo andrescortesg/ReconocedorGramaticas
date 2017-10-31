@@ -71,10 +71,16 @@ public class Automata implements Cloneable{
     public void imprimirNodos(){
         
         Estado x = primerElemento();
-        System.out.println("nodo:"+x+" dato asociado:"+x.getEstado());
+        
         while(x != cabeza){
+            System.out.println("nodo:"+x+" dato asociado:"+x.getEstado());
+            NodoA y = x.primerElemento();
+            while(y != x.getCabeza()){
+                System.out.println("Estado:"+y.getEstado()+" Simbolo:"+y.getSimbolo());
+                y = y.getLigaDer();
+            }
+            System.out.println(x.esVacio());
             
-            x.imprimir();
             x = x.getLigaDer();
         }
     }
@@ -110,23 +116,44 @@ public class Automata implements Cloneable{
         
     }
     
-    public void cargarEstado(Produccion p){
-        Estado e = new Estado();
-        if(!listaEstados.contains(p.getCabeza())){ // carga nuevo estado
-            listaEstados.add(p.getCabeza());
-            e.setEstado(p.getCabeza());
+    public void generarAutomata(Gramatica g){
+        
+        Produccion p = g.primerProduccion();
+        while(p != g.getCabeza()){
+            Estado e = new Estado();
+            if(p.esNulo()){
+                e.setAceptacion(true);
+            }
             
+            if(!listaEstados.contains(p.getCabeza())){
+                listaEstados.add(p.getCabeza());
+                
+                Produccion x = p.getLigaDer();
+                int nroP =g.getNroProducciones();
+                Produccion y = x.getLigaIzq();
+                System.out.println("p:"+p);
+                int i = 0;
+                while(i < nroP-1){
+                    
+                    //System.out.println("atascado lol");
+                    if(x == g.getCabeza()){
+                        x = x.getLigaDer();
+                    }
+                    System.out.println("x:"+x);
+                    System.out.println("pregunta del loop:"+x.getCabeza().equals(p.getCabeza()));
+                    if(x.getCabeza().equals(p.getCabeza())){
+                        System.out.println("asasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                        boolean xxx =e.crearTransicion(x.ultimoElemento().getDato(), x.primerElemento().getDato());
+                        System.out.println("error en la escritura?:"+xxx);
+                    }
+                    
+                    x = x.getLigaDer();
+                    i++;
+                }
+            }
+            p = p.getLigaDer();
         }
         
-        if(!listaSimbolos.contains(p.primerElemento().getDato()) ){
-            listaSimbolos.add(p.primerElemento().getDato());
-        }
-        
-        if(!p.isEsNulo()){ //se crea la transicion
-            e.crearTransicion(p.ultimoElemento().getDato(), p.primerElemento().getDato());
-        }else{ // el estado es de aceptación
-            e.setAceptacion(true);
-        }
         
     }
     

@@ -26,6 +26,9 @@ public class Estado {
         cabeza.setSimbolo(null);
         cabeza.setEstado(null);
     }
+    public boolean esVacio(){
+        return cabeza == cabeza.getLigaIzq();
+    }
     
     public void setAceptacion(boolean a){
         aceptacion = a;
@@ -116,11 +119,12 @@ public class Estado {
         
     }
     
-    public void crearTransicion(String estado, String simbolo){ // crea una transicion
+    public boolean crearTransicion(String estado, String simbolo){ // crea una transicion
         NodoA x = new NodoA();
         x.setEstado(estado);
         x.setSimbolo(simbolo);
-        insertarTransicion(x);  
+        insertarTransicion(x);
+        return !esVacia();
     }
     
     
@@ -147,6 +151,15 @@ public class Estado {
         
         return true;
       
+    }
+    
+    public void imprimirEstado(){
+        NodoA x = primerElemento();
+        
+        while(x != cabeza){
+            System.out.println("Estado:"+x.getEstado()+" Simbolo:"+x.getSimbolo());
+            x = x.getLigaDer();
+        }
     }
     
     

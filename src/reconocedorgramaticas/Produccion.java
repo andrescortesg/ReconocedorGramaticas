@@ -27,7 +27,7 @@ public class Produccion {
         
     }
     
-    public boolean isEsNulo() {
+    public boolean esNulo() {
         return esNulo;
     }
 

@@ -238,7 +238,7 @@ public class Gramatica {
         
         while(x != cabeza ){// NT vivos por definición
             
-            if( (x.getCantidadNT() == 0 && x.getCantidadT() > 0) || x.isEsNulo()){  // Condicion para las producciones
+            if( (x.getCantidadNT() == 0 && x.getCantidadT() > 0) || x.esNulo()){  // Condicion para las producciones
                     
                   lista.add(x.getCabeza());
                   //System.out.println("N "+ x.getCantidadNT()+ "  TTT  "+x.getCantidadT()+ "aqui");   
@@ -447,7 +447,7 @@ public NTListas detectarNTAlcanzables(){
             if( (x.getCantidadNT() >1) || (x.getCantidadT() > 1) ){
                 return false;
             }
-            if(!x.isEsNulo() && x.getCantidadT() > 0 && x.getCantidadNT() == 0){
+            if(!x.esNulo() && x.getCantidadT() > 0 && x.getCantidadNT() == 0){
                 return false;
             }
             x = x.getLigaDer();
@@ -685,11 +685,7 @@ public NTListas detectarNTAlcanzables(){
     return linea;
             }
     
-    public Automata generarAutomata(){
-        
-        
-        return null;
-    }
+    
     
     
 }
