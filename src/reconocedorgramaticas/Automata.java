@@ -148,6 +148,9 @@ public class Automata implements Cloneable{
     public int crearTransiciones(Produccion p){
         Estado x = buscarEstado(p.getCabeza());
         if(x != null){
+            if(!listaSimbolos.contains(p.primerElemento().getDato())){
+                listaSimbolos.add(p.primerElemento().getDato());
+            }
             x.crearTransicion(p.ultimoElemento().getDato(), p.primerElemento().getDato());
             x.imprimirEstado();
             return 0;

@@ -92,15 +92,15 @@ public class Estado {
         return transicion;
     }
     
-    public boolean desconectar(NodoA t){ 
+    public NodoA desconectar(NodoA t){ 
         //si el nodo a desconectar no es cabeza = false
         //caso contrario = true
         if(t != cabeza){
             t.getLigaDer().setLigaIzq(t.getLigaIzq());
             t.getLigaIzq().setLigaDer(t.getLigaDer());
-            return true;
+            return t;
         }
-        return false;
+        return null;
     }
     
     public void insertarTransicion(NodoA t){ // inserción al final
@@ -161,15 +161,30 @@ public class Estado {
         }
     }
     
+    
+    //en desarrollo
     public Estado unirEstados(ArrayList<Estado> estados){
         if(estados.isEmpty()){
             return null;
         }
         Estado e = new Estado();
         //creación del nuevo estado
-        
+        while(!estados.isEmpty()){
+            
+        }
         
         
         return null;
+    }
+    
+    public void moverAlInicio(){
+        
+    }
+    
+    public int ordenarTransiciones(ArrayList<String> listaSimbolos){
+        
+        
+        
+        return 0;
     }
 }
