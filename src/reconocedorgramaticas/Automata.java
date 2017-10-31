@@ -68,6 +68,7 @@ public class Automata implements Cloneable{
         return cabeza.getLigaIzq();
     }
     
+    //para pruebas
     public void imprimirNodos(){
         
         Estado x = primerElemento();
@@ -87,13 +88,15 @@ public class Automata implements Cloneable{
     
     public void imprimir(){
         Estado x = primerElemento();
+        
         while(x != cabeza){
+            StringBuilder a = new StringBuilder(x.imprimir());
             if(x.getAceptacion()){
-                System.out.println(x.imprimir()+ "\t 1");
+                a.append("\t (1)");
             }else{
-                System.out.println(x.imprimir()+ "\t 0");
+                a.append("\t (0)");
             }
-            
+            System.out.println(a);
             x = x.getLigaDer();
         }
     }
@@ -174,8 +177,7 @@ public class Automata implements Cloneable{
             }
             p = p.getLigaDer();
         }
-        ordenarTransiciones();
-        
+        ordenarTransiciones(); 
     }
     
     public int conectar(Estado x, Estado estado){
@@ -193,6 +195,7 @@ public class Automata implements Cloneable{
         return 1;
     }
     
+    //sin uso final
     public void desconectar(Estado e){
         if(e != cabeza){
             e.getLigaDer().setLigaIzq(e.getLigaIzq());
@@ -210,6 +213,28 @@ public class Automata implements Cloneable{
         
     }
     
+    //sin uso final
+    public void ordenarEstados(){
+        Automata a = new Automata();
+        
+        
+        for(int i = 0; i < listaEstados.size(); i++){
+            Estado x = primerElemento();
+            while(x != cabeza){
+                if(x.getEstado().equals(listaEstados.get(i))){
+                    a.insertarEstado(x);
+                    x = x.getLigaDer();
+                }else{
+                    x = x.getLigaDer();
+                }
+                
+            }
+        }
+        
+        a.imprimir();
+    }
 
-    
+    public void unirEstados(){
+        
+    }
 }

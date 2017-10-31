@@ -208,8 +208,7 @@ public class Estado {
         e.setEstado(this.getEstado());
         for(int i = 0; i < listaSimbolos.size(); i++){
             NodoA x = primerElemento();
-            System.out.println(x.getSimbolo());
-            System.out.println("lista de simbolos:"+listaSimbolos);
+         
             while(x != cabeza){
                 if(x.getSimbolo().equals(listaSimbolos.get(i))){
                     e.crearTransicion(x.getEstado(), x.getSimbolo());
@@ -235,5 +234,10 @@ public class Estado {
             a = a.getLigaDer();
             b= b.getLigaDer();
         }
+    }
+    
+    
+    public void unirTransiciones(ArrayList<NodoA> transiciones){
+        
     }
 }
