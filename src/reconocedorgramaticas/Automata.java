@@ -88,7 +88,12 @@ public class Automata implements Cloneable{
     public void imprimir(){
         Estado x = primerElemento();
         while(x != cabeza){
-            System.out.println(x.imprimir());
+            if(x.getAceptacion()){
+                System.out.println(x.imprimir()+ "\t 1");
+            }else{
+                System.out.println(x.imprimir()+ "\t 0");
+            }
+            
             x = x.getLigaDer();
         }
     }
@@ -189,7 +194,7 @@ public class Automata implements Cloneable{
     }
     
     
-    // METODOS NO FUNCIONALES
+    
 
     
 }

@@ -22,7 +22,8 @@ public class ReconocedorGramaticas {
         /**
          * Notas de pruebas
          * -Terminado funcionalidad de gramaticas
-         * -falta terminar metodos base de Automata y Estado
+         * -falta terminar metodos base de Automata y Estado (completado)
+         * -métodos para simplificación
          */
         
         

@@ -79,7 +79,6 @@ public class Estado {
         return cabeza.getLigaDer() == cabeza;
     }
     
-    
     public StringBuilder imprimir(){
         StringBuilder transicion = new StringBuilder();
         NodoA a = cabeza;
