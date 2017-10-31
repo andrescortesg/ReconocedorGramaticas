@@ -214,13 +214,11 @@ public class Estado {
                 if(x.getSimbolo().equals(listaSimbolos.get(i))){
                     e.crearTransicion(x.getEstado(), x.getSimbolo());
                     x = x.getLigaDer();
-                    
                 }else{
                    x = x.getLigaDer(); 
                 }
                 
             }
-            
             
         }
         

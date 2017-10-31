@@ -174,6 +174,7 @@ public class Automata implements Cloneable{
             }
             p = p.getLigaDer();
         }
+        ordenarTransiciones();
         
     }
     
