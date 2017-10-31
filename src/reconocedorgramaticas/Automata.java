@@ -54,7 +54,7 @@ public class Automata implements Cloneable{
         return estadosAceptacion;
     }
     
-    public boolean esVacia(){
+    public boolean esVacio(){
         return cabeza == cabeza.getLigaIzq();
     }
     
@@ -79,15 +79,25 @@ public class Automata implements Cloneable{
                 System.out.println("Estado:"+y.getEstado()+" Simbolo:"+y.getSimbolo());
                 y = y.getLigaDer();
             }
-            System.out.println(x.esVacio());
+            
             
             x = x.getLigaDer();
         }
     }
     
+    public void imprimir(){
+        Estado x = primerElemento();
+        while(x != cabeza){
+            System.out.println(x.imprimir());
+            x = x.getLigaDer();
+        }
+    }
+    
+    //probado
     public Estado buscarEstado(String e){
         Estado x = primerElemento();
         while(x != cabeza){
+            
             if(x.getEstado().equals(e)){
                 return x;
             }
@@ -98,11 +108,13 @@ public class Automata implements Cloneable{
         return null;
     }
     
+    
+    //probado
     public void insertarEstado(Estado e){ // inserción al final
         if(!e.esDeterministico()){
                 esDeterministico = false;
         }
-        if(!esVacia()){ // si No es vacia
+        if(!esVacio()){ // si No es vacia
             e.setLigaDer(cabeza.getLigaIzq());
             e.setLigaDer(cabeza.getLigaIzq().getLigaDer());
             cabeza.getLigaIzq().setLigaDer(e);
@@ -116,47 +128,58 @@ public class Automata implements Cloneable{
         
     }
     
-    public void generarAutomata(Gramatica g){
-        
-        Produccion p = g.primerProduccion();
-        while(p != g.getCabeza()){
+    public int crearEstado(String estado){
+        if(!listaEstados.contains(estado)){
+            listaEstados.add(estado);
             Estado e = new Estado();
+            e.setEstado(estado);
+            insertarEstado(e);
+            imprimir();
+            return 0;
+        }
+        return 1;
+    }
+    
+    public int crearTransiciones(Produccion p){
+        Estado x = buscarEstado(p.getCabeza());
+        if(x != null){
+            x.crearTransicion(p.ultimoElemento().getDato(), p.primerElemento().getDato());
+            x.imprimirEstado();
+            return 0;
+        }
+        return 1;
+        
+    }
+    
+    public void generarAutomata(Gramatica g){
+        Produccion p = g.primerProduccion();
+        
+        while(p != g.getCabeza()){
             if(p.esNulo()){
-                e.setAceptacion(true);
-            }
-            
-            if(!listaEstados.contains(p.getCabeza())){
-                listaEstados.add(p.getCabeza());
-                
-                Produccion x = p.getLigaDer();
-                int nroP =g.getNroProducciones();
-                Produccion y = x.getLigaIzq();
-                System.out.println("p:"+p);
-                int i = 0;
-                while(i < nroP-1){
-                    
-                    //System.out.println("atascado lol");
-                    if(x == g.getCabeza()){
-                        x = x.getLigaDer();
-                    }
-                    System.out.println("x:"+x);
-                    System.out.println("pregunta del loop:"+x.getCabeza().equals(p.getCabeza()));
-                    if(x.getCabeza().equals(p.getCabeza())){
-                        System.out.println("asasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                        boolean xxx =e.crearTransicion(x.ultimoElemento().getDato(), x.primerElemento().getDato());
-                        System.out.println("error en la escritura?:"+xxx);
-                    }
-                    
-                    x = x.getLigaDer();
-                    i++;
-                }
+                buscarEstado(p.getCabeza()).setAceptacion(true);
+            }else{
+                crearEstado(p.getCabeza());
+                crearTransiciones(p);
             }
             p = p.getLigaDer();
         }
         
-        
     }
     
+    public int conectar(Estado x, Estado estado){
+        Estado t = primerElemento();
+        while(t != cabeza){
+            if( t == x){
+                estado.setLigaIzq(t);
+                estado.setLigaDer(t.getLigaDer());
+                t.getLigaDer().setLigaIzq(estado);
+                t.setLigaDer(estado);
+                return 0;
+            }
+            t = t.getLigaDer();
+        }
+        return 1;
+    }
     
     public void desconectar(Estado e){
         if(e != cabeza){
@@ -167,4 +190,6 @@ public class Automata implements Cloneable{
     
     
     // METODOS NO FUNCIONALES
+
+    
 }

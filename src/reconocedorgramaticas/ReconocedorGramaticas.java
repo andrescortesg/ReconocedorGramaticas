@@ -40,7 +40,7 @@ public class ReconocedorGramaticas {
         System.out.println(a.esDeterministico());
         */
         
-        Automata a = new Automata();
+        Automata x = new Automata();
         
         
         Gramatica g = new Gramatica();
@@ -53,17 +53,13 @@ public class ReconocedorGramaticas {
     g.crearProduccion("<A>= c<A>");
     g.crearProduccion("<A> =&");
 
-        a.generarAutomata(g);
-        Estado x = new Estado();
-        x.setEstado("jajajaja");
-        Estado y = new Estado();
-        y.setEstado("asdasdasd");
-        Estado z = new Estado();
-        z.setEstado("sddfsdf");
-        a.insertarEstado(x);
-        a.insertarEstado(y);
-        a.imprimirNodos();
-        System.out.println("esto se ejecuta");
+       
+        
+        x.imprimirNodos();
+        
+        
+        x.generarAutomata(g);
+        x.imprimir();
     }
     
 }
