@@ -147,7 +147,10 @@ public class Estado {
         while(x != cabeza){
             while(y != cabeza){
                 if(y.getSimbolo().equals( x.getSimbolo())){
-                    listaND.add(x.getSimbolo());
+                    if(!listaND.contains(x.getSimbolo())){
+                        listaND.add(x.getSimbolo());
+                    }
+                    
                     bandera= false;
                 }
                 y = y.getLigaDer();
@@ -174,19 +177,7 @@ public class Estado {
     
     
     //en desarrollo
-    public Estado unirEstados(ArrayList<Estado> estados){
-        if(estados.isEmpty()){
-            return null;
-        }
-        Estado e = new Estado();
-        //creación del nuevo estado
-        while(!estados.isEmpty()){
-            
-        }
-        
-        
-        return null;
-    }
+    
     
     
 
@@ -225,15 +216,17 @@ public class Estado {
     }
     
     //une dos o más transiciones
-    public NodoA unirTransiciones(ArrayList<NodoA> transiciones, String simbolo){
-        NodoA nuevo = new NodoA();
+    public Estado unirEstados(ArrayList<NodoA> transiciones){
+        
+        Estado e = new Estado();
         StringBuilder a = new StringBuilder();
         transiciones.forEach((transicion) -> {
             a.append(transicion.getEstado());
         });
-        nuevo.setEstado(a.toString());
-        nuevo.setSimbolo(simbolo);
-        return nuevo;
+        
+        e.setEstado(a.toString());
+        
+        return e;
     }
     
     public String proximoEstado(char a){

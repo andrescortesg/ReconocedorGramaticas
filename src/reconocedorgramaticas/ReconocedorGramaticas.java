@@ -24,6 +24,7 @@ public class ReconocedorGramaticas {
          * -Terminado funcionalidad de gramaticas
          * -falta terminar metodos base de Automata y Estado (completado)
          * -métodos para simplificación
+         * -métodos para conversion ND-D
          */
         
         
@@ -61,7 +62,6 @@ public class ReconocedorGramaticas {
         
         //este metodo genera el automata
         x.generarAutomata(g);
-        
         
         x.ordenarTransiciones();
         
