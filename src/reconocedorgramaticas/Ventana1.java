@@ -577,6 +577,7 @@ public class Ventana1 extends javax.swing.JFrame {
     }//GEN-LAST:event_simplificarBotonActionPerformed
 
     private void botonGuardarGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarGramaticaActionPerformed
+        
         guardarGramatica();
         botonVerificar.setEnabled(true);
         eliminarProdBoton.setEnabled(true);
@@ -638,10 +639,11 @@ public class Ventana1 extends javax.swing.JFrame {
         automaTextArea.setText(aut.imprimir().toString());
        
         
-        if(est.esDeterministico()){
+        if(aut.esDeterministico()){
+            
         deterministicolabel.setText("Es Deterministico");
         }else{
-             deterministicolabel.setText("Es NO Deterministico");
+        deterministicolabel.setText("Es NO Deterministico");
         }
         
         
