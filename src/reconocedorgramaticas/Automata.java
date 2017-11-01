@@ -241,7 +241,7 @@ public class Automata implements Cloneable{
         a.imprimir();
     }
     
-       
+    
     public boolean evaluarHilera(String hilera){
         Estado actual = primerElemento();
         for(int i = 0; i < hilera.length(); i++){
@@ -257,6 +257,7 @@ public class Automata implements Cloneable{
     }
     
     public void aDeterministico(){
+        ArrayList<NodoA> listaND, nuevaND;
         
         
     }

@@ -50,7 +50,7 @@ public class ReconocedorGramaticas {
         g.crearProduccion("<A> = a<S>");
         g.crearProduccion("<A> = b<A>");
         g.crearProduccion("<A> = &");
-
+        
         g.caso1();
         g.caso2();
         g.caso3();
@@ -58,10 +58,17 @@ public class ReconocedorGramaticas {
         
         g.imprimirGramaticaFormal();
         
+        
+        //este metodo genera el automata
         x.generarAutomata(g);
         
         x.ordenarTransiciones();
+        
+        //si quiere obtener los datos para imprimir el la tabla, recorra el automata manualmente
+        //y llame el metodo imprimir() de cada estado para obtener la fila
         x.imprimir();
+        
+        //este metodo devuelve true si aprueba la hilera
         System.out.println(x.evaluarHilera("abba"));
         
     }

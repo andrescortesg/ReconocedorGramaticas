@@ -93,8 +93,8 @@ public class Estado {
     }
     
     public NodoA desconectar(NodoA t){ 
-        //si el nodo a desconectar no es cabeza = false
-        //caso contrario = true
+        //si el nodo a desconectar no es cabeza = retorna el nodo
+        //caso contrario = null
         if(t != cabeza){
             t.getLigaDer().setLigaIzq(t.getLigaIzq());
             t.getLigaIzq().setLigaDer(t.getLigaDer());
