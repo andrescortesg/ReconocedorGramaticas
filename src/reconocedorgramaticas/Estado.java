@@ -22,6 +22,7 @@ public class Estado {
         noDeterministico = aceptacion = false;
         ligaDer = ligaIzq = null;
         cabeza = new NodoA();
+        listaND = new ArrayList<>();
         cabeza.setLigaDer(cabeza);
         cabeza.setLigaIzq(cabeza);
         cabeza.setSimbolo(null);
@@ -145,6 +146,7 @@ public class Estado {
         while(x != cabeza){
             while(y != cabeza){
                 if(y.getSimbolo().equals( x.getSimbolo())){
+                    System.out.println("Direccion:"+x+" dato:"+x.getSimbolo());
                     if(!listaND.contains(x)){
                         listaND.add(x);
                     }

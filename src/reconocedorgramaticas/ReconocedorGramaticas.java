@@ -44,7 +44,7 @@ public class ReconocedorGramaticas {
         System.out.println(a.esDeterministico());
         */
         
-<<<<<<< HEAD
+
         Automata x = new Automata();
 
         Gramatica g = new Gramatica();
@@ -60,7 +60,7 @@ public class ReconocedorGramaticas {
         g.caso1();
         g.caso2();
         g.caso3();
-=======
+
 //        Automata x = new Automata();
 //
 //        Gramatica g = new Gramatica();
@@ -74,10 +74,9 @@ public class ReconocedorGramaticas {
 //        g.caso1();
 //        g.caso2();
 //        g.caso3();
->>>>>>> origin/master
+
         
-        
-<<<<<<< HEAD
+       
         g.imprimirGramaticaFormal();
         
         
@@ -91,8 +90,8 @@ public class ReconocedorGramaticas {
         x.imprimir();
         
         //este metodo devuelve true si aprueba la hilera
-        System.out.println(x.evaluarHilera("abab"));
-=======
+        System.out.println(x.esDeterministico());
+
 //        g.imprimirGramaticaFormal();
 //        
 //        
@@ -107,9 +106,9 @@ public class ReconocedorGramaticas {
 //        
 //        //este metodo devuelve true si aprueba la hilera
 //        System.out.println(x.evaluarHilera("abba"));
->>>>>>> origin/master
+
         
-        x.aDeterministico();
+        //x.aDeterministico();
         
     }
     
