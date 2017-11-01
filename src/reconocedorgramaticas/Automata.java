@@ -93,19 +93,22 @@ public class Automata implements Cloneable{
         }
     }
     
-    public void imprimir(){
+    public StringBuffer imprimir(){
         Estado x = primerElemento();
-        
+         StringBuffer a =  new StringBuffer();
         while(x != cabeza){
-            StringBuilder a = new StringBuilder(x.imprimir());
+            a.append(x.imprimir());
             if(x.getAceptacion()){
-                a.append("\t (1)");
+                a.append("\1 (1) \n");
             }else{
-                a.append("\t (0)");
+                a.append("\1 (0) \n");
             }
-            System.out.println(a);
+           // a.append("\n");
+           // System.out.println(a);
             x = x.getLigaDer();
         }
+        System.out.println(a.toString());
+        return a;
     }
     
     //probado

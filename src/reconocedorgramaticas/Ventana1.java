@@ -24,6 +24,8 @@ public class Ventana1 extends javax.swing.JFrame {
     String texto;
     JFileChooser fileChooser;
     private Gramatica gram = new Gramatica();
+    Automata aut = new Automata();
+    Estado est = new Estado();
     /**
      * Creates new form NewJFrame
      */
@@ -70,8 +72,18 @@ public class Ventana1 extends javax.swing.JFrame {
         botonEliminarMI = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        generarAutButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        deterministicolabel = new javax.swing.JLabel();
+        hileraTextfield = new javax.swing.JTextField();
+        evaluarhilerabutton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         lineastx = new javax.swing.JTextArea();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        automaTextArea = new javax.swing.JTextArea();
+        areaTextoInformativa1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,11 +95,11 @@ public class Ventana1 extends javax.swing.JFrame {
         areaTextoInformativa.setBackground(new java.awt.Color(204, 204, 204));
         areaTextoInformativa.setColumns(20);
         areaTextoInformativa.setRows(5);
-        areaTextoInformativa.setText("Las gramaticas deben ser escritas asi:\n<S> = a<A><B><S>\n<S> =b<C><A><C>d\n<A> =λ | &\n<C> =c");
+        areaTextoInformativa.setText("Para los automatas\nZ\u0004|\u0004b-A|\u0004c-S|\u0004c-C|\u0001 (0)\nZ es el estado\nb y c son simbolos de entrada\nA,S,C son las trancisiones\n(0) estado de rechazo\n(1) estado de aceptación");
 
         areaDeTexto.setColumns(20);
         areaDeTexto.setRows(5);
-        areaDeTexto.setText("<S> = a<A><B><S>\n<S> =b<C><A><C> d\n<A> =b<A><B>\n<A> =c<S><A>\n<A> =c<C><C>\n<B> =b<A><B>\n<B> =c<S><B>\n<C> =c<S>\n<C> =c\n");
+        areaDeTexto.setText("<S> =a<A><B><S>\n<S> =b<C><A><C>d\n<A> =b<A><B>\n<A> =c<S><A>\n<A> =c<C><C>\n<B> =b<A><B>\n<B> =c<S><B>\n<C> =c<S>\n<C> =c\n");
         areaDeTexto.setToolTipText("Utiliza el boton Cargar Archivo o digita manualmente la gramatica");
         areaDeTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         areaDeTexto.setDragEnabled(true);
@@ -199,6 +211,26 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Operaciones con archivos");
 
+        generarAutButton.setText("Generar Automata");
+        generarAutButton.setEnabled(false);
+        generarAutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarAutButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel10.setText("Determinístico");
+
+        deterministicolabel.setText("Sin evaluar");
+
+        evaluarhilerabutton.setText("Evaluar Hilera");
+        evaluarhilerabutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evaluarhilerabuttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -206,10 +238,8 @@ public class Ventana1 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator3))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,23 +268,33 @@ public class Ventana1 extends javax.swing.JFrame {
                                                 .addComponent(jLabel7)
                                                 .addComponent(labelInalcanzables)))))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(eliminarProdBoton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGap(98, 98, 98)
                                     .addComponent(detectarVMboton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(botonEliminarMI)
-                                    .addGap(41, 41, 41)))
+                                    .addGap(41, 41, 41))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(eliminarProdBoton)))
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonGuardarGramatica)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(botonAbrir)
                                 .addGap(18, 18, 18)
                                 .addComponent(botonGuardarArchivo))
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel10)
+                            .addComponent(deterministicolabel)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(evaluarhilerabutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(generarAutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hileraTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 20, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -306,15 +346,25 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addComponent(labelInalcanzables))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonEliminarMI)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eliminarProdBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(generarAutButton)
                 .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminarProdBoton)
-                    .addComponent(eliminarTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(hileraTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(evaluarhilerabutton))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deterministicolabel)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         lineastx.setEditable(false);
@@ -329,20 +379,45 @@ public class Ventana1 extends javax.swing.JFrame {
         lineastx.setOpaque(false);
         jScrollPane2.setViewportView(lineastx);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel9.setText("Autómatas");
+
+        automaTextArea.setEditable(false);
+        automaTextArea.setColumns(20);
+        automaTextArea.setRows(5);
+        jScrollPane3.setViewportView(automaTextArea);
+
+        areaTextoInformativa1.setEditable(false);
+        areaTextoInformativa1.setBackground(new java.awt.Color(204, 204, 204));
+        areaTextoInformativa1.setColumns(20);
+        areaTextoInformativa1.setRows(5);
+        areaTextoInformativa1.setText("Las gramaticas deben ser escritas asi:\n<S> = a<A><B><S>\n<S> =b<C><A><C>d\n<A> =λ | &\n<C> =c");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator4)
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane3)
+                            .addComponent(areaTextoInformativa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(areaTextoInformativa1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(areaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -350,13 +425,23 @@ public class Ventana1 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(areaDeTexto)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(areaDeTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addGap(92, 92, 92)
-                .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(areaTextoInformativa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(areaTextoInformativa, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         areaDeTexto.getAccessibleContext().setAccessibleName("");
@@ -393,6 +478,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void botonEliminarMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarMIActionPerformed
         // TODO add your handling code here:
+        
         gram.limpiarInalcanzables();
 
         gram.limpiarMuertos();
@@ -438,10 +524,16 @@ public class Ventana1 extends javax.swing.JFrame {
         areaDeTexto.setText(archivo);
         botonGuardarGramatica.setEnabled(true);
         botonGuardarArchivo.setEnabled(true);
+        guardarGramatica();
+        botonVerificar.setEnabled(true);
+        eliminarProdBoton.setEnabled(true);
+        detectarVMboton.setEnabled(true);
+        simplificarBoton.setEnabled(true);
     }//GEN-LAST:event_botonAbrirActionPerformed
 
     private void detectarVMbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detectarVMbotonActionPerformed
         // TODO add your handling code here:
+        
         NTListas NTS = gram.detectarNTVivos();
         NTListas NTS1 = gram.detectarNTAlcanzables();
         if(!NTS.getNT0().isEmpty()){
@@ -472,6 +564,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void simplificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simplificarBotonActionPerformed
         // TODO add your handling code here:
+        
         if(gram.esRegular()){
             gram.simplificarGramatica();
             actualizarGramatica();
@@ -480,7 +573,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 "La gramatica no es regular por lo que no se puede simplificar",
                 "Información",JOptionPane.WARNING_MESSAGE);
         }
-
+        guardarGramatica();
     }//GEN-LAST:event_simplificarBotonActionPerformed
 
     private void botonGuardarGramaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarGramaticaActionPerformed
@@ -494,6 +587,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void botonVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerificarActionPerformed
         // TODO add your handling code here:
+        
         if(gram.esRegular()){
             labelRegular.setText("Es regular: TRUE");
             if(gram.esFormaEspecial()){
@@ -522,12 +616,52 @@ public class Ventana1 extends javax.swing.JFrame {
             simplificarBoton.setEnabled(false);
         }
         System.out.println(gram.detectarNTAlcanzables().getNT1());
+        
+        if(gram.esFormaEspecial()){
+        generarAutButton.setEnabled(true);
+        }
     }//GEN-LAST:event_botonVerificarActionPerformed
 
     private void areaDeTextoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_areaDeTextoCaretUpdate
         // TODO add your handling code here:
         actualizarlineas();
     }//GEN-LAST:event_areaDeTextoCaretUpdate
+
+    private void generarAutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarAutButtonActionPerformed
+        // TODO add your handling code here:
+    aut = new Automata();
+    est = new Estado();
+        automaTextArea.setText("");
+        aut.generarAutomata(gram);
+        aut.ordenarTransiciones();
+        System.out.println(aut.imprimir());
+        automaTextArea.setText(aut.imprimir().toString());
+       
+        
+        if(est.esDeterministico()){
+        deterministicolabel.setText("Es Deterministico");
+        }else{
+             deterministicolabel.setText("Es NO Deterministico");
+        }
+        
+        
+    }//GEN-LAST:event_generarAutButtonActionPerformed
+
+    private void evaluarhilerabuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluarhilerabuttonActionPerformed
+        // TODO add your handling code here:
+        
+        if(aut.evaluarHilera(hileraTextfield.getText())){
+        JOptionPane.showMessageDialog(null,"" +
+           "\nLa hilera ingresada ha sido aceptada",
+                 "Exito!!!",JOptionPane.WARNING_MESSAGE);
+        }else{
+        JOptionPane.showMessageDialog(null,"" +
+           "\nLa hilera ingresada NO ha sido aceptada",
+                 "Advertencia!!!",JOptionPane.WARNING_MESSAGE);
+        
+        
+        }
+    }//GEN-LAST:event_evaluarhilerabuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -683,15 +817,22 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel LabelTMuertos;
     private javax.swing.JTextArea areaDeTexto;
     private javax.swing.JTextArea areaTextoInformativa;
+    private javax.swing.JTextArea areaTextoInformativa1;
+    private javax.swing.JTextArea automaTextArea;
     private javax.swing.JButton botonAbrir;
     private javax.swing.JButton botonEliminarMI;
     private javax.swing.JButton botonGuardarArchivo;
     private javax.swing.JButton botonGuardarGramatica;
     private javax.swing.JButton botonVerificar;
     private javax.swing.JButton detectarVMboton;
+    private javax.swing.JLabel deterministicolabel;
     private javax.swing.JButton eliminarProdBoton;
     private javax.swing.JTextField eliminarTextfield;
+    private javax.swing.JButton evaluarhilerabutton;
+    private javax.swing.JButton generarAutButton;
+    private javax.swing.JTextField hileraTextfield;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -699,12 +840,15 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel labelAlcanzables;
     private javax.swing.JLabel labelEspecial;
     private javax.swing.JLabel labelInalcanzables;

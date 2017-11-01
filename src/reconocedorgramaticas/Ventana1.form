@@ -8,7 +8,7 @@
       <Rectangle value="[10, 10, 300, 500]"/>
     </Property>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Default Cursor"/>
+      <Color id="Cursor Por defecto"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -63,21 +63,36 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="areaTextoInformativa" min="-2" pref="351" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="areaDeTexto" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jSeparator4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="areaTextoInformativa" alignment="1" pref="358" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Component id="areaTextoInformativa1" min="-2" pref="351" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jScrollPane2" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="areaDeTexto" min="-2" pref="330" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -85,15 +100,26 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="areaDeTexto" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="areaDeTexto" pref="202" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="areaTextoInformativa" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="areaTextoInformativa1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="areaTextoInformativa" min="-2" pref="136" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -106,17 +132,19 @@
             </Property>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Las gramaticas deben ser escritas asi:&#xa;&lt;S&gt; = a&lt;A&gt;&lt;B&gt;&lt;S&gt;&#xa;&lt;S&gt; =b&lt;C&gt;&lt;A&gt;&lt;C&gt;d&#xa;&lt;A&gt; =&#x3bb; | &amp;&#xa;&lt;C&gt; =c"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.editors.StringEditor">
+              <SerializedValue value="-84,-19,0,5,116,0,-94,80,97,114,97,32,108,111,115,32,97,117,116,111,109,97,116,97,115,10,90,4,124,4,98,45,65,124,4,99,45,83,124,4,99,45,67,124,1,32,40,48,41,10,90,32,101,115,32,101,108,32,101,115,116,97,100,111,10,98,32,121,32,99,32,115,111,110,32,115,105,109,98,111,108,111,115,32,100,101,32,101,110,116,114,97,100,97,10,65,44,83,44,67,32,115,111,110,32,108,97,115,32,116,114,97,110,99,105,115,105,111,110,101,115,10,40,48,41,32,101,115,116,97,100,111,32,100,101,32,114,101,99,104,97,122,111,10,40,49,41,32,101,115,116,97,100,111,32,100,101,32,97,99,101,112,116,97,99,105,-61,-77,110"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextArea" name="areaDeTexto">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="&lt;S&gt; = a&lt;A&gt;&lt;B&gt;&lt;S&gt;&#xa;&lt;S&gt; =b&lt;C&gt;&lt;A&gt;&lt;C&gt; d&#xa;&lt;A&gt; =b&lt;A&gt;&lt;B&gt;&#xa;&lt;A&gt; =c&lt;S&gt;&lt;A&gt;&#xa;&lt;A&gt; =c&lt;C&gt;&lt;C&gt;&#xa;&lt;B&gt; =b&lt;A&gt;&lt;B&gt;&#xa;&lt;B&gt; =c&lt;S&gt;&lt;B&gt;&#xa;&lt;C&gt; =c&lt;S&gt;&#xa;&lt;C&gt; =c&#xa;"/>
+            <Property name="text" type="java.lang.String" value="&lt;S&gt; =a&lt;A&gt;&lt;B&gt;&lt;S&gt;&#xa;&lt;S&gt; =b&lt;C&gt;&lt;A&gt;&lt;C&gt;d&#xa;&lt;A&gt; =b&lt;A&gt;&lt;B&gt;&#xa;&lt;A&gt; =c&lt;S&gt;&lt;A&gt;&#xa;&lt;A&gt; =c&lt;C&gt;&lt;C&gt;&#xa;&lt;B&gt; =b&lt;A&gt;&lt;B&gt;&#xa;&lt;B&gt; =c&lt;S&gt;&lt;B&gt;&#xa;&lt;C&gt; =c&lt;S&gt;&#xa;&lt;C&gt; =c&#xa;"/>
             <Property name="toolTipText" type="java.lang.String" value="Utiliza el boton Cargar Archivo o digita manualmente la gramatica"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="dragEnabled" type="boolean" value="true"/>
             <Property name="name" type="java.lang.String" value="Editor" noResource="true"/>
@@ -136,11 +164,8 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSeparator1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator3" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -177,11 +202,6 @@
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="eliminarProdBoton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="eliminarTextfield" min="-2" pref="43" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                                           <Component id="detectarVMboton" min="-2" pref="105" max="-2" attributes="0"/>
                                       </Group>
@@ -189,9 +209,17 @@
                                           <Component id="botonEliminarMI" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                          <Component id="eliminarProdBoton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="eliminarTextfield" min="-2" pref="43" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="botonGuardarGramatica" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="botonAbrir" min="-2" max="-2" attributes="0"/>
@@ -199,6 +227,16 @@
                                       <Component id="botonGuardarArchivo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deterministicolabel" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="evaluarhilerabutton" max="32767" attributes="0"/>
+                                          <Component id="generarAutButton" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="hileraTextfield" min="-2" pref="43" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
                           </Group>
@@ -263,16 +301,27 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botonEliminarMI" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="eliminarTextfield" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="eliminarProdBoton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="11" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <Component id="generarAutButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="eliminarProdBoton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="eliminarTextfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hileraTextfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="evaluarhilerabutton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="71" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="deterministicolabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -446,6 +495,38 @@
                 <Property name="text" type="java.lang.String" value="Operaciones con archivos"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="generarAutButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Generar Automata"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarAutButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel10">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="15" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Determin&#xed;stico"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="deterministicolabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sin evaluar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="hileraTextfield">
+            </Component>
+            <Component class="javax.swing.JButton" name="evaluarhilerabutton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Evaluar Hilera"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="evaluarhilerabuttonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -479,6 +560,43 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JSeparator" name="jSeparator4">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="15" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Aut&#xf3;matas"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="automaTextArea">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JTextArea" name="areaTextoInformativa1">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Las gramaticas deben ser escritas asi:&#xa;&lt;S&gt; = a&lt;A&gt;&lt;B&gt;&lt;S&gt;&#xa;&lt;S&gt; =b&lt;C&gt;&lt;A&gt;&lt;C&gt;d&#xa;&lt;A&gt; =&#x3bb; | &amp;&#xa;&lt;C&gt; =c"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">

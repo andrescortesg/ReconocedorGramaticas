@@ -91,10 +91,10 @@ public class Estado {
     public StringBuilder imprimir(){
         StringBuilder transicion = new StringBuilder();
         NodoA a = cabeza;
-        transicion.append(a.getEstado()).append("\t");
+        transicion.append(a.getEstado()).append("\4");
         a = a.getLigaDer();
         while(a != cabeza){
-            transicion.append("|").append("\t").append(a.getSimbolo()).append("-").append(a.getEstado());
+            transicion.append("|").append("\4").append(a.getSimbolo()).append("-").append(a.getEstado());
             a = a.getLigaDer();
         }
         transicion.append("|");
