@@ -262,26 +262,29 @@ public class Automata implements Cloneable{
     
     public void aDeterministico(){
         ArrayList<NodoA> listaND, nuevoND;
-        listaND = new ArrayList<>();
+       
         nuevoND = new ArrayList<>();
         Estado x = primerElemento();
         while(!esDeterministico()){
             
             if(!x.esDeterministico()){ //
-                NodoA e = x.primerElemento();
-                for (String ND1 : x.getListaND()) {
-                    while(e != x.getCabeza()){
-                        if(e.getSimbolo().equals(ND1)){ //x es un nodo no deterministico
-                            listaND.add(e);
-                            
-                        }
-                        e = e.getLigaDer();
-                    }
-                    Estado nuevo = x.unirEstados(listaND);
-                }
+                Estado nuevo = new Estado();
+                listaND = x.getListaND();
+                nuevo.unirEstados(listaND);
                 
+                //parte 1.1: desconectar nodos no deterministicos y reemplazarlos con nodos deterministicos
+                x.unirTransicionesND();
+                //parte 2:llenado de nuevos estado no deterministicos
+                
+                for(int i = 0; i< listaND.size(); i++){
+                    nuevo.crearTransicion(listaND.get(i).getEstado(), listaND.get(i).getSimbolo());
+                }
+                insertarEstado(nuevo);
+               
             }
             x = x.getLigaDer();
         }
     }
+    
+   
 }

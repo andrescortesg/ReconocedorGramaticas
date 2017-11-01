@@ -47,10 +47,12 @@ public class ReconocedorGramaticas {
         Gramatica g = new Gramatica();
         
         g.crearProduccion("<S> = a<A>");
+        g.crearProduccion("<S> = a<B>");
         g.crearProduccion("<S> = b<S>");
         g.crearProduccion("<A> = a<S>");
         g.crearProduccion("<A> = b<A>");
         g.crearProduccion("<A> = &");
+        g.crearProduccion("<B> = &");
         
         g.caso1();
         g.caso2();
@@ -70,9 +72,9 @@ public class ReconocedorGramaticas {
         x.imprimir();
         
         //este metodo devuelve true si aprueba la hilera
-        System.out.println(x.evaluarHilera("abba"));
+        System.out.println(x.evaluarHilera("abab"));
         
-        
+        x.aDeterministico();
         
     }
     

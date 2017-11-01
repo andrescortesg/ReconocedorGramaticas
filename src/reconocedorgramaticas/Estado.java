@@ -15,7 +15,7 @@ public class Estado {
     private NodoA cabeza;
     private boolean noDeterministico;
     private boolean aceptacion;
-    private ArrayList<String> listaND;
+    private ArrayList<NodoA> listaND;
     
     
     public Estado(){
@@ -80,13 +80,11 @@ public class Estado {
         return cabeza.getLigaDer() == cabeza;
     }
 
-    public ArrayList<String> getListaND() {
+    public ArrayList<NodoA> getListaND() {
         return listaND;
     }
 
-    public void setListaND(ArrayList<String> listaND) {
-        this.listaND = listaND;
-    }
+    
     
     
     
@@ -147,8 +145,8 @@ public class Estado {
         while(x != cabeza){
             while(y != cabeza){
                 if(y.getSimbolo().equals( x.getSimbolo())){
-                    if(!listaND.contains(x.getSimbolo())){
-                        listaND.add(x.getSimbolo());
+                    if(!listaND.contains(x)){
+                        listaND.add(x);
                     }
                     
                     bandera= false;
@@ -241,5 +239,24 @@ public class Estado {
         return null;
     }
     
-    
+    public StringBuilder unirTransicionesND(){
+        String actual;
+        StringBuilder transicion = new StringBuilder();
+        String simbolo;
+        NodoA x = primerElemento();
+        
+        actual = x.getSimbolo();
+        while (x!= cabeza){
+            if(x.getSimbolo().equals(actual)){
+                actual = x.getSimbolo();
+                transicion.append(x.getEstado());
+                x =desconectar(x);
+            }else{
+                crearTransicion(transicion.toString(), actual);
+            }
+            x = x.getLigaDer();
+        }
+        
+        return transicion;
+    }
 }
