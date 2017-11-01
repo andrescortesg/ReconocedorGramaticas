@@ -107,6 +107,7 @@ public class Estado {
         //caso contrario = null
         if(t != cabeza){
             t.getLigaDer().setLigaIzq(t.getLigaIzq());
+            System.out.println("Direccion:"+t+" izquierdo:"+t.getLigaIzq()+" derecho:"+t.getLigaDer());
             t.getLigaIzq().setLigaDer(t.getLigaDer());
             return t;
         }
@@ -146,7 +147,7 @@ public class Estado {
         while(x != cabeza){
             while(y != cabeza){
                 if(y.getSimbolo().equals( x.getSimbolo())){
-                    System.out.println("Direccion:"+x+" dato:"+x.getSimbolo());
+                    
                     if(!listaND.contains(x)){
                         listaND.add(x);
                     }
@@ -244,17 +245,21 @@ public class Estado {
     public StringBuilder unirTransicionesND(){
         String actual;
         StringBuilder transicion = new StringBuilder();
-        String simbolo;
+        
         NodoA x = primerElemento();
         
         actual = x.getSimbolo();
         while (x!= cabeza){
-            if(x.getSimbolo().equals(actual)){
+            
+            if(x.getSimbolo().equals(actual) ){
                 actual = x.getSimbolo();
                 transicion.append(x.getEstado());
+                System.out.println("dato a desconectar"+x.getEstado()+" Simbolo:"+x.getSimbolo()+" izquierda:"+x.getLigaIzq());
                 x =desconectar(x);
             }else{
+                actual = x.getSimbolo();
                 crearTransicion(transicion.toString(), actual);
+                
             }
             x = x.getLigaDer();
         }

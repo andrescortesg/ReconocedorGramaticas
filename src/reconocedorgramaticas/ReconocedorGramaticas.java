@@ -108,8 +108,8 @@ public class ReconocedorGramaticas {
 //        System.out.println(x.evaluarHilera("abba"));
 
         
-        //x.aDeterministico();
-        
+        x.aDeterministico();
+        x.imprimir();
     }
     
 }
