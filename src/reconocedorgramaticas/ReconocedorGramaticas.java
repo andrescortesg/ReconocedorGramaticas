@@ -62,6 +62,7 @@ public class ReconocedorGramaticas {
         //este metodo genera el automata
         x.generarAutomata(g);
         
+        
         x.ordenarTransiciones();
         
         //si quiere obtener los datos para imprimir el la tabla, recorra el automata manualmente
@@ -70,6 +71,8 @@ public class ReconocedorGramaticas {
         
         //este metodo devuelve true si aprueba la hilera
         System.out.println(x.evaluarHilera("abba"));
+        
+        
         
     }
     

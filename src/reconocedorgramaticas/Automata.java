@@ -187,6 +187,8 @@ public class Automata implements Cloneable{
         ordenarTransiciones(); 
     }
     
+    
+    //sin uso final
     public int conectar(Estado x, Estado estado){
         Estado t = primerElemento();
         while(t != cabeza){
@@ -202,12 +204,14 @@ public class Automata implements Cloneable{
         return 1;
     }
     
-    //sin uso final
-    public void desconectar(Estado e){
+    
+    public Estado desconectar(Estado e){
         if(e != cabeza){
             e.getLigaDer().setLigaIzq(e.getLigaIzq());
             e.getLigaIzq().setLigaDer(e.getLigaDer());
+            return e;
         }
+        return null;
     }
     
     public void ordenarTransiciones(){
@@ -257,8 +261,14 @@ public class Automata implements Cloneable{
     }
     
     public void aDeterministico(){
-        ArrayList<NodoA> listaND, nuevaND;
-        
-        
+        ArrayList<NodoA> listaND, nuevoND;
+        Estado x = primerElemento();
+        while(!esDeterministico()){
+            
+            if(!x.esDeterministico()){
+                
+            }
+            x = x.getLigaDer();
+        }
     }
 }

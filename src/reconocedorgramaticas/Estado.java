@@ -15,6 +15,7 @@ public class Estado {
     private NodoA cabeza;
     private boolean noDeterministico;
     private boolean aceptacion;
+    private ArrayList<String> listaND;
     
     
     public Estado(){
@@ -78,6 +79,16 @@ public class Estado {
     public boolean esVacia(){
         return cabeza.getLigaDer() == cabeza;
     }
+
+    public ArrayList<String> getListaND() {
+        return listaND;
+    }
+
+    public void setListaND(ArrayList<String> listaND) {
+        this.listaND = listaND;
+    }
+    
+    
     
     public StringBuilder imprimir(){
         StringBuilder transicion = new StringBuilder();
@@ -132,12 +143,12 @@ public class Estado {
         NodoA x, y;
         x = primerElemento();
         y = x.getLigaDer();
-        
+        boolean bandera = true;
         while(x != cabeza){
             while(y != cabeza){
                 if(y.getSimbolo().equals( x.getSimbolo())){
-                    
-                    return false;
+                    listaND.add(x.getSimbolo());
+                    bandera= false;
                 }
                 y = y.getLigaDer();
             }
@@ -148,7 +159,7 @@ public class Estado {
             
         }
         
-        return true;
+        return bandera;
       
     }
     
@@ -236,4 +247,6 @@ public class Estado {
         }
         return null;
     }
+    
+    
 }
