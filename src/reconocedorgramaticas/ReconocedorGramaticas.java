@@ -15,6 +15,8 @@ public class ReconocedorGramaticas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Ventana1 v = new Ventana1();
+        v.setVisible(true);
         // TODO code application logic here
         
         // --------------- AREA DE PRUEBAS E INICALIZACIÓN ------------------
@@ -42,35 +44,35 @@ public class ReconocedorGramaticas {
         System.out.println(a.esDeterministico());
         */
         
-        Automata x = new Automata();
-
-        Gramatica g = new Gramatica();
-        
-        g.crearProduccion("<S> = a<A>");
-        g.crearProduccion("<S> = b<S>");
-        g.crearProduccion("<A> = a<S>");
-        g.crearProduccion("<A> = b<A>");
-        g.crearProduccion("<A> = &");
-        
-        g.caso1();
-        g.caso2();
-        g.caso3();
-        
-        
-        g.imprimirGramaticaFormal();
+//        Automata x = new Automata();
+//
+//        Gramatica g = new Gramatica();
+//        
+//        g.crearProduccion("<S> = a<A>");
+//        g.crearProduccion("<S> = b<S>");
+//        g.crearProduccion("<A> = a<S>");
+//        g.crearProduccion("<A> = b<A>");
+//        g.crearProduccion("<A> = &");
+//        
+//        g.caso1();
+//        g.caso2();
+//        g.caso3();
         
         
-        //este metodo genera el automata
-        x.generarAutomata(g);
-        
-        x.ordenarTransiciones();
-        
-        //si quiere obtener los datos para imprimir el la tabla, recorra el automata manualmente
-        //y llame el metodo imprimir() de cada estado para obtener la fila
-        x.imprimir();
-        
-        //este metodo devuelve true si aprueba la hilera
-        System.out.println(x.evaluarHilera("abba"));
+//        g.imprimirGramaticaFormal();
+//        
+//        
+//        //este metodo genera el automata
+//        x.generarAutomata(g);
+//        
+//        x.ordenarTransiciones();
+//        
+//        //si quiere obtener los datos para imprimir el la tabla, recorra el automata manualmente
+//        //y llame el metodo imprimir() de cada estado para obtener la fila
+//        x.imprimir();
+//        
+//        //este metodo devuelve true si aprueba la hilera
+//        System.out.println(x.evaluarHilera("abba"));
         
         
         
