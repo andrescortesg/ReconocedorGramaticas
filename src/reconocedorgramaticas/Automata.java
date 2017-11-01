@@ -38,16 +38,7 @@ public class Automata implements Cloneable{
  * @return true si cumple para ser deterministico false de lo contrario
  * 
  */
-    public boolean esDeterministico() {
-        Estado x = primerElemento();
-        while(x != cabeza){
-            if(!x.esDeterministico()){
-                esDeterministico = false;
-            }
-            x = x.getLigaDer();
-        }
-        return esDeterministico;
-    }
+   
      
     public int nroEstados(){
         return listaEstados.size();
@@ -74,21 +65,26 @@ public class Automata implements Cloneable{
     public Estado ultimoElemento(){
         return cabeza.getLigaIzq();
     }
-    
+     public boolean esDeterministico() {
+        Estado x = primerElemento();
+        while(x != cabeza){
+            if(!x.esDeterministico()){
+                esDeterministico = false;
+            }
+            x = x.getLigaDer();
+        }
+        return esDeterministico;
+    }
     //para pruebas
     public void imprimirNodos(){
-        
         Estado x = primerElemento();
-        
-        while(x != cabeza){
+         while(x != cabeza){
             System.out.println("--------------------nodo:"+x+" dato asociado:"+x.getEstado()+"----------------------");
             NodoA y = x.primerElemento();
             while(y != x.getCabeza()){
                 System.out.println("Estado:"+y.getEstado()+" Simbolo:"+y.getSimbolo());
                 y = y.getLigaDer();
-            }
-            
-            
+            } 
             x = x.getLigaDer();
         }
     }
@@ -103,9 +99,7 @@ public class Automata implements Cloneable{
             }else{
                 a.append("\1 (0) \n");
             }
-           // a.append("\n");
-           // System.out.println(a);
-            x = x.getLigaDer();
+           x = x.getLigaDer();
         }
         System.out.println(a.toString());
         return a;
@@ -230,8 +224,7 @@ public class Automata implements Cloneable{
     //sin uso final
     public void ordenarEstados(){
         Automata a = new Automata();
-        
-        
+               
         for(int i = 0; i < listaEstados.size(); i++){
             Estado x = primerElemento();
             while(x != cabeza){
@@ -241,10 +234,8 @@ public class Automata implements Cloneable{
                 }else{
                     x = x.getLigaDer();
                 }
-                
             }
         }
-        
         a.imprimir();
     }
     

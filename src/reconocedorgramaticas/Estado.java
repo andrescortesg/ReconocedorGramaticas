@@ -263,7 +263,6 @@ public class Estado {
             }
             x = x.getLigaDer();
         }
-        
         return transicion;
     }
 }
